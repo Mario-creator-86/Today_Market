@@ -1,0 +1,104 @@
+{
+  "brief_version": "1.1.0",
+  "brief": {
+    "timezone": "Europe/Bucharest",
+    "morning_local_time": "07:30",
+    "min_calendar_impact": 5,
+    "intraday_score_change": 10,
+    "max_items_per_section": 8,
+    "topics": {
+      "Central banks": {
+        "types": [
+          "CENTRAL_BANK"
+        ],
+        "sources": [
+          "fed",
+          "ecb"
+        ]
+      },
+      "Macro": {
+        "types": [
+          "MACRO",
+          "INFLATION_HOT"
+        ],
+        "sources": [
+          "bls"
+        ]
+      },
+      "Geopolitics": {
+        "types": [
+          "GEOPOLITICAL_ENERGY"
+        ],
+        "sources": []
+      },
+      "Regulation": {
+        "types": [
+          "REGULATION"
+        ],
+        "sources": [
+          "sec"
+        ]
+      }
+    },
+    "asset_sections": {
+      "Crypto": {
+        "classes": [
+          "crypto"
+        ],
+        "symbols": []
+      },
+      "FX/USD": {
+        "classes": [
+          "fx"
+        ],
+        "symbols": [
+          "DXY"
+        ]
+      },
+      "Bonds": {
+        "classes": [
+          "bond"
+        ],
+        "symbols": []
+      },
+      "Gold": {
+        "classes": [],
+        "symbols": [
+          "GOLD"
+        ]
+      },
+      "Oil": {
+        "classes": [],
+        "symbols": [
+          "WTI",
+          "BRENT"
+        ]
+      },
+      "Equities": {
+        "classes": [
+          "equity"
+        ],
+        "symbols": [
+          "SP500",
+          "NASDAQ",
+          "RUSSELL",
+          "VIX"
+        ]
+      }
+    },
+    "min_event_importance": 50,
+    "morning_window_minutes": 60,
+    "morning_late_policy": "label",
+    "morning_late_limit_minutes": 240,
+    "major_event_importance": 0.6,
+    "catalyst_recency_half_life_hours": 12,
+    "catalyst_causal_bonus": 0.25,
+    "catalyst_default_importance": 0.5,
+    "closed_market_states": [
+      "LAST CLOSE",
+      "FRIDAY CLOSE",
+      "AFTER HOURS",
+      "PREMARKET"
+    ]
+  }
+}

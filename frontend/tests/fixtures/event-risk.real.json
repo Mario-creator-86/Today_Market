@@ -1,0 +1,3061 @@
+{
+  "generated_by": "scripts/export_event_fixture.py",
+  "regenerate": ".venv/Scripts/python scripts/export_event_fixture.py",
+  "as_of": "2026-10-28T17:15:00+00:00",
+  "event_risk": {
+    "generated_at": "2026-10-28T17:15:00+00:00",
+    "timezone": "Europe/Bucharest",
+    "markets_open": {
+      "crypto": true,
+      "us_equities": true,
+      "us_rates": true,
+      "fx": true,
+      "commodities": true
+    },
+    "mode": {
+      "active": true,
+      "event_id": "FED-20261028-FOMC",
+      "name": "FOMC rate decision",
+      "time_bucharest": "20:00",
+      "time_utc": "2026-10-28T18:00:00+00:00",
+      "minutes_until": 45,
+      "impact_10": 9.2,
+      "impact": 10.0,
+      "relevance_score": 91.7,
+      "relevance_level": "CRITICAL",
+      "affected_groups": [
+        "USD",
+        "Treasuries",
+        "Equities",
+        "Crypto",
+        "Gold",
+        "FX"
+      ],
+      "phase": "APPROACHING"
+    },
+    "next_event": {
+      "event_id": "FED-20261028-FOMC",
+      "row_id": "bebf2ee8c385be8f711e94a83a9d154201da4a4daea1639e24139f3434e93932",
+      "name": "FOMC rate decision",
+      "event_class": "FOMC",
+      "category": "CENTRAL_BANK",
+      "kind": "DECISION",
+      "is_decision": true,
+      "speaker_role": null,
+      "symbol": null,
+      "status": "APPROACHING",
+      "phase": "APPROACHING",
+      "timing": "SCHEDULED",
+      "time_utc": "2026-10-28T18:00:00+00:00",
+      "time_bucharest": "20:00",
+      "date_bucharest": "2026-10-28",
+      "time_known": true,
+      "time_basis": "FOMC statement 2:00 p.m. ET (configured standard time; fomccalendars.htm lists dates only; federalreserve.gov calendar.json lists 2:00 p.m.)",
+      "date_window": null,
+      "minutes_until_event": 45,
+      "first_seen_utc": null,
+      "published_utc": null,
+      "published_date_only": null,
+      "importance_score": 100.0,
+      "expected_volatility_score": 95.0,
+      "relevance_score": 91.7,
+      "relevance_level": "CRITICAL",
+      "relevance_components": {
+        "importance": 100.0,
+        "expected_volatility": 95.0,
+        "proximity": 100.0,
+        "regime_sensitivity": 84.4,
+        "exposure_breadth": 100.0,
+        "pricing_uncertainty": 50.0
+      },
+      "relevance_missing": [],
+      "dominance_score": 92.2,
+      "dominance_basis": {
+        "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+        "regime_sensitivity": "exposed drivers moving: Rates, USD, Risk appetite",
+        "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+      },
+      "impact_10": 9.2,
+      "impact": 10.0,
+      "affected_assets": [
+        {
+          "symbol": "NASDAQ",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "DXY",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "US2Y",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "EURUSD",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "USDJPY",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "BTC",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "ETH",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "SP500",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "US10Y",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "GBPUSD",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "GOLD",
+          "level": "high",
+          "weight": 0.75
+        }
+      ],
+      "consensus": "NO CONSENSUS",
+      "market_pricing": "UNKNOWN",
+      "actual": null,
+      "outcome": null,
+      "known_information": [
+        "Source: Federal Reserve Board",
+        "Time basis: FOMC statement 2:00 p.m. ET (configured standard time; fomccalendars.htm lists dates only; federalreserve.gov calendar.json lists 2:00 p.m.)"
+      ],
+      "possible_surprises": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "scenarios": [
+        {
+          "id": "A",
+          "label": "As expected, neutral guidance",
+          "condition": "As expected, neutral guidance",
+          "trigger": null,
+          "expected": {},
+          "unresolved": [],
+          "basis": "no directional model",
+          "note": "Headline mostly priced; attention moves to guidance, projections and the press conference.",
+          "likelihood": "possible"
+        },
+        {
+          "id": "B",
+          "label": "Hawkish (higher rate path)",
+          "condition": "Hawkish (higher rate path)",
+          "trigger": "FED_HAWKISH",
+          "expected": {
+            "NASDAQ": -1,
+            "DXY": 1,
+            "US2Y": 1,
+            "EURUSD": -1,
+            "USDJPY": 1,
+            "BTC": -1,
+            "ETH": -1,
+            "SP500": -1,
+            "US10Y": 1,
+            "GBPUSD": -1,
+            "GOLD": -1
+          },
+          "unresolved": [],
+          "basis": "causal graph: fed-hawkish",
+          "note": null,
+          "likelihood": "possible"
+        },
+        {
+          "id": "C",
+          "label": "Dovish (lower rate path)",
+          "condition": "Dovish (lower rate path)",
+          "trigger": "FED_DOVISH",
+          "expected": {
+            "NASDAQ": 1,
+            "DXY": -1,
+            "US2Y": -1,
+            "EURUSD": 1,
+            "USDJPY": -1,
+            "BTC": 1,
+            "ETH": 1,
+            "SP500": 1,
+            "US10Y": -1,
+            "GBPUSD": 1,
+            "GOLD": 1
+          },
+          "unresolved": [],
+          "basis": "causal graph: fed-dovish",
+          "note": null,
+          "likelihood": "possible"
+        },
+        {
+          "id": "D",
+          "label": "Unexpected hold",
+          "condition": "Unexpected hold",
+          "trigger": null,
+          "expected": {},
+          "unresolved": [],
+          "basis": "no directional model",
+          "note": "The reason matters: a hold on lower inflation can be bullish; a hold on financial instability can be risk-off at first.",
+          "likelihood": "possible"
+        }
+      ],
+      "consequences": {},
+      "source_ids": [
+        "fomc_calendar"
+      ],
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "attribution": "Source: Federal Reserve Board",
+      "fact_confidence": 99.0,
+      "sub_events": [
+        {
+          "sub_event": "PRESS_CONFERENCE",
+          "name": "FOMC press conference",
+          "row_id": "9ce97b094cb50bf0e7f66edfbb20de32601734ed30acb4bb7cbf014e467fe919",
+          "time_utc": "2026-10-28T18:30:00+00:00",
+          "time_bucharest": "20:30",
+          "time_known": true,
+          "time_basis": "Chair's press conference 2:30 p.m. ET (configured; federalreserve.gov calendar.json lists 2:30 p.m.); sub-event of the decision",
+          "phase": "APPROACHING"
+        }
+      ],
+      "parent_event_id": null,
+      "status_note": null,
+      "data_incomplete": [
+        "NO CONSENSUS",
+        "MARKET PRICING UNKNOWN"
+      ],
+      "data_incomplete_flag": true,
+      "verification_status": null,
+      "surprise_basis": {
+        "headline_priced": "UNKNOWN",
+        "guidance_pending": true,
+        "priced_threshold": 0.9,
+        "allowed_assessments": [
+          "UNDETERMINED",
+          "NOT_APPLICABLE"
+        ],
+        "official_document_ids": [],
+        "basis": [
+          "market pricing UNKNOWN",
+          "guidance pending until the press conference ends",
+          "no official document of this event received yet (a surprise call needs one)"
+        ]
+      },
+      "surprise": {
+        "assessment": "UNDETERMINED",
+        "source": "none",
+        "evidence_ids": [],
+        "validated": false
+      },
+      "official_documents": [],
+      "live_assets": [],
+      "awaiting_reopen": []
+    },
+    "dominant_event": {
+      "event_id": "FED-20261028-FOMC",
+      "row_id": "bebf2ee8c385be8f711e94a83a9d154201da4a4daea1639e24139f3434e93932",
+      "name": "FOMC rate decision",
+      "event_class": "FOMC",
+      "category": "CENTRAL_BANK",
+      "kind": "DECISION",
+      "is_decision": true,
+      "speaker_role": null,
+      "symbol": null,
+      "status": "APPROACHING",
+      "phase": "APPROACHING",
+      "timing": "SCHEDULED",
+      "time_utc": "2026-10-28T18:00:00+00:00",
+      "time_bucharest": "20:00",
+      "date_bucharest": "2026-10-28",
+      "time_known": true,
+      "time_basis": "FOMC statement 2:00 p.m. ET (configured standard time; fomccalendars.htm lists dates only; federalreserve.gov calendar.json lists 2:00 p.m.)",
+      "date_window": null,
+      "minutes_until_event": 45,
+      "first_seen_utc": null,
+      "published_utc": null,
+      "published_date_only": null,
+      "importance_score": 100.0,
+      "expected_volatility_score": 95.0,
+      "relevance_score": 91.7,
+      "relevance_level": "CRITICAL",
+      "relevance_components": {
+        "importance": 100.0,
+        "expected_volatility": 95.0,
+        "proximity": 100.0,
+        "regime_sensitivity": 84.4,
+        "exposure_breadth": 100.0,
+        "pricing_uncertainty": 50.0
+      },
+      "relevance_missing": [],
+      "dominance_score": 92.2,
+      "dominance_basis": {
+        "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+        "regime_sensitivity": "exposed drivers moving: Rates, USD, Risk appetite",
+        "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+      },
+      "impact_10": 9.2,
+      "impact": 10.0,
+      "affected_assets": [
+        {
+          "symbol": "NASDAQ",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "DXY",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "US2Y",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "EURUSD",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "USDJPY",
+          "level": "very_high",
+          "weight": 1.0
+        },
+        {
+          "symbol": "BTC",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "ETH",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "SP500",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "US10Y",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "GBPUSD",
+          "level": "high",
+          "weight": 0.75
+        },
+        {
+          "symbol": "GOLD",
+          "level": "high",
+          "weight": 0.75
+        }
+      ],
+      "consensus": "NO CONSENSUS",
+      "market_pricing": "UNKNOWN",
+      "actual": null,
+      "outcome": null,
+      "known_information": [
+        "Source: Federal Reserve Board",
+        "Time basis: FOMC statement 2:00 p.m. ET (configured standard time; fomccalendars.htm lists dates only; federalreserve.gov calendar.json lists 2:00 p.m.)"
+      ],
+      "possible_surprises": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "scenarios": [
+        {
+          "id": "A",
+          "label": "As expected, neutral guidance",
+          "condition": "As expected, neutral guidance",
+          "trigger": null,
+          "expected": {},
+          "unresolved": [],
+          "basis": "no directional model",
+          "note": "Headline mostly priced; attention moves to guidance, projections and the press conference.",
+          "likelihood": "possible"
+        },
+        {
+          "id": "B",
+          "label": "Hawkish (higher rate path)",
+          "condition": "Hawkish (higher rate path)",
+          "trigger": "FED_HAWKISH",
+          "expected": {
+            "NASDAQ": -1,
+            "DXY": 1,
+            "US2Y": 1,
+            "EURUSD": -1,
+            "USDJPY": 1,
+            "BTC": -1,
+            "ETH": -1,
+            "SP500": -1,
+            "US10Y": 1,
+            "GBPUSD": -1,
+            "GOLD": -1
+          },
+          "unresolved": [],
+          "basis": "causal graph: fed-hawkish",
+          "note": null,
+          "likelihood": "possible"
+        },
+        {
+          "id": "C",
+          "label": "Dovish (lower rate path)",
+          "condition": "Dovish (lower rate path)",
+          "trigger": "FED_DOVISH",
+          "expected": {
+            "NASDAQ": 1,
+            "DXY": -1,
+            "US2Y": -1,
+            "EURUSD": 1,
+            "USDJPY": -1,
+            "BTC": 1,
+            "ETH": 1,
+            "SP500": 1,
+            "US10Y": -1,
+            "GBPUSD": 1,
+            "GOLD": 1
+          },
+          "unresolved": [],
+          "basis": "causal graph: fed-dovish",
+          "note": null,
+          "likelihood": "possible"
+        },
+        {
+          "id": "D",
+          "label": "Unexpected hold",
+          "condition": "Unexpected hold",
+          "trigger": null,
+          "expected": {},
+          "unresolved": [],
+          "basis": "no directional model",
+          "note": "The reason matters: a hold on lower inflation can be bullish; a hold on financial instability can be risk-off at first.",
+          "likelihood": "possible"
+        }
+      ],
+      "consequences": {},
+      "source_ids": [
+        "fomc_calendar"
+      ],
+      "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "attribution": "Source: Federal Reserve Board",
+      "fact_confidence": 99.0,
+      "sub_events": [
+        {
+          "sub_event": "PRESS_CONFERENCE",
+          "name": "FOMC press conference",
+          "row_id": "9ce97b094cb50bf0e7f66edfbb20de32601734ed30acb4bb7cbf014e467fe919",
+          "time_utc": "2026-10-28T18:30:00+00:00",
+          "time_bucharest": "20:30",
+          "time_known": true,
+          "time_basis": "Chair's press conference 2:30 p.m. ET (configured; federalreserve.gov calendar.json lists 2:30 p.m.); sub-event of the decision",
+          "phase": "APPROACHING"
+        }
+      ],
+      "parent_event_id": null,
+      "status_note": null,
+      "data_incomplete": [
+        "NO CONSENSUS",
+        "MARKET PRICING UNKNOWN"
+      ],
+      "data_incomplete_flag": true,
+      "verification_status": null,
+      "surprise_basis": {
+        "headline_priced": "UNKNOWN",
+        "guidance_pending": true,
+        "priced_threshold": 0.9,
+        "allowed_assessments": [
+          "UNDETERMINED",
+          "NOT_APPLICABLE"
+        ],
+        "official_document_ids": [],
+        "basis": [
+          "market pricing UNKNOWN",
+          "guidance pending until the press conference ends",
+          "no official document of this event received yet (a surprise call needs one)"
+        ]
+      },
+      "surprise": {
+        "assessment": "UNDETERMINED",
+        "source": "none",
+        "evidence_ids": [],
+        "validated": false
+      },
+      "official_documents": [],
+      "live_assets": [],
+      "awaiting_reopen": []
+    },
+    "events": [
+      {
+        "event_id": "BLS-20261028-US_PPI",
+        "row_id": "70de9e3b84b2d6e725220d60b06f2c5a2456184ecc1cd0c9d8de6dcd99cf6966",
+        "name": "PPI MoM",
+        "event_class": "US_PPI",
+        "category": "MACRO",
+        "kind": "RELEASE",
+        "is_decision": false,
+        "speaker_role": null,
+        "symbol": null,
+        "status": "POST_EVENT",
+        "phase": "POST_EVENT",
+        "timing": "SCHEDULED",
+        "time_utc": "2026-10-28T16:55:00+00:00",
+        "time_bucharest": "18:55",
+        "date_bucharest": "2026-10-28",
+        "time_known": true,
+        "time_basis": "vendor timestamp (FMP, UTC)",
+        "date_window": null,
+        "minutes_until_event": -20,
+        "first_seen_utc": null,
+        "published_utc": null,
+        "published_date_only": null,
+        "importance_score": 70.0,
+        "expected_volatility_score": 60.0,
+        "relevance_score": 63.5,
+        "relevance_level": "HIGH",
+        "relevance_components": {
+          "importance": 70.0,
+          "expected_volatility": 60.0,
+          "proximity": 75.0,
+          "regime_sensitivity": 56.1,
+          "exposure_breadth": 58.3,
+          "pricing_uncertainty": 50.0
+        },
+        "relevance_missing": [],
+        "dominance_score": 65.1,
+        "dominance_basis": {
+          "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+          "regime_sensitivity": "exposed drivers moving: Rates, USD, Risk appetite",
+          "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+        },
+        "impact_10": 6.3,
+        "impact": 10.0,
+        "affected_assets": [
+          {
+            "symbol": "US2Y",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "SP500",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "NASDAQ",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "DXY",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "US10Y",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "GOLD",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "BTC",
+            "level": "low",
+            "weight": 0.25
+          }
+        ],
+        "consensus": {
+          "label": "Consensus",
+          "values": [
+            {
+              "name": "PPI MoM",
+              "value": 0.2,
+              "unit": "%"
+            }
+          ],
+          "source": "calendar"
+        },
+        "market_pricing": "UNKNOWN",
+        "actual": 0.5,
+        "outcome": null,
+        "known_information": [
+          "Source: Financial Modeling Prep",
+          "Time basis: vendor timestamp (FMP, UTC)",
+          "Previous: 0.1 %",
+          "Actual: 0.5 %"
+        ],
+        "possible_surprises": [
+          "A",
+          "B",
+          "N"
+        ],
+        "scenarios": [
+          {
+            "id": "A",
+            "label": "Below consensus",
+            "condition": "Below consensus",
+            "trigger": "INFLATION_COOL",
+            "expected": {
+              "US2Y": -1,
+              "SP500": 1,
+              "NASDAQ": 1,
+              "DXY": -1,
+              "US10Y": -1,
+              "GOLD": 1,
+              "BTC": 1
+            },
+            "unresolved": [],
+            "basis": "causal graph: inflation-cool",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "B",
+            "label": "Above consensus",
+            "condition": "Above consensus",
+            "trigger": "INFLATION_HOT",
+            "expected": {
+              "US2Y": 1,
+              "SP500": -1,
+              "NASDAQ": -1,
+              "DXY": 1,
+              "US10Y": 1,
+              "GOLD": -1,
+              "BTC": -1
+            },
+            "unresolved": [],
+            "basis": "causal graph: inflation-hot",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "N",
+            "label": "In line with consensus",
+            "condition": "In line with consensus",
+            "trigger": null,
+            "expected": {},
+            "unresolved": [],
+            "basis": "no directional model",
+            "note": "Components (core, services, housing, energy) and the market reaction decide.",
+            "likelihood": "possible"
+          }
+        ],
+        "consequences": {},
+        "source_ids": [
+          "calendar"
+        ],
+        "source_url": null,
+        "attribution": "Source: Financial Modeling Prep",
+        "fact_confidence": 80.0,
+        "sub_events": [],
+        "parent_event_id": null,
+        "status_note": null,
+        "data_incomplete": [],
+        "data_incomplete_flag": false,
+        "verification_status": null,
+        "surprise_basis": null,
+        "surprise": {
+          "assessment": "UNDETERMINED",
+          "source": "none",
+          "evidence_ids": [],
+          "validated": false
+        },
+        "official_documents": [],
+        "live_assets": [],
+        "awaiting_reopen": []
+      },
+      {
+        "event_id": "FED-20261028-FOMC",
+        "row_id": "bebf2ee8c385be8f711e94a83a9d154201da4a4daea1639e24139f3434e93932",
+        "name": "FOMC rate decision",
+        "event_class": "FOMC",
+        "category": "CENTRAL_BANK",
+        "kind": "DECISION",
+        "is_decision": true,
+        "speaker_role": null,
+        "symbol": null,
+        "status": "APPROACHING",
+        "phase": "APPROACHING",
+        "timing": "SCHEDULED",
+        "time_utc": "2026-10-28T18:00:00+00:00",
+        "time_bucharest": "20:00",
+        "date_bucharest": "2026-10-28",
+        "time_known": true,
+        "time_basis": "FOMC statement 2:00 p.m. ET (configured standard time; fomccalendars.htm lists dates only; federalreserve.gov calendar.json lists 2:00 p.m.)",
+        "date_window": null,
+        "minutes_until_event": 45,
+        "first_seen_utc": null,
+        "published_utc": null,
+        "published_date_only": null,
+        "importance_score": 100.0,
+        "expected_volatility_score": 95.0,
+        "relevance_score": 91.7,
+        "relevance_level": "CRITICAL",
+        "relevance_components": {
+          "importance": 100.0,
+          "expected_volatility": 95.0,
+          "proximity": 100.0,
+          "regime_sensitivity": 84.4,
+          "exposure_breadth": 100.0,
+          "pricing_uncertainty": 50.0
+        },
+        "relevance_missing": [],
+        "dominance_score": 92.2,
+        "dominance_basis": {
+          "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+          "regime_sensitivity": "exposed drivers moving: Rates, USD, Risk appetite",
+          "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+        },
+        "impact_10": 9.2,
+        "impact": 10.0,
+        "affected_assets": [
+          {
+            "symbol": "NASDAQ",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "DXY",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "US2Y",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "EURUSD",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "USDJPY",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "BTC",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "ETH",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "SP500",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "US10Y",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "GBPUSD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "GOLD",
+            "level": "high",
+            "weight": 0.75
+          }
+        ],
+        "consensus": "NO CONSENSUS",
+        "market_pricing": "UNKNOWN",
+        "actual": null,
+        "outcome": null,
+        "known_information": [
+          "Source: Federal Reserve Board",
+          "Time basis: FOMC statement 2:00 p.m. ET (configured standard time; fomccalendars.htm lists dates only; federalreserve.gov calendar.json lists 2:00 p.m.)"
+        ],
+        "possible_surprises": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "scenarios": [
+          {
+            "id": "A",
+            "label": "As expected, neutral guidance",
+            "condition": "As expected, neutral guidance",
+            "trigger": null,
+            "expected": {},
+            "unresolved": [],
+            "basis": "no directional model",
+            "note": "Headline mostly priced; attention moves to guidance, projections and the press conference.",
+            "likelihood": "possible"
+          },
+          {
+            "id": "B",
+            "label": "Hawkish (higher rate path)",
+            "condition": "Hawkish (higher rate path)",
+            "trigger": "FED_HAWKISH",
+            "expected": {
+              "NASDAQ": -1,
+              "DXY": 1,
+              "US2Y": 1,
+              "EURUSD": -1,
+              "USDJPY": 1,
+              "BTC": -1,
+              "ETH": -1,
+              "SP500": -1,
+              "US10Y": 1,
+              "GBPUSD": -1,
+              "GOLD": -1
+            },
+            "unresolved": [],
+            "basis": "causal graph: fed-hawkish",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "C",
+            "label": "Dovish (lower rate path)",
+            "condition": "Dovish (lower rate path)",
+            "trigger": "FED_DOVISH",
+            "expected": {
+              "NASDAQ": 1,
+              "DXY": -1,
+              "US2Y": -1,
+              "EURUSD": 1,
+              "USDJPY": -1,
+              "BTC": 1,
+              "ETH": 1,
+              "SP500": 1,
+              "US10Y": -1,
+              "GBPUSD": 1,
+              "GOLD": 1
+            },
+            "unresolved": [],
+            "basis": "causal graph: fed-dovish",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "D",
+            "label": "Unexpected hold",
+            "condition": "Unexpected hold",
+            "trigger": null,
+            "expected": {},
+            "unresolved": [],
+            "basis": "no directional model",
+            "note": "The reason matters: a hold on lower inflation can be bullish; a hold on financial instability can be risk-off at first.",
+            "likelihood": "possible"
+          }
+        ],
+        "consequences": {},
+        "source_ids": [
+          "fomc_calendar"
+        ],
+        "source_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+        "attribution": "Source: Federal Reserve Board",
+        "fact_confidence": 99.0,
+        "sub_events": [
+          {
+            "sub_event": "PRESS_CONFERENCE",
+            "name": "FOMC press conference",
+            "row_id": "9ce97b094cb50bf0e7f66edfbb20de32601734ed30acb4bb7cbf014e467fe919",
+            "time_utc": "2026-10-28T18:30:00+00:00",
+            "time_bucharest": "20:30",
+            "time_known": true,
+            "time_basis": "Chair's press conference 2:30 p.m. ET (configured; federalreserve.gov calendar.json lists 2:30 p.m.); sub-event of the decision",
+            "phase": "APPROACHING"
+          }
+        ],
+        "parent_event_id": null,
+        "status_note": null,
+        "data_incomplete": [
+          "NO CONSENSUS",
+          "MARKET PRICING UNKNOWN"
+        ],
+        "data_incomplete_flag": true,
+        "verification_status": null,
+        "surprise_basis": {
+          "headline_priced": "UNKNOWN",
+          "guidance_pending": true,
+          "priced_threshold": 0.9,
+          "allowed_assessments": [
+            "UNDETERMINED",
+            "NOT_APPLICABLE"
+          ],
+          "official_document_ids": [],
+          "basis": [
+            "market pricing UNKNOWN",
+            "guidance pending until the press conference ends",
+            "no official document of this event received yet (a surprise call needs one)"
+          ]
+        },
+        "surprise": {
+          "assessment": "UNDETERMINED",
+          "source": "none",
+          "evidence_ids": [],
+          "validated": false
+        },
+        "official_documents": [],
+        "live_assets": [],
+        "awaiting_reopen": []
+      },
+      {
+        "event_id": "EARN-20261028-AAPL-EARNINGS",
+        "row_id": "11661021a5f2ce33f0a385192c391207cb2238510f62f404e1fa29619d534a6b",
+        "name": "AAPL earnings",
+        "event_class": "EARNINGS",
+        "category": "CORPORATE",
+        "kind": "EARNINGS",
+        "is_decision": false,
+        "speaker_role": null,
+        "symbol": "AAPL",
+        "status": "APPROACHING",
+        "phase": "APPROACHING",
+        "timing": "SCHEDULED",
+        "time_utc": "2026-10-28T20:00:00+00:00",
+        "time_bucharest": null,
+        "date_bucharest": "2026-10-28",
+        "time_known": false,
+        "time_basis": "after the US close (Finnhub gives the session only; exact time not published)",
+        "date_window": {
+          "start_utc": "2026-10-28T20:00:00+00:00",
+          "end_utc": "2026-10-29T00:00:00+00:00",
+          "label": "after the US close",
+          "zone": "America/New_York"
+        },
+        "minutes_until_event": null,
+        "first_seen_utc": null,
+        "published_utc": null,
+        "published_date_only": null,
+        "importance_score": 85.0,
+        "expected_volatility_score": 80.0,
+        "relevance_score": 65.9,
+        "relevance_level": "HIGH",
+        "relevance_components": {
+          "importance": 85.0,
+          "expected_volatility": 80.0,
+          "proximity": 75.0,
+          "regime_sensitivity": 26.4,
+          "exposure_breadth": 41.7,
+          "pricing_uncertainty": 50.0
+        },
+        "relevance_missing": [],
+        "dominance_score": 67.9,
+        "dominance_basis": {
+          "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+          "regime_sensitivity": "exposed drivers moving: Risk appetite",
+          "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+        },
+        "impact_10": 6.6,
+        "impact": 6.0,
+        "affected_assets": [
+          {
+            "symbol": "AAPL",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "NASDAQ",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "SP500",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "BTC",
+            "level": "low",
+            "weight": 0.25
+          }
+        ],
+        "consensus": {
+          "label": "Finnhub estimate",
+          "values": [
+            {
+              "name": "EPS",
+              "value": 2.02,
+              "unit": null
+            },
+            {
+              "name": "Revenue",
+              "value": 120000000000.0,
+              "unit": null
+            }
+          ],
+          "source": "finnhub"
+        },
+        "market_pricing": "UNKNOWN",
+        "actual": null,
+        "outcome": null,
+        "known_information": [
+          "Source: Finnhub",
+          "Time basis: after the US close (Finnhub gives the session only; exact time not published)",
+          "Reference period: Q4 FY2026",
+          "Finnhub estimate: Finnhub's estimates include its own proprietary estimates; not Street consensus"
+        ],
+        "possible_surprises": [
+          "A",
+          "B"
+        ],
+        "scenarios": [
+          {
+            "id": "A",
+            "label": "Beat and constructive guidance",
+            "condition": "Beat and constructive guidance",
+            "trigger": null,
+            "expected": {
+              "AAPL": 1
+            },
+            "unresolved": [],
+            "basis": "configured template",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "B",
+            "label": "Miss or weak guidance",
+            "condition": "Miss or weak guidance",
+            "trigger": null,
+            "expected": {
+              "AAPL": -1
+            },
+            "unresolved": [],
+            "basis": "configured template",
+            "note": null,
+            "likelihood": "possible"
+          }
+        ],
+        "consequences": {},
+        "source_ids": [
+          "finnhub"
+        ],
+        "source_url": "https://finnhub.io/docs/api/earnings-calendar#AAPL",
+        "attribution": "Source: Finnhub",
+        "fact_confidence": 85.0,
+        "sub_events": [],
+        "parent_event_id": null,
+        "status_note": "AAPL EARNINGS on Wed 28 Oct, after the US close (time TBA)",
+        "data_incomplete": [
+          "EXACT TIME UNKNOWN"
+        ],
+        "data_incomplete_flag": false,
+        "verification_status": null,
+        "surprise_basis": null,
+        "surprise": {
+          "assessment": "UNDETERMINED",
+          "source": "none",
+          "evidence_ids": [],
+          "validated": false
+        },
+        "official_documents": [],
+        "live_assets": [],
+        "awaiting_reopen": []
+      },
+      {
+        "event_id": "BLS-20261029-US_CPI",
+        "row_id": "736642cf411f60bc2bd6582a4a06337e83c6a09ae3d8ce41287abd693ab5a242",
+        "name": "Consumer Price Index",
+        "event_class": "US_CPI",
+        "category": "MACRO",
+        "kind": "RELEASE",
+        "is_decision": false,
+        "speaker_role": null,
+        "symbol": null,
+        "status": "SCHEDULED",
+        "phase": "SCHEDULED",
+        "timing": "SCHEDULED",
+        "time_utc": "2026-10-29T12:30:00+00:00",
+        "time_bucharest": "14:30",
+        "date_bucharest": "2026-10-29",
+        "time_known": true,
+        "time_basis": "BLS release schedule (ICS)",
+        "date_window": null,
+        "minutes_until_event": 1155,
+        "first_seen_utc": null,
+        "published_utc": null,
+        "published_date_only": null,
+        "importance_score": 100.0,
+        "expected_volatility_score": 95.0,
+        "relevance_score": 84.0,
+        "relevance_level": "VERY HIGH",
+        "relevance_components": {
+          "importance": 100.0,
+          "expected_volatility": 95.0,
+          "proximity": 49.2,
+          "regime_sensitivity": 84.4,
+          "exposure_breadth": 100.0,
+          "pricing_uncertainty": 50.0
+        },
+        "relevance_missing": [],
+        "dominance_score": 82.0,
+        "dominance_basis": {
+          "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+          "regime_sensitivity": "exposed drivers moving: Rates, USD, Risk appetite",
+          "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+        },
+        "impact_10": 8.4,
+        "impact": 10.0,
+        "affected_assets": [
+          {
+            "symbol": "NASDAQ",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "DXY",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "US2Y",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "US10Y",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "BTC",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "ETH",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "SP500",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "EURUSD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "GBPUSD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "USDJPY",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "GOLD",
+            "level": "high",
+            "weight": 0.75
+          }
+        ],
+        "consensus": "NO CONSENSUS",
+        "market_pricing": "UNKNOWN",
+        "actual": null,
+        "outcome": null,
+        "known_information": [
+          "Source: U.S. Bureau of Labor Statistics",
+          "Time basis: BLS release schedule (ICS)",
+          "Reference period: September 2026"
+        ],
+        "possible_surprises": [
+          "A",
+          "B",
+          "N"
+        ],
+        "scenarios": [
+          {
+            "id": "A",
+            "label": "Below consensus",
+            "condition": "Below consensus",
+            "trigger": "INFLATION_COOL",
+            "expected": {
+              "NASDAQ": 1,
+              "DXY": -1,
+              "US2Y": -1,
+              "US10Y": -1,
+              "BTC": 1,
+              "ETH": 1,
+              "SP500": 1,
+              "EURUSD": 1,
+              "GBPUSD": 1,
+              "USDJPY": -1,
+              "GOLD": 1
+            },
+            "unresolved": [],
+            "basis": "causal graph: inflation-cool",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "B",
+            "label": "Above consensus",
+            "condition": "Above consensus",
+            "trigger": "INFLATION_HOT",
+            "expected": {
+              "NASDAQ": -1,
+              "DXY": 1,
+              "US2Y": 1,
+              "US10Y": 1,
+              "BTC": -1,
+              "ETH": -1,
+              "SP500": -1,
+              "EURUSD": -1,
+              "GBPUSD": -1,
+              "USDJPY": 1,
+              "GOLD": -1
+            },
+            "unresolved": [],
+            "basis": "causal graph: inflation-hot",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "N",
+            "label": "In line with consensus",
+            "condition": "In line with consensus",
+            "trigger": null,
+            "expected": {},
+            "unresolved": [],
+            "basis": "no directional model",
+            "note": "Components (core, services, housing, energy) and the market reaction decide.",
+            "likelihood": "possible"
+          }
+        ],
+        "consequences": {},
+        "source_ids": [
+          "bls_release_calendar"
+        ],
+        "source_url": "https://www.bls.gov/schedule/news_release/cpi.htm",
+        "attribution": "Source: U.S. Bureau of Labor Statistics",
+        "fact_confidence": 99.0,
+        "sub_events": [],
+        "parent_event_id": null,
+        "status_note": null,
+        "data_incomplete": [
+          "NO CONSENSUS"
+        ],
+        "data_incomplete_flag": true,
+        "verification_status": null,
+        "surprise_basis": null,
+        "surprise": {
+          "assessment": "UNDETERMINED",
+          "source": "none",
+          "evidence_ids": [],
+          "validated": false
+        },
+        "official_documents": [],
+        "live_assets": [],
+        "awaiting_reopen": []
+      }
+    ],
+    "active_events": [
+      {
+        "event_id": "GEO-20261028-a3f1c2d4",
+        "row_id": "a3f1c2d4-hormuz",
+        "name": "Tanker attacked in the Strait of Hormuz; shipping halted",
+        "event_class": "GEO_ENERGY",
+        "category": "GEOPOLITICAL",
+        "kind": "OTHER",
+        "is_decision": false,
+        "speaker_role": null,
+        "symbol": null,
+        "status": "UNRESOLVED",
+        "phase": "ACTIVE",
+        "timing": "ANYTIME",
+        "time_utc": null,
+        "time_bucharest": null,
+        "date_bucharest": null,
+        "time_known": false,
+        "time_basis": "unscheduled (timing ANYTIME)",
+        "date_window": null,
+        "minutes_until_event": null,
+        "first_seen_utc": "2026-10-28T11:15:00+00:00",
+        "published_utc": "2026-10-28T11:15:00+00:00",
+        "published_date_only": false,
+        "importance_score": 90.0,
+        "expected_volatility_score": 85.0,
+        "relevance_score": 85.1,
+        "relevance_level": "VERY HIGH",
+        "relevance_components": {
+          "importance": 90.0,
+          "expected_volatility": 85.0,
+          "proximity": 87.5,
+          "regime_sensitivity": 86.5,
+          "exposure_breadth": 100.0,
+          "pricing_uncertainty": 50.0
+        },
+        "relevance_missing": [],
+        "dominance_score": 84.9,
+        "dominance_basis": {
+          "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+          "regime_sensitivity": "exposed drivers moving: Rates, USD, Risk appetite",
+          "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+        },
+        "impact_10": 8.5,
+        "impact": null,
+        "affected_assets": [
+          {
+            "symbol": "US30Y",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "USDJPY",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "USDCHF",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "WTI",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "BRENT",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "VIX",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "ETH",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "SP500",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "NASDAQ",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "RUSSELL",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "US10Y",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "AUDUSD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "NZDUSD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "GOLD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "BTC",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "DXY",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "US2Y",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "US5Y",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "EURUSD",
+            "level": "low",
+            "weight": 0.25
+          },
+          {
+            "symbol": "GBPUSD",
+            "level": "low",
+            "weight": 0.25
+          },
+          {
+            "symbol": "USDCAD",
+            "level": "low",
+            "weight": 0.25
+          }
+        ],
+        "consensus": "NO CONSENSUS",
+        "market_pricing": "UNKNOWN",
+        "actual": null,
+        "outcome": null,
+        "known_information": [
+          "Verification: CONFIRMED",
+          "Causal chain: Oil supply risk up -> Crude oil up -> Inflation expectations up -> Front-end Treasury yields up -> Long-end Treasury yields up -> US dollar up -> High-duration risk assets down; competing path: Safe-haven demand up -> Risk appetite down"
+        ],
+        "possible_surprises": [
+          "A",
+          "B"
+        ],
+        "scenarios": [
+          {
+            "id": "A",
+            "label": "Escalation",
+            "condition": "Escalation",
+            "trigger": "GEOPOLITICAL_ENERGY",
+            "expected": {
+              "WTI": 1,
+              "BRENT": 1,
+              "VIX": 1,
+              "ETH": -1,
+              "SP500": -1,
+              "NASDAQ": -1,
+              "RUSSELL": -1,
+              "AUDUSD": -1,
+              "NZDUSD": -1,
+              "GOLD": 1,
+              "BTC": -1,
+              "DXY": 1,
+              "US2Y": 1,
+              "US5Y": 1,
+              "EURUSD": -1,
+              "GBPUSD": -1,
+              "USDCAD": 1
+            },
+            "unresolved": [
+              "US30Y",
+              "USDJPY",
+              "USDCHF",
+              "US10Y"
+            ],
+            "basis": "causal graph: hormuz-oil-inflation, hormuz-safe-haven",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "B",
+            "label": "De-escalation",
+            "condition": "De-escalation",
+            "trigger": "ENERGY_DEESCALATION",
+            "expected": {
+              "US30Y": 1,
+              "USDJPY": 1,
+              "USDCHF": 1,
+              "WTI": -1,
+              "BRENT": -1,
+              "VIX": -1,
+              "ETH": 1,
+              "SP500": 1,
+              "NASDAQ": 1,
+              "RUSSELL": 1,
+              "US10Y": 1,
+              "AUDUSD": 1,
+              "NZDUSD": 1,
+              "GOLD": -1,
+              "BTC": 1
+            },
+            "unresolved": [],
+            "basis": "causal graph: energy-deescalation",
+            "note": null,
+            "likelihood": "possible"
+          }
+        ],
+        "consequences": {
+          "BRENT": 1,
+          "WTI": 1,
+          "US2Y": 1,
+          "US5Y": 1,
+          "DXY": 1,
+          "EURUSD": -1,
+          "GBPUSD": -1,
+          "AUDUSD": -1,
+          "NZDUSD": -1,
+          "USDCAD": 1,
+          "NASDAQ": -1,
+          "SP500": -1,
+          "RUSSELL": -1,
+          "BTC": -1,
+          "ETH": -1,
+          "GOLD": 1,
+          "VIX": 1
+        },
+        "source_ids": [
+          "Reuters",
+          "AP"
+        ],
+        "source_url": null,
+        "attribution": null,
+        "fact_confidence": 95.0,
+        "sub_events": [],
+        "parent_event_id": null,
+        "status_note": null,
+        "data_incomplete": [],
+        "data_incomplete_flag": false,
+        "verification_status": "CONFIRMED",
+        "surprise_basis": null,
+        "surprise": {
+          "assessment": "UNDETERMINED",
+          "source": "none",
+          "evidence_ids": [],
+          "validated": false
+        },
+        "official_documents": [],
+        "live_assets": [
+          "US30Y",
+          "USDJPY",
+          "USDCHF",
+          "WTI",
+          "BRENT",
+          "VIX",
+          "ETH",
+          "SP500",
+          "NASDAQ",
+          "RUSSELL",
+          "US10Y",
+          "AUDUSD",
+          "NZDUSD",
+          "GOLD",
+          "BTC",
+          "DXY",
+          "US2Y",
+          "US5Y",
+          "EURUSD",
+          "GBPUSD",
+          "USDCAD"
+        ],
+        "awaiting_reopen": []
+      }
+    ],
+    "potential_events": [
+      {
+        "event_id": "GEO-20261028-b7e9d0c1",
+        "row_id": "b7e9d0c1-x-post",
+        "name": "Missile strike reported on a tanker near Hormuz",
+        "event_class": "GEO_ENERGY",
+        "category": "GEOPOLITICAL",
+        "kind": "OTHER",
+        "is_decision": false,
+        "speaker_role": null,
+        "symbol": null,
+        "status": "POTENTIAL EVENT · UNCONFIRMED",
+        "phase": "UNDER_VERIFICATION",
+        "timing": "ANYTIME",
+        "time_utc": null,
+        "time_bucharest": null,
+        "date_bucharest": null,
+        "time_known": false,
+        "time_basis": "unscheduled (timing ANYTIME)",
+        "date_window": null,
+        "minutes_until_event": null,
+        "first_seen_utc": "2026-10-28T17:05:00+00:00",
+        "published_utc": "2026-10-28T17:05:00+00:00",
+        "published_date_only": false,
+        "importance_score": 90.0,
+        "expected_volatility_score": 85.0,
+        "relevance_score": 72.0,
+        "relevance_level": "HIGH",
+        "relevance_components": {
+          "importance": 90.0,
+          "expected_volatility": 85.0,
+          "proximity": 0.0,
+          "regime_sensitivity": 86.5,
+          "exposure_breadth": 100.0,
+          "pricing_uncertainty": 50.0
+        },
+        "relevance_missing": [],
+        "dominance_score": 0.0,
+        "dominance_basis": {
+          "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+          "regime_sensitivity": "exposed drivers moving: Rates, USD, Risk appetite",
+          "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+        },
+        "impact_10": 7.2,
+        "impact": null,
+        "affected_assets": [
+          {
+            "symbol": "US30Y",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "USDJPY",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "USDCHF",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "WTI",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "BRENT",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "VIX",
+            "level": "very_high",
+            "weight": 1.0
+          },
+          {
+            "symbol": "ETH",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "SP500",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "NASDAQ",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "RUSSELL",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "US10Y",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "AUDUSD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "NZDUSD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "GOLD",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "BTC",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "DXY",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "US2Y",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "US5Y",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "EURUSD",
+            "level": "low",
+            "weight": 0.25
+          },
+          {
+            "symbol": "GBPUSD",
+            "level": "low",
+            "weight": 0.25
+          },
+          {
+            "symbol": "USDCAD",
+            "level": "low",
+            "weight": 0.25
+          }
+        ],
+        "consensus": "NO CONSENSUS",
+        "market_pricing": "UNKNOWN",
+        "actual": null,
+        "outcome": null,
+        "known_information": [
+          "Verification: UNCONFIRMED",
+          "Causal chain: Oil supply risk up -> Crude oil up -> Inflation expectations up -> Front-end Treasury yields up -> Long-end Treasury yields up -> US dollar up -> High-duration risk assets down; competing path: Safe-haven demand up -> Risk appetite down"
+        ],
+        "possible_surprises": [
+          "A",
+          "B"
+        ],
+        "scenarios": [
+          {
+            "id": "A",
+            "label": "Escalation",
+            "condition": "Escalation",
+            "trigger": "GEOPOLITICAL_ENERGY",
+            "expected": {
+              "WTI": 1,
+              "BRENT": 1,
+              "VIX": 1,
+              "ETH": -1,
+              "SP500": -1,
+              "NASDAQ": -1,
+              "RUSSELL": -1,
+              "AUDUSD": -1,
+              "NZDUSD": -1,
+              "GOLD": 1,
+              "BTC": -1,
+              "DXY": 1,
+              "US2Y": 1,
+              "US5Y": 1,
+              "EURUSD": -1,
+              "GBPUSD": -1,
+              "USDCAD": 1
+            },
+            "unresolved": [
+              "US30Y",
+              "USDJPY",
+              "USDCHF",
+              "US10Y"
+            ],
+            "basis": "causal graph: hormuz-oil-inflation, hormuz-safe-haven",
+            "note": null,
+            "likelihood": "possible"
+          },
+          {
+            "id": "B",
+            "label": "De-escalation",
+            "condition": "De-escalation",
+            "trigger": "ENERGY_DEESCALATION",
+            "expected": {
+              "US30Y": 1,
+              "USDJPY": 1,
+              "USDCHF": 1,
+              "WTI": -1,
+              "BRENT": -1,
+              "VIX": -1,
+              "ETH": 1,
+              "SP500": 1,
+              "NASDAQ": 1,
+              "RUSSELL": 1,
+              "US10Y": 1,
+              "AUDUSD": 1,
+              "NZDUSD": 1,
+              "GOLD": -1,
+              "BTC": 1
+            },
+            "unresolved": [],
+            "basis": "causal graph: energy-deescalation",
+            "note": null,
+            "likelihood": "possible"
+          }
+        ],
+        "consequences": {},
+        "source_ids": [
+          "X (unknown account)"
+        ],
+        "source_url": null,
+        "attribution": null,
+        "fact_confidence": 20.0,
+        "sub_events": [],
+        "parent_event_id": null,
+        "status_note": "Possible market-moving event under verification; no effect on scores",
+        "data_incomplete": [],
+        "data_incomplete_flag": false,
+        "verification_status": "UNCONFIRMED",
+        "surprise_basis": null,
+        "surprise": {
+          "assessment": "UNDETERMINED",
+          "source": "none",
+          "evidence_ids": [],
+          "validated": false
+        },
+        "official_documents": [],
+        "live_assets": [
+          "US30Y",
+          "USDJPY",
+          "USDCHF",
+          "WTI",
+          "BRENT",
+          "VIX",
+          "ETH",
+          "SP500",
+          "NASDAQ",
+          "RUSSELL",
+          "US10Y",
+          "AUDUSD",
+          "NZDUSD",
+          "GOLD",
+          "BTC",
+          "DXY",
+          "US2Y",
+          "US5Y",
+          "EURUSD",
+          "GBPUSD",
+          "USDCAD"
+        ],
+        "awaiting_reopen": []
+      }
+    ],
+    "asset_event_risk": {
+      "BTC": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT FOR FED",
+        "adjusted_confidence": 37.3,
+        "base_confidence": 44.0,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": "FOMC rate decision within 60 min (event risk 77)"
+      },
+      "ETH": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      },
+      "NASDAQ": {
+        "score": 91.7,
+        "level": "CRITICAL",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT FOR FED",
+        "adjusted_confidence": 17.3,
+        "base_confidence": 22.0,
+        "penalty": 0.2154,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": "FOMC rate decision within 60 min (event risk 92)"
+      },
+      "SP500": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      },
+      "DXY": {
+        "score": 91.7,
+        "level": "CRITICAL",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.2154,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      },
+      "US2Y": {
+        "score": 91.7,
+        "level": "CRITICAL",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.2154,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      },
+      "US10Y": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      },
+      "GOLD": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      },
+      "BRENT": {
+        "score": 85.1,
+        "level": "VERY HIGH",
+        "event_id": "GEO-20261028-a3f1c2d4",
+        "minutes_until": null,
+        "phase": "ACTIVE",
+        "event_name": "Tanker attacked in the Strait of Hormuz; shipping halted",
+        "trade_status": "CONDITIONAL LONG",
+        "adjusted_confidence": 30.9,
+        "base_confidence": 38.0,
+        "penalty": 0.1879,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": "event risk 85 from Tanker attacked in the Strait of Hormuz; shipping halted"
+      },
+      "WTI": {
+        "score": 85.1,
+        "level": "VERY HIGH",
+        "event_id": "GEO-20261028-a3f1c2d4",
+        "minutes_until": null,
+        "phase": "ACTIVE",
+        "event_name": "Tanker attacked in the Strait of Hormuz; shipping halted",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1879,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      },
+      "AAPL": {
+        "score": 65.9,
+        "level": "HIGH",
+        "event_id": "EARN-20261028-AAPL-EARNINGS",
+        "minutes_until": null,
+        "phase": "APPROACHING",
+        "event_name": "AAPL earnings",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1079,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      },
+      "MSFT": {
+        "score": 0.0,
+        "level": "LOW",
+        "event_id": null,
+        "minutes_until": null,
+        "phase": null,
+        "event_name": null,
+        "trade_status": "LONG",
+        "adjusted_confidence": 35.0,
+        "base_confidence": 35.0,
+        "penalty": 0.0,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    "favored": [
+      {
+        "symbol": "NASDAQ",
+        "stance": "FAVORED",
+        "implied": "FAVORED",
+        "expected_direction": 1,
+        "display": "NASDAQ ↑",
+        "regime_cause": "RISK_ON",
+        "event_risk": {
+          "score": 91.7,
+          "level": "CRITICAL",
+          "minutes_until": 45
+        },
+        "event_id": "FED-20261028-FOMC",
+        "awaiting_reopen": false,
+        "reason_facts": [
+          "Risk-on: NASDAQ ↑",
+          "NASDAQ +1.00% (live intraday)",
+          "Decision BULLISH LEAN / WAIT (+22)"
+        ]
+      },
+      {
+        "symbol": "SP500",
+        "stance": "FAVORED",
+        "implied": "FAVORED",
+        "expected_direction": 1,
+        "display": "SP500 ↑",
+        "regime_cause": "RISK_ON",
+        "event_risk": {
+          "score": 76.8,
+          "level": "VERY HIGH",
+          "minutes_until": 45
+        },
+        "event_id": "FED-20261028-FOMC",
+        "awaiting_reopen": false,
+        "reason_facts": [
+          "Risk-on: SP500 ↑",
+          "SP500 +0.80% (live intraday)"
+        ]
+      },
+      {
+        "symbol": "BTC",
+        "stance": "FAVORED",
+        "implied": "FAVORED",
+        "expected_direction": 1,
+        "display": "BTC ↑",
+        "regime_cause": "RISK_ON",
+        "event_risk": {
+          "score": 76.8,
+          "level": "VERY HIGH",
+          "minutes_until": 45
+        },
+        "event_id": "FED-20261028-FOMC",
+        "awaiting_reopen": false,
+        "reason_facts": [
+          "Risk-on: BTC ↑",
+          "BTC +2.00% (live intraday)",
+          "Decision LONG SETUP (+44)"
+        ]
+      }
+    ],
+    "pressured": [
+      {
+        "symbol": "DXY",
+        "stance": "PRESSURED",
+        "implied": "PRESSURED",
+        "expected_direction": -1,
+        "display": "DXY ↓",
+        "regime_cause": "RISK_ON",
+        "event_risk": {
+          "score": 91.7,
+          "level": "CRITICAL",
+          "minutes_until": 45
+        },
+        "event_id": "FED-20261028-FOMC",
+        "awaiting_reopen": false,
+        "reason_facts": [
+          "Risk-on: DXY ↓",
+          "DXY -0.40% (live intraday)"
+        ]
+      }
+    ],
+    "non_confirming": [
+      {
+        "symbol": "ETH",
+        "stance": "NOT CONFIRMING",
+        "implied": "FAVORED",
+        "expected_direction": 1,
+        "display": "ETH ↑",
+        "regime_cause": "RISK_ON",
+        "event_risk": {
+          "score": 76.8,
+          "level": "VERY HIGH",
+          "minutes_until": 45
+        },
+        "event_id": "FED-20261028-FOMC",
+        "awaiting_reopen": false,
+        "reason_facts": [
+          "Risk-on: ETH ↑",
+          "Historical context only; current-session confirmation is unavailable",
+          "current price change does not confirm (no move beyond noise in the implied direction)"
+        ]
+      },
+      {
+        "symbol": "GOLD",
+        "stance": "NOT CONFIRMING",
+        "implied": "PRESSURED",
+        "expected_direction": -1,
+        "display": "GOLD ↓",
+        "regime_cause": "RISK_ON",
+        "event_risk": {
+          "score": 76.8,
+          "level": "VERY HIGH",
+          "minutes_until": 45
+        },
+        "event_id": "FED-20261028-FOMC",
+        "awaiting_reopen": false,
+        "reason_facts": [
+          "Risk-on: GOLD ↓",
+          "GOLD +0.10% (live intraday)",
+          "current price change does not confirm (no move beyond noise in the implied direction)"
+        ]
+      }
+    ],
+    "what_can_break": [
+      {
+        "text": "FED Hawkish (higher rate path) (possible): NASDAQ ↓, DXY ↑, US2Y ↑, EURUSD ↓, USDJPY ↑, BTC ↓",
+        "kind": "event",
+        "source": "FED-20261028-FOMC"
+      },
+      {
+        "text": "BTC breaks below 60,000.00",
+        "kind": "level",
+        "source": "BTC"
+      },
+      {
+        "text": "BRENT breaks below 82.50",
+        "kind": "level",
+        "source": "BRENT"
+      },
+      {
+        "text": "MSFT breaks below 400.00",
+        "kind": "level",
+        "source": "MSFT"
+      }
+    ],
+    "trade_watch": [
+      {
+        "asset": "BTC",
+        "symbol": "BTC",
+        "trade_status": "WAIT FOR FED",
+        "side": 1,
+        "awaiting_reopen": false,
+        "status_reason": "FOMC rate decision within 60 min (event risk 77)",
+        "decision_category": "LONG SETUP",
+        "decision_score": 44.0,
+        "regime_favorability": 80.0,
+        "regime_favorability_basis": "Risk-on: BTC ↑; rule coverage 80; drivers Rates, USD, Risk appetite",
+        "evidence_confidence": 91.0,
+        "market_confirmation": 63.0,
+        "event_risk": {
+          "score": 76.8,
+          "level": "VERY HIGH",
+          "event_id": "FED-20261028-FOMC"
+        },
+        "adjusted_confidence": 37.3,
+        "historical_probability": null,
+        "historical_probability_reason": "not calibrated",
+        "horizon": "4h",
+        "why": [
+          "published fixture decision"
+        ],
+        "but": [
+          "FOMC rate decision may materially change NASDAQ, DXY, US2Y"
+        ],
+        "upcoming_event": {
+          "event_id": "FED-20261028-FOMC",
+          "name": "FOMC rate decision",
+          "event_class": "FOMC",
+          "time_utc": "2026-10-28T18:00:00+00:00",
+          "time_bucharest": "20:00",
+          "date_bucharest": "2026-10-28",
+          "time_known": true,
+          "minutes_until_event": 45,
+          "phase": "APPROACHING",
+          "relevance_level": "CRITICAL",
+          "relevance_score": 91.7,
+          "timing": "SCHEDULED"
+        },
+        "confirmation": "holds above the prior session high AND after FED: Dovish (lower rate path) reaction (NASDAQ ↑, DXY ↓, US2Y ↓)",
+        "invalidation": "closes below the prior session low OR after FED: Hawkish (higher rate path) reaction (NASDAQ ↓, DXY ↑, US2Y ↑)",
+        "invalidation_level": 60000.0
+      },
+      {
+        "asset": "BRENT",
+        "symbol": "BRENT",
+        "trade_status": "CONDITIONAL LONG",
+        "side": 1,
+        "awaiting_reopen": false,
+        "status_reason": "event risk 85 from Tanker attacked in the Strait of Hormuz; shipping halted",
+        "decision_category": "LONG SETUP",
+        "decision_score": 38.0,
+        "regime_favorability": null,
+        "regime_favorability_basis": "not in the regime effects of the active cause",
+        "evidence_confidence": null,
+        "market_confirmation": 70.0,
+        "event_risk": {
+          "score": 85.1,
+          "level": "VERY HIGH",
+          "event_id": "GEO-20261028-a3f1c2d4"
+        },
+        "adjusted_confidence": 30.9,
+        "historical_probability": null,
+        "historical_probability_reason": "not calibrated",
+        "horizon": "4h",
+        "why": [
+          "published fixture decision"
+        ],
+        "but": [
+          "Tanker attacked in the Strait of Hormuz; shipping halted may materially change US30Y, USDJPY, USDCHF"
+        ],
+        "upcoming_event": {
+          "event_id": "GEO-20261028-a3f1c2d4",
+          "name": "Tanker attacked in the Strait of Hormuz; shipping halted",
+          "event_class": "GEO_ENERGY",
+          "time_utc": null,
+          "time_bucharest": null,
+          "date_bucharest": null,
+          "time_known": false,
+          "minutes_until_event": null,
+          "phase": "ACTIVE",
+          "relevance_level": "VERY HIGH",
+          "relevance_score": 85.1,
+          "timing": "ANYTIME"
+        },
+        "confirmation": "holds above the prior session high AND after GEO/ENERGY: Escalation reaction (WTI ↑, VIX ↑, ETH ↓)",
+        "invalidation": "closes below the prior session low OR after GEO/ENERGY: De-escalation reaction (US30Y ↑, USDJPY ↑, USDCHF ↑)",
+        "invalidation_level": 82.5
+      },
+      {
+        "asset": "MSFT",
+        "symbol": "MSFT",
+        "trade_status": "LONG",
+        "side": 1,
+        "awaiting_reopen": false,
+        "status_reason": null,
+        "decision_category": "LONG SETUP",
+        "decision_score": 35.0,
+        "regime_favorability": null,
+        "regime_favorability_basis": "not in the regime effects of the active cause",
+        "evidence_confidence": null,
+        "market_confirmation": 72.0,
+        "event_risk": {
+          "score": 0.0,
+          "level": "LOW",
+          "event_id": null
+        },
+        "adjusted_confidence": 35.0,
+        "historical_probability": null,
+        "historical_probability_reason": "not calibrated",
+        "horizon": "4h",
+        "why": [
+          "published fixture decision"
+        ],
+        "but": [],
+        "upcoming_event": null,
+        "confirmation": "holds above the prior session high",
+        "invalidation": "closes below the prior session low",
+        "invalidation_level": 400.0
+      },
+      {
+        "asset": "NASDAQ",
+        "symbol": "NASDAQ",
+        "trade_status": "WAIT FOR FED",
+        "side": 1,
+        "awaiting_reopen": false,
+        "status_reason": "FOMC rate decision within 60 min (event risk 92)",
+        "decision_category": "BULLISH LEAN / WAIT",
+        "decision_score": 22.0,
+        "regime_favorability": 80.0,
+        "regime_favorability_basis": "Risk-on: NASDAQ ↑; rule coverage 80; drivers Rates, USD, Risk appetite",
+        "evidence_confidence": null,
+        "market_confirmation": null,
+        "event_risk": {
+          "score": 91.7,
+          "level": "CRITICAL",
+          "event_id": "FED-20261028-FOMC"
+        },
+        "adjusted_confidence": 17.3,
+        "historical_probability": null,
+        "historical_probability_reason": "not calibrated",
+        "horizon": "4h",
+        "why": [
+          "published fixture decision"
+        ],
+        "but": [
+          "FOMC rate decision may materially change NASDAQ, DXY, US2Y"
+        ],
+        "upcoming_event": {
+          "event_id": "FED-20261028-FOMC",
+          "name": "FOMC rate decision",
+          "event_class": "FOMC",
+          "time_utc": "2026-10-28T18:00:00+00:00",
+          "time_bucharest": "20:00",
+          "date_bucharest": "2026-10-28",
+          "time_known": true,
+          "minutes_until_event": 45,
+          "phase": "APPROACHING",
+          "relevance_level": "CRITICAL",
+          "relevance_score": 91.7,
+          "timing": "SCHEDULED"
+        },
+        "confirmation": "holds above the prior session high AND after FED: Dovish (lower rate path) reaction (DXY ↓, US2Y ↓, EURUSD ↑)",
+        "invalidation": "closes below the prior session low OR after FED: Hawkish (higher rate path) reaction (DXY ↑, US2Y ↑, EURUSD ↓)",
+        "invalidation_level": null
+      },
+      {
+        "asset": "SP500",
+        "symbol": "SP500",
+        "trade_status": "WAIT",
+        "side": 0,
+        "awaiting_reopen": false,
+        "status_reason": null,
+        "decision_category": null,
+        "decision_score": null,
+        "regime_favorability": 80.0,
+        "regime_favorability_basis": "Risk-on: SP500 ↑; rule coverage 80; drivers Rates, USD, Risk appetite",
+        "evidence_confidence": null,
+        "market_confirmation": null,
+        "event_risk": {
+          "score": 76.8,
+          "level": "VERY HIGH",
+          "event_id": "FED-20261028-FOMC"
+        },
+        "adjusted_confidence": null,
+        "historical_probability": null,
+        "historical_probability_reason": "not calibrated",
+        "horizon": "4h",
+        "why": [],
+        "but": [
+          "FOMC rate decision may materially change NASDAQ, DXY, US2Y"
+        ],
+        "upcoming_event": {
+          "event_id": "FED-20261028-FOMC",
+          "name": "FOMC rate decision",
+          "event_class": "FOMC",
+          "time_utc": "2026-10-28T18:00:00+00:00",
+          "time_bucharest": "20:00",
+          "date_bucharest": "2026-10-28",
+          "time_known": true,
+          "minutes_until_event": 45,
+          "phase": "APPROACHING",
+          "relevance_level": "CRITICAL",
+          "relevance_score": 91.7,
+          "timing": "SCHEDULED"
+        },
+        "confirmation": null,
+        "invalidation": null,
+        "invalidation_level": null
+      },
+      {
+        "asset": "DXY",
+        "symbol": "DXY",
+        "trade_status": "WAIT",
+        "side": 0,
+        "awaiting_reopen": false,
+        "status_reason": null,
+        "decision_category": null,
+        "decision_score": null,
+        "regime_favorability": 80.0,
+        "regime_favorability_basis": "Risk-on: DXY ↓; rule coverage 80; drivers Rates, USD, Risk appetite",
+        "evidence_confidence": null,
+        "market_confirmation": null,
+        "event_risk": {
+          "score": 91.7,
+          "level": "CRITICAL",
+          "event_id": "FED-20261028-FOMC"
+        },
+        "adjusted_confidence": null,
+        "historical_probability": null,
+        "historical_probability_reason": "not calibrated",
+        "horizon": "4h",
+        "why": [],
+        "but": [
+          "FOMC rate decision may materially change NASDAQ, DXY, US2Y"
+        ],
+        "upcoming_event": {
+          "event_id": "FED-20261028-FOMC",
+          "name": "FOMC rate decision",
+          "event_class": "FOMC",
+          "time_utc": "2026-10-28T18:00:00+00:00",
+          "time_bucharest": "20:00",
+          "date_bucharest": "2026-10-28",
+          "time_known": true,
+          "minutes_until_event": 45,
+          "phase": "APPROACHING",
+          "relevance_level": "CRITICAL",
+          "relevance_score": 91.7,
+          "timing": "SCHEDULED"
+        },
+        "confirmation": null,
+        "invalidation": null,
+        "invalidation_level": null
+      }
+    ],
+    "post_event": [
+      {
+        "event_id": "BLS-20261028-US_PPI",
+        "name": "PPI MoM",
+        "event_class": "US_PPI",
+        "phase": "POST_EVENT",
+        "awaiting_reopen": [],
+        "time_utc": "2026-10-28T16:55:00+00:00",
+        "resolved_scenario": "B",
+        "resolution_basis": "actual 0.5 above consensus 0.2",
+        "surprise": {
+          "assessment": "UNDETERMINED",
+          "source": "none",
+          "evidence_ids": [],
+          "validated": false
+        },
+        "expected": {
+          "US2Y": 1,
+          "SP500": -1,
+          "NASDAQ": -1,
+          "DXY": 1,
+          "US10Y": 1,
+          "GOLD": -1,
+          "BTC": -1
+        },
+        "reactions": {
+          "US2Y": {
+            "1m": {
+              "change": -1.0,
+              "unit": "bp",
+              "status": "DIVERGENT"
+            },
+            "5m": {
+              "change": -3.0,
+              "unit": "bp",
+              "status": "DIVERGENT"
+            },
+            "15m": {
+              "change": -6.0,
+              "unit": "bp",
+              "status": "DIVERGENT"
+            }
+          },
+          "NASDAQ": {
+            "1m": {
+              "change": 0.25,
+              "unit": "pct",
+              "status": "DIVERGENT"
+            },
+            "5m": {
+              "change": 0.6,
+              "unit": "pct",
+              "status": "DIVERGENT"
+            },
+            "15m": {
+              "change": 1.0,
+              "unit": "pct",
+              "status": "DIVERGENT"
+            }
+          },
+          "DXY": {
+            "1m": {
+              "change": -0.1,
+              "unit": "pct",
+              "status": "DIVERGENT"
+            },
+            "5m": {
+              "change": -0.3,
+              "unit": "pct",
+              "status": "DIVERGENT"
+            },
+            "15m": {
+              "change": -0.4,
+              "unit": "pct",
+              "status": "DIVERGENT"
+            }
+          },
+          "US10Y": {
+            "1m": {
+              "change": -1.0,
+              "unit": "bp",
+              "status": "DIVERGENT"
+            },
+            "5m": {
+              "change": -3.0,
+              "unit": "bp",
+              "status": "DIVERGENT"
+            },
+            "15m": {
+              "change": -5.0,
+              "unit": "bp",
+              "status": "DIVERGENT"
+            }
+          }
+        },
+        "horizon": "15m",
+        "measured": 4,
+        "confirmation": 0.0,
+        "divergence": true,
+        "diverging": [
+          "US2Y",
+          "NASDAQ",
+          "DXY",
+          "US10Y"
+        ],
+        "exposed": [
+          "US2Y",
+          "SP500",
+          "NASDAQ",
+          "DXY",
+          "US10Y",
+          "GOLD",
+          "BTC"
+        ],
+        "research_recommended": true,
+        "summary_facts": [
+          "PPI: actual 0.5 above consensus 0.2",
+          "Expected under scenario B (Above consensus): US2Y ↑, SP500 ↓, NASDAQ ↓, DXY ↑, US10Y ↑, GOLD ↓",
+          "Measured at T+15m: US2Y -6.00 bp, NASDAQ +1.00%, DXY -0.40%, US10Y -5.00 bp",
+          "MARKET DIVERGENCE: 4 of 4 measured exposed assets moved against the expected direction (US2Y, NASDAQ, DXY, US10Y); no automatic trade in the event direction"
+        ]
+      }
+    ],
+    "released_today": [
+      {
+        "event_id": "BLS-20261028-US_PPI",
+        "row_id": "70de9e3b84b2d6e725220d60b06f2c5a2456184ecc1cd0c9d8de6dcd99cf6966",
+        "name": "PPI MoM",
+        "event_class": "US_PPI",
+        "time_utc": "2026-10-28T16:55:00+00:00",
+        "time_known": true,
+        "released_utc": "2026-10-28T16:55:00+00:00",
+        "summary": "Actual 0.5 % vs consensus 0.2 · reaction T+15m: US2Y -6.00 bp, NASDAQ +1.00%, DXY -0.40%, US10Y -5.00 bp",
+        "summary_basis": "calendar actual",
+        "actual": 0.5,
+        "values": [],
+        "values_text": null,
+        "outcome": null,
+        "reaction": {
+          "horizon": "15m",
+          "text": "T+15m: US2Y -6.00 bp, NASDAQ +1.00%, DXY -0.40%, US10Y -5.00 bp"
+        },
+        "document": null,
+        "news_event_id": null,
+        "importance_score": 70.0,
+        "affected_assets": [
+          {
+            "symbol": "US2Y",
+            "level": "high",
+            "weight": 0.75
+          },
+          {
+            "symbol": "SP500",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "NASDAQ",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "DXY",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "US10Y",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "GOLD",
+            "level": "medium",
+            "weight": 0.5
+          },
+          {
+            "symbol": "BTC",
+            "level": "low",
+            "weight": 0.25
+          }
+        ],
+        "phase": "POST_EVENT"
+      }
+    ],
+    "data_incomplete": [
+      {
+        "event_id": "FED-20261028-FOMC",
+        "name": "FOMC rate decision",
+        "level": "CRITICAL",
+        "flag": "EVENT DATA INCOMPLETE",
+        "reasons": [
+          "NO CONSENSUS",
+          "MARKET PRICING UNKNOWN"
+        ]
+      },
+      {
+        "event_id": "BLS-20261029-US_CPI",
+        "name": "Consumer Price Index",
+        "level": "VERY HIGH",
+        "flag": "EVENT DATA INCOMPLETE",
+        "reasons": [
+          "NO CONSENSUS"
+        ]
+      }
+    ],
+    "regime": {
+      "posture": "CONSTRUCTIVE",
+      "regimes": [
+        "RISK_ON"
+      ],
+      "confidence": 80.0,
+      "coverage_pct": 90.0,
+      "basis": "live",
+      "basis_label": "live intraday",
+      "missing_required": null,
+      "method": "fixture",
+      "as_of": "2026-10-28T17:15:00+00:00",
+      "current_drivers": null,
+      "divergences": null,
+      "drivers": [
+        {
+          "driver": "Rates",
+          "direction": "down",
+          "arrow": null,
+          "input": null,
+          "missing": [],
+          "inputs": []
+        },
+        {
+          "driver": "USD",
+          "direction": "down",
+          "arrow": null,
+          "input": null,
+          "missing": [],
+          "inputs": []
+        },
+        {
+          "driver": "Oil",
+          "direction": "flat",
+          "arrow": null,
+          "input": null,
+          "missing": [],
+          "inputs": []
+        },
+        {
+          "driver": "Risk appetite",
+          "direction": "up",
+          "arrow": null,
+          "input": null,
+          "missing": [],
+          "inputs": []
+        }
+      ],
+      "evaluated": [
+        {
+          "regime": "RISK_ON",
+          "state": "ACTIVE",
+          "confidence": 80.0
+        }
+      ],
+      "cause": {
+        "id": "RISK_ON",
+        "label": "Risk-on"
+      }
+    },
+    "versions": {
+      "event_risk": "1.3.0",
+      "event_exposure": "1.2.0"
+    }
+  },
+  "interpretation": {
+    "source": "deterministic",
+    "model": null,
+    "generated_at": "2026-10-28T17:15:00+00:00",
+    "stale": false,
+    "stale_after_seconds": 3600,
+    "basis_hash": "6ea2a2ff5e0d93319b1a8f414a7237ab6325c6d6c03e7ea996fe4536d948da39",
+    "core_hash": "45a312aeab1089679b43553b27ac50ca0d0a1054c61f11bc0a75cc9e31961bc1",
+    "prose_hash": "c4ac2fcb8824a2ee131bbb53805f9036713cfefe09e80b3b1c983b27e1547a8b",
+    "bindings": null,
+    "output": {
+      "ai_view": "Risk-on conditions (constructive posture) on live data; today's observations only partly confirm it. The dominant event to watch is FOMC rate decision.",
+      "market_summary": "MARKET DIVERGENCE after PPI MoM: measured reactions contradict the expected direction; risk assets are resisting the impulse, so there is no automatic short. Setups exposed to FOMC rate decision stay provisional until it resolves. ACTIVE EVENT RISK: Tanker attacked in the Strait of Hormuz; shipping halted (timing ANYTIME, UNRESOLVED).",
+      "key_risks": [
+        "EVENT DATA INCOMPLETE: FOMC rate decision (NO CONSENSUS, MARKET PRICING UNKNOWN)",
+        "EVENT DATA INCOMPLETE: Consumer Price Index (NO CONSENSUS)",
+        "Unconfirmed: Missile strike reported on a tanker near Hormuz (under verification)"
+      ],
+      "dominant_event": {
+        "event_id": "FED-20261028-FOMC",
+        "reason": "Dominance score 92/100 with CRITICAL relevance; it can matter more than the current regime for the next directional move."
+      },
+      "next_events": [
+        {
+          "event_id": "FED-20261028-FOMC",
+          "why_it_matters": "Possible outcomes: Hawkish (NASDAQ ↓, DXY ↑, US2Y ↑, EURUSD ↓) or Dovish (NASDAQ ↑, DXY ↓, US2Y ↓, EURUSD ↑).",
+          "surprise_assessment": "UNDETERMINED",
+          "evidence_ids": []
+        }
+      ],
+      "favored_assets": [],
+      "pressured_assets": [],
+      "non_confirming_assets": [],
+      "trade_watch": []
+    },
+    "assessments": {
+      "FED-20261028-FOMC": {
+        "assessment": "UNDETERMINED",
+        "source": "none",
+        "evidence_ids": [],
+        "validated": false,
+        "guidance_pending": true,
+        "phase": "APPROACHING",
+        "generated_at": "2026-10-28T17:15:00+00:00"
+      }
+    },
+    "label": "Deterministic summary — AI unavailable",
+    "run_id": null,
+    "reasons": [],
+    "age_seconds": 0.0
+  },
+  "assets": [
+    {
+      "symbol": "BTC",
+      "name": "BTC",
+      "asset_class": "crypto",
+      "decision": {
+        "category": "LONG SETUP",
+        "direction": "LONG SETUP",
+        "score": 44,
+        "audit_status": "PASS",
+        "confirmation": "holds above the prior session high",
+        "invalidation": "closes below the prior session low",
+        "why": [
+          "published fixture decision"
+        ],
+        "market_confirmation": 63,
+        "evidence_confidence": 91,
+        "invalidation_level": 60000.0
+      },
+      "event_risk": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT FOR FED",
+        "adjusted_confidence": 37.3,
+        "base_confidence": 44.0,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": "FOMC rate decision within 60 min (event risk 77)"
+      }
+    },
+    {
+      "symbol": "ETH",
+      "name": "ETH",
+      "asset_class": "crypto",
+      "decision": null,
+      "event_risk": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    {
+      "symbol": "NASDAQ",
+      "name": "NASDAQ",
+      "asset_class": "index",
+      "decision": {
+        "category": "BULLISH LEAN / WAIT",
+        "direction": "BULLISH LEAN / WAIT",
+        "score": 22,
+        "audit_status": "PASS",
+        "confirmation": "holds above the prior session high",
+        "invalidation": "closes below the prior session low",
+        "why": [
+          "published fixture decision"
+        ]
+      },
+      "event_risk": {
+        "score": 91.7,
+        "level": "CRITICAL",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT FOR FED",
+        "adjusted_confidence": 17.3,
+        "base_confidence": 22.0,
+        "penalty": 0.2154,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": "FOMC rate decision within 60 min (event risk 92)"
+      }
+    },
+    {
+      "symbol": "SP500",
+      "name": "SP500",
+      "asset_class": "index",
+      "decision": null,
+      "event_risk": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    {
+      "symbol": "DXY",
+      "name": "DXY",
+      "asset_class": "index",
+      "decision": null,
+      "event_risk": {
+        "score": 91.7,
+        "level": "CRITICAL",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.2154,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    {
+      "symbol": "US2Y",
+      "name": "US2Y",
+      "asset_class": "bond",
+      "decision": null,
+      "event_risk": {
+        "score": 91.7,
+        "level": "CRITICAL",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.2154,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    {
+      "symbol": "US10Y",
+      "name": "US10Y",
+      "asset_class": "bond",
+      "decision": null,
+      "event_risk": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    {
+      "symbol": "GOLD",
+      "name": "GOLD",
+      "asset_class": "commodity",
+      "decision": null,
+      "event_risk": {
+        "score": 76.8,
+        "level": "VERY HIGH",
+        "event_id": "FED-20261028-FOMC",
+        "minutes_until": 45,
+        "phase": "APPROACHING",
+        "event_name": "FOMC rate decision",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1533,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    {
+      "symbol": "BRENT",
+      "name": "BRENT",
+      "asset_class": "commodity",
+      "decision": {
+        "category": "LONG SETUP",
+        "direction": "LONG SETUP",
+        "score": 38,
+        "audit_status": "PASS",
+        "confirmation": "holds above the prior session high",
+        "invalidation": "closes below the prior session low",
+        "why": [
+          "published fixture decision"
+        ],
+        "market_confirmation": 70,
+        "invalidation_level": 82.5
+      },
+      "event_risk": {
+        "score": 85.1,
+        "level": "VERY HIGH",
+        "event_id": "GEO-20261028-a3f1c2d4",
+        "minutes_until": null,
+        "phase": "ACTIVE",
+        "event_name": "Tanker attacked in the Strait of Hormuz; shipping halted",
+        "trade_status": "CONDITIONAL LONG",
+        "adjusted_confidence": 30.9,
+        "base_confidence": 38.0,
+        "penalty": 0.1879,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": "event risk 85 from Tanker attacked in the Strait of Hormuz; shipping halted"
+      }
+    },
+    {
+      "symbol": "WTI",
+      "name": "WTI",
+      "asset_class": "commodity",
+      "decision": null,
+      "event_risk": {
+        "score": 85.1,
+        "level": "VERY HIGH",
+        "event_id": "GEO-20261028-a3f1c2d4",
+        "minutes_until": null,
+        "phase": "ACTIVE",
+        "event_name": "Tanker attacked in the Strait of Hormuz; shipping halted",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1879,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    {
+      "symbol": "AAPL",
+      "name": "AAPL",
+      "asset_class": "equity",
+      "decision": null,
+      "event_risk": {
+        "score": 65.9,
+        "level": "HIGH",
+        "event_id": "EARN-20261028-AAPL-EARNINGS",
+        "minutes_until": null,
+        "phase": "APPROACHING",
+        "event_name": "AAPL earnings",
+        "trade_status": "WAIT",
+        "adjusted_confidence": null,
+        "base_confidence": null,
+        "penalty": 0.1079,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    },
+    {
+      "symbol": "MSFT",
+      "name": "MSFT",
+      "asset_class": "equity",
+      "decision": {
+        "category": "LONG SETUP",
+        "direction": "LONG SETUP",
+        "score": 35,
+        "audit_status": "PASS",
+        "confirmation": "holds above the prior session high",
+        "invalidation": "closes below the prior session low",
+        "why": [
+          "published fixture decision"
+        ],
+        "market_confirmation": 72,
+        "invalidation_level": 400.0
+      },
+      "event_risk": {
+        "score": 0.0,
+        "level": "LOW",
+        "event_id": null,
+        "minutes_until": null,
+        "phase": null,
+        "event_name": null,
+        "trade_status": "LONG",
+        "adjusted_confidence": 35.0,
+        "base_confidence": 35.0,
+        "penalty": 0.0,
+        "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+        "awaiting_reopen": false,
+        "status_reason": null
+      }
+    }
+  ]
+}

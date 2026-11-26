@@ -1,0 +1,42 @@
+{
+  "dedupe": {
+    "dedupe_version": "1.4.1",
+    "candidate_window_hours": 48,
+    "decorations": [
+      "^\\s*(UPDATE\\s*\\d*|REFILE|CORRECTED|CORRECTION|EXCLUSIVE|BREAKING|ANALYSIS|FACTBOX|EXPLAINER|WRAPUP\\s*\\d*|URGENT|FLASH|ALERT)\\s*[-:\u2013\u2014]+\\s*",
+      "^\\s*(WATCH|LIVE|VIDEO)\\s*:\\s*",
+      "\\s*\\((Reuters|AP|AFP|Bloomberg)\\)\\s*[-:\u2013\u2014]*\\s*",
+      "\\s*[-|\u2013\u2014]\\s*(Reuters|AP News|Associated Press|Bloomberg|CNBC|Financial Times|MarketWatch)\\s*$"
+    ],
+    "ngram": 3,
+    "headline_match": 0.72,
+    "headline_time_window_hours": 18,
+    "headline_time_window_note": "An identical headline published further apart than this is a new publication (recurring releases, e.g. a monthly indicator table or a daily statement), never the same story; wire updates and reposts of one story arrive within hours.",
+    "identifier_pattern": "(?<![\\d,.])\\d{5,}(?![\\d,.])",
+    "identifier_note": "Headlines that carry long numbers (licence, accession or case numbers) and share none of them are different documents, however alike their wording (OFSI General Licence INT/2025/7895596 vs INT/2025/8031092).",
+    "official_pages_distinct": true,
+    "official_pages_shared_domains": ["x.com"],
+    "official_pages_distinct_note": "An official source publishes each release, licence or statement on its own page: a document joins, by similarity, an event that already holds another page of its own official source only when the headlines are identical (the same release in another format or a re-post), never because they are alike (Iran sanctions guidance vs Iran nuclear sanctions guidance, the Monetary Base vs the Transactions with the Government). Posts of an official social account (official_pages_shared_domains) are not pages of this kind: one story often spans several posts.",
+    "resplit_note": "Events merged under earlier rules are re-split with these rules once per dedupe_version (Ingestion.split_merged_events).",
+    "generic_url_patterns": ["^https?://(www\\.)?benzinga\\.com/quote/"],
+    "generic_url_note": "Pages that are not one publication: Benzinga's wire items without an article link all to the stock's quote page (benzinga.com/quote/NVDA), so one URL carries many unrelated headlines. A document at such a URL never joins an event because of the URL, only by similarity, and two events are never the same publication because of it. Documents that joined that way earlier are re-checked by the repair.",
+    "legacy_provenance": "provider_retrieval",
+    "legacy_provenance_note": "Provenance of an event stored before events carried one (34 events of 26 Sep 2026): the matcher compared provenance exactly, so those events could never be joined and every one of their feed items was stored a second time as a new event.",
+    "repair_note": "Ingestion.repair_stored_events (the one start-up repair, HubService.run_event_repair) runs once per dedupe_version: it copies the SQLite database to '<database file>.pre-repair-<dedupe_version>' (sqlite3 backup API; no backup, or not a SQLite file: skipped, logged, tried again at the next start), merges events that are one publication stored twice (same source and provenance, published within headline_time_window_hours of each other, and the same page or the same text) into the older event, moving evidence, reactions and references, then re-splits merged events (split_merged_events). Old and new ids are written to audit_logs; a merged id still opens the kept event. A second run changes nothing. Validated on a copy of the owner's database (3 Oct 2026): 689 events -> 722 (37 duplicate pairs merged, 70 split off), every evidence and reaction row kept. 1.4.1: the method's name; the rules are those of 1.4.0.",
+    "novelty_scan_limit": 300,
+    "novelty_scan_note": "Novelty of a new event is its distance from at most this many of the newest events inside novelty_lookback_hours before it; the scan was unbounded (every event since the look-back start, including those stored after the document when an old document is re-split).",
+    "entity_headline_match": 0.42,
+    "min_shared_entities": 2,
+    "entity_time_window_hours": 12,
+    "syndication_similarity": 0.9,
+    "novelty_lookback_hours": 72,
+    "content_chars": 600,
+    "stop_entities": ["the", "a", "an", "and", "of", "in", "on", "for", "to", "with", "says", "said", "new", "update",
+                      "as", "at", "by", "from", "but", "or", "if", "it", "its", "is", "was", "be", "will", "this", "that", "these",
+                      "those", "there", "here", "we", "our", "he", "she", "they", "their", "after", "before", "while", "when",
+                      "what", "why", "how", "amid", "over", "under", "about", "following", "today", "press", "release",
+                      "statement", "president", "minister", "chair", "governor", "secretary",
+                      "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
+                      "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"]
+  }
+}

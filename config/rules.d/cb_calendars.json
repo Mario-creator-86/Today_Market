@@ -1,0 +1,105 @@
+{
+  "cb_calendars_version": "1.2.2",
+  "central_bank_calendars": {
+    "note": "Meeting dates are parsed from each bank's official schedule page; decision times are configured standard announcement times (the pages list dates only). Stored as date/event facts with attribution, never page text.",
+    "delay_label": "static schedule (official page, polled daily)",
+    "poll_seconds": 86400,
+    "min_refresh_seconds": 3600,
+    "banks": {
+      "ecb": {
+        "provider": "ecb_calendar",
+        "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html",
+        "country": "EU",
+        "decision_name": "ECB monetary policy decision",
+        "press_conference_name": "ECB monetary policy press conference",
+        "decision_time": "14:15",
+        "press_conference_time": "14:45",
+        "timezone": "Europe/Berlin",
+        "time_known": true,
+        "time_basis": "ECB decision 14:15 CET (Frankfurt time; ECB press release of 27 June 2022, effective 21 July 2022); the page lists dates only",
+        "press_conference_time_basis": "ECB press conference 14:45 CET (Frankfurt time; ECB press release of 27 June 2022); sub-event of the decision",
+        "event_class": "ECB",
+        "impact": 9,
+        "press_conference_impact": 8,
+        "attribution": "Source: ECB",
+        "terms": "Free reuse if reproduced accurately with the ECB cited as source (ECB disclaimer page)."
+      },
+      "boe": {
+        "provider": "boe_mpc_calendar",
+        "url": "https://www.bankofengland.co.uk/monetary-policy/upcoming-mpc-dates",
+        "country": "GB",
+        "decision_name": "BoE Bank Rate decision (MPC)",
+        "decision_time": "12:00",
+        "timezone": "Europe/London",
+        "time_known": true,
+        "time_basis": "BoE standard MPC announcement time 12:00 UK time (configured; the page lists dates only)",
+        "event_class": "BOE",
+        "impact": 8,
+        "attribution": "Source: Bank of England",
+        "terms": "Site resources for personal or internal non-commercial use only (bankofengland.co.uk/legal); store dates as facts, do not republish page text."
+      },
+      "boj": {
+        "provider": "boj_mpm_calendar",
+        "url": "https://www.boj.or.jp/en/mopo/mpmsche_minu/index.htm",
+        "country": "JP",
+        "decision_name": "BoJ monetary policy decision (MPM)",
+        "decision_time": "12:00",
+        "timezone": "Asia/Tokyo",
+        "time_known": false,
+        "time_basis": "approximate: the BoJ releases its statement when the meeting ends (no fixed time); 12:00 JST is a configured placeholder",
+        "session": "TOKYO_DAY",
+        "note_session": "Date-only decision anchored to the Tokyo business day of the last meeting day (docs/EVENT_AWARENESS.md §8): phases follow that day, never the 12:00 placeholder.",
+        "event_class": "BOJ",
+        "impact": 8,
+        "attribution": "Source: Bank of Japan",
+        "terms": "Reproduction allowed with explicit credit to the Bank of Japan, not for commercial purposes (boj.or.jp/en/about/copyright.htm)."
+      }
+    }
+  },
+  "finnhub": {
+    "note": "Finnhub free plan: personal use only, no redistribution (finnhub.io/terms-of-service). /quote is documented real-time for US stocks; index levels are premium, so only ETF proxies are shown and never mapped onto index symbols.",
+    "base_url": "https://finnhub.io/api/v1",
+    "websocket_url": "wss://ws.finnhub.io",
+    "key_env": "FINNHUB_API_KEY",
+    "equities": ["COIN", "MSTR", "BMNR", "NVDA", "MSFT", "AAPL", "AMZN", "META", "GOOGL", "TSLA"],
+    "etf_proxies": {
+      "SPY": {"label": "SPY ETF (proxy)", "proxy_for": "S&P 500 direction"},
+      "QQQ": {"label": "QQQ ETF (proxy)", "proxy_for": "Nasdaq-100 direction"},
+      "IWM": {"label": "IWM ETF (proxy)", "proxy_for": "Russell 2000 direction"}
+    },
+    "rate_limit": {"calls": 60, "per_seconds": 60, "documented": "free plan 60 API calls/minute"},
+    "websocket_max_symbols": 50,
+    "realtime_max_age_seconds": 120,
+    "session_basis": "market state from backend.sessions (market_sessions.asset_classes.equity = XNYS calendar)",
+    "attribution": "Source: Finnhub",
+    "delay_labels": {
+      "realtime": "real-time (Finnhub /quote last price)",
+      "stale_open": "STALE: no trade for {minutes} min while the market is open (last trade {as_of})",
+      "unknown_session": "last trade {as_of} (market session unknown; not live)",
+      "last_close": "{state} (last trade {as_of})",
+      "stream": "real-time trade (Finnhub WebSocket)"
+    },
+    "earnings": {
+      "note": "GET /calendar/earnings (free plan: upcoming dates plus 1 month of history), one query per tracked equity: an all-symbol query is cut at 1500 rows and silently drops symbols. Calls share the 60/min guard with quotes.",
+      "path": "/calendar/earnings",
+      "impact": 6,
+      "timezone": "America/New_York",
+      "guard_wait_seconds": 20,
+      "source_url": "https://finnhub.io/docs/api/earnings-calendar#{symbol}",
+      "estimate_label": "Finnhub estimate",
+      "estimate_note": "Finnhub's estimates include its own proprietary estimates; not Street consensus",
+      "note_sessions": "session is the anchor the event engine uses for a date-only row (docs/EVENT_AWARENESS.md §8): BMO = before the 09:30 ET open, AMC = after the 16:00 ET close; during-hours rows carry no session field and are matched by their time_basis to 09:30-16:00 ET (event_risk.phases.date_only_sessions); unknown sessions fall back to the whole New York day.",
+      "sessions": {
+        "bmo": {"anchor": "09:30", "session": "BMO", "time_basis": "before the US open (Finnhub gives the session only; exact time not published)"},
+        "amc": {"anchor": "16:00", "session": "AMC", "time_basis": "after the US close (Finnhub gives the session only; exact time not published)"},
+        "dmh": {"anchor": "09:30", "session": null, "time_basis": "during US market hours (Finnhub gives the session only; exact time not published)"},
+        "": {"anchor": "00:00", "session": null, "time_basis": "date only (Finnhub gives no session)"}
+      },
+      "note_estimates": "Estimates use the consensus shape of docs/EVENT_AWARENESS.md §8 under the row's `estimates` ({label: estimate_label, values: [{name, value, unit}], note}); the source is the row's consensus_source and `consensus` stays empty. The flat keys (eps, revenue) stay beside `values` for readers of the earlier shape. Never labelled 'Consensus'.",
+      "estimate_values": [
+        {"field": "epsEstimate", "key": "eps", "name": "EPS", "unit": "USD/share"},
+        {"field": "revenueEstimate", "key": "revenue", "name": "Revenue", "unit": "USD"}
+      ]
+    }
+  }
+}

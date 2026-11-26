@@ -1,0 +1,310 @@
+{
+  "refresh_version": "1.11.0",
+  "refresh": {
+    "note": "Default cadences from spec section 10. seconds are poll intervals; mode websocket/stream means push delivery with the listed REST fallback.",
+    "cadences": {
+      "quotes": {
+        "mode": "websocket",
+        "seconds": 5,
+        "label": "Real-time quotes (BTC/ETH, US equities, FX, futures)"
+      },
+      "ui_quotes": {
+        "seconds": 1,
+        "label": "UI live price tiles (maximum update rate)"
+      },
+      "ui_snapshot": {
+        "seconds": 5,
+        "label": "Live dashboard check (changed prices are pushed to open pages at most this often)"
+      },
+      "ui_snapshot_full": {
+        "seconds": 30,
+        "label": "Full dashboard push to open pages (at most this often, only when something besides prices changed)"
+      },
+      "derived": {
+        "seconds": 5,
+        "label": "Derived market metrics"
+      },
+      "derivatives": {
+        "seconds": 15,
+        "label": "Crypto derivatives"
+      },
+      "breaking_news": {
+        "mode": "stream",
+        "seconds": 60,
+        "label": "Breaking news (licensed stream / long poll)"
+      },
+      "x_stream": {
+        "mode": "stream",
+        "seconds": 45,
+        "label": "X filtered stream (search fallback)"
+      },
+      "x_search": {
+        "seconds": 45,
+        "label": "X recent search fallback (30-60 s)"
+      },
+      "hot_topics": {
+        "seconds": 900,
+        "label": "Hot web-search topics (research planner; each event at most twice)"
+      },
+      "global_sweep": {
+        "seconds": 300,
+        "label": "Global news sweep"
+      },
+      "sec_filings": {
+        "seconds": 60,
+        "off_hours_seconds": 900,
+        "label": "SEC filings (60 s during US market hours)"
+      },
+      "congress": {
+        "seconds": 1800,
+        "active_seconds": 300,
+        "label": "Congress / regulation (5 min while active, 30 min otherwise)"
+      },
+      "central_banks": {
+        "seconds": 300,
+        "watch_seconds": 30,
+        "label": "Central-bank pages (every 30 s from 15 min before to 15 min after a decision)"
+      },
+      "calendar": {
+        "seconds": 21600,
+        "label": "Economic calendar full refresh"
+      },
+      "release_watch": {
+        "seconds": 30,
+        "tick_seconds": 5,
+        "label": "Authoritative source during event watch mode (polled at the scheduled release second; the release schedule is checked every 5 s)"
+      },
+      "interpretation": {
+        "seconds": 300,
+        "inactive_seconds": 900,
+        "label": "Full market interpretation"
+      },
+      "model_discovery": {
+        "seconds": 3600,
+        "label": "Ollama model catalogue"
+      },
+      "evaluation": {
+        "seconds": 60,
+        "label": "Outcome evaluation"
+      },
+      "calibration": {
+        "seconds": 86400,
+        "label": "Calibration candidates"
+      },
+      "briefs": {
+        "seconds": 60,
+        "label": "Morning brief schedule check"
+      },
+      "retention": {
+        "seconds": 3600,
+        "label": "Tick retention and bar aggregation"
+      },
+      "positioning": {
+        "seconds": 60,
+        "label": "Futures positioning (Binance/INTX funding & OI; CFTC COT weekly, cached)"
+      },
+      "official_data": {
+        "seconds": 1800,
+        "label": "Official statistics (ECB, Eurostat, BLS, Treasury TGA, EIA, FRED) and central-bank state"
+      },
+      "discovery": {
+        "seconds": 900,
+        "label": "Discovery sources (GDELT 15-minute batches, OFAC actions and SLS deltas, SEC full-text search)"
+      },
+      "equity_quotes": {
+        "seconds": 15,
+        "fixed_rate": true,
+        "note": "fixed_rate: a round starts every `seconds` (the loop sleeps seconds minus the time the round took, never less than 0), so each symbol is refreshed every 15 s instead of 15 s plus the 5-8 s the 13 sequential calls take. 13 calls x 4 rounds = 52 calls a minute, inside Finnhub's 60/min guard (symbols the guard defers are served first in the next round). The freshness limit of this feed (market_data.freshness.providers.finnhub) is sized from this interval.",
+        "label": "Keyed equity quotes (Finnhub primary, 13 calls per round, 60/min limit) plus the SPY/QQQ/IWM ETF proxies"
+      },
+      "alpaca_quotes": {
+        "seconds": 15,
+        "fixed_rate": true,
+        "note": "fixed_rate: one snapshot call every `seconds`, whatever the call took (see equity_quotes).",
+        "label": "Alpaca IEX snapshots (one call): ETF proxies (SPY, QQQ, IWM, GLD, UUP, USO, BNO) and the equities Finnhub could not serve"
+      },
+      "alpaca_bars": {
+        "seconds": 21600,
+        "label": "Alpaca daily bars (IEX, split-adjusted) for equities and ETF proxies: history for technical levels"
+      },
+      "alpaca_news": {
+        "seconds": 60,
+        "label": "Benzinga headlines via the Alpaca News API"
+      },
+      "eia_spot": {
+        "seconds": 3600,
+        "label": "EIA daily spot closes for WTI and Brent (page updated weekly; conditional GET)"
+      },
+      "treasury_yields": {
+        "seconds": 3600,
+        "label": "US Treasury daily par yield curve closes (own loop, one attempt per hour: the file changes once per business day)"
+      },
+      "proxy_stream": {
+        "seconds": 5,
+        "label": "Minimum interval between stored PAXG gold-proxy prints from the Binance stream"
+      },
+      "proxy_rest_fallback": {
+        "seconds": 30,
+        "label": "PAXG gold-proxy REST fallback (Binance, then Coinbase) while the stream is silent"
+      }
+    },
+    "watch": {
+      "min_impact": 5,
+      "lead_minutes": 15,
+      "trail_minutes": 15,
+      "central_bank_min_impact": 5,
+      "central_bank_window_minutes": 15,
+      "inactive_statuses": ["SUSPENDED", "CANCELLED", "POSTPONED"],
+      "note_time_known": "Rows with time_known false (date only) or an inactive status never open a watch window or a countdown.",
+      "central_bank_patterns": [
+        "interest rate decision",
+        "rate decision",
+        "fomc",
+        "monetary policy",
+        "policy statement",
+        "press conference",
+        "bank rate",
+        "cash rate"
+      ]
+    },
+    "congress": {
+      "active_event_types": [
+        "REGULATION",
+        "LEGISLATION"
+      ],
+      "active_min_importance": 0.6,
+      "active_hours": 24
+    },
+    "calendar_sources": {
+      "note": "Minimum seconds between fetches of a calendar source inside the calendar loop (which runs on the calendar cadence and at every release watch). Unlisted sources are fetched on every run; a failed fetch is retried on the next run.",
+      "min_seconds": {
+        "fed_events_calendar": 21600,
+        "bea_release_calendar": 43200,
+        "census_calendar": 43200,
+        "bls_release_calendar": 43200,
+        "fred": 43200,
+        "treasury_refunding": 43200,
+        "finnhub": 21600,
+        "dol_claims_rule": 3600,
+        "survey_schedule": 3600
+      }
+    },
+    "interpretation": {
+      "note": "Market interpretation (backend/interpretation.py refresh): every active_seconds while any traditional market is open, otherwise idle_seconds, and immediately on the triggers below (debounced by min_interval_seconds: at most one run per 10 minutes). A run sends an AI request only when the stored AI text no longer holds or is older than unchanged_max_age_seconds, the market state was not already rejected (retry_failed_after_seconds), the provider did not just fail (retry_unavailable_after_seconds) and, for a minor change, min_ai_interval_seconds passed since the last request; otherwise the deterministic summary of the current snapshot is served. Each AI run is one request (two with a schema correction) out of the role's daily budget (ai_runtime budget.role_daily.market_interpreter). Was 300 / 900 / 60 s: 224 interpreter calls in two days, nearly all failing on timeouts or 429 and running again 5 minutes later.",
+      "active_seconds": 1800,
+      "idle_seconds": 3600,
+      "min_interval_seconds": 600,
+      "unchanged_max_age_seconds": 10800,
+      "unchanged_max_age_seconds_note": "An AI interpretation is kept (no new request) for up to this long while it still holds: its core (regime posture, regimes and basis, the dominant and next event with their stage, expectations and official documents, post-event divergence) is unchanged, the driver directions and the open unscheduled events are the same and every asset it names is still in the same list. The basis_hash covers those facts plus the lists' membership, trade statuses and sessions; live percentages, countdowns, windows, relevance levels and continuous scores are left out, so it does not change with every tick (measured before: 40 different hashes in 51 runs).",
+      "min_ai_interval_seconds": 3600,
+      "min_ai_interval_seconds_note": "Least time between two AI requests of the interpreter while the core is unchanged (a minor change: list membership, a driver direction, a trade status, a session, an unverified report). A change of the core (regime, dominant or next event, its stage or expectations, new official documents, a post-event divergence) is sent at once. With active_seconds 1800 this bounds a normal day at about 24 requests.",
+      "retry_failed_after_seconds": 7200,
+      "retry_failed_after_seconds_note": "A market state (basis_hash) whose AI answer was rejected is not sent again before this long has passed or the state changes; the stored interpretations rows remember it, so a restart keeps it. Measured before: 23 of 44 runs repeated an input that had already failed.",
+      "retry_unavailable_after_seconds": 1800,
+      "retry_unavailable_after_seconds_note": "After a request the provider did not answer (timeout, HTTP 429 or 5xx) no interpreter request is sent for this long, whatever the market state: a timed-out generation is still paid for.",
+      "memory_rows": 60,
+      "memory_rows_note": "How many of the newest stored interpretations rows are read to remember rejected states and the time of the last request.",
+      "max_brief_chars": 8000,
+      "max_brief_chars_note": "Upper bound of the model input in characters (interpretation.brief): the regime summary and drivers, the dominant and next event, the lists as symbols, trade statuses and what can break. Optional parts are dropped in a fixed order until it fits. The input was about 22,000 characters before.",
+      "max_brief_events": 3,
+      "max_brief_events_note": "Events described to the model: the dominant one, the next one and one released event that has official documents to classify.",
+      "startup_wait_seconds": 120,
+      "event_state_seconds": 15,
+      "traditional_classes": ["equity", "bond", "fx", "commodity"],
+      "session_classes": ["equity", "bond", "fx", "commodity"],
+      "triggers": ["EVENT_CRITICAL_NEW", "EVENT_WINDOW_60", "EVENT_WINDOW_15", "EVENT_RELEASED", "PRESS_CONFERENCE_START",
+                   "MACRO_RELEASE", "REGIME_CHANGE", "LARGE_SCORE_CHANGE", "TECHNICAL_BREAKOUT", "FACT_STATUS_CHANGE",
+                   "CROSS_ASSET_DIVERGENCE", "MARKET_OPEN_CLOSE"]
+    },
+    "divergence_research": {
+      "note": "A post-event MARKET DIVERGENCE (event_risk trigger_state divergences / post_event research_recommended) starts one research-planner request per event through the corroborate path (planner-availability guard and search budget apply). A request that could not start is retried after retry_seconds while the event still diverges; a started one is never repeated. priority is the search-budget priority (0 = critical, as for unexplained price anomalies).",
+      "priority": 0,
+      "retry_seconds": 60,
+      "max_tracked": 256,
+      "max_summary_chars": 600
+    },
+    "hot_topics": {
+      "note": "Runtime.research_hot_topics re-researches UNCONFIRMED / PARTIALLY_CONFIRMED events whose importance (source tier weight x extractor importance / 100, the tier weight alone before extraction) is at least brief.min_event_importance / 100. Events at or above urgent_min_importance get search-budget priority 0, the others priority 1. Before importance used the extractor, this cut was 0.9 on the tier weight alone (tiers 1 and 2 always urgent); 0.8 keeps an official statement the extractor rates >= 80 urgent, as alerts.event.high_importance does.",
+      "urgent_min_importance": 0.8,
+      "max_attempts_per_event": 2,
+      "recheck_hours": 6,
+      "anomaly_recheck_hours": 6,
+      "limits_note": "Each research is one research-planner AI request (docs/AI_AGENTS.md). An event (hot topic or unconfirmed X post) is researched at most max_attempts_per_event times, and not again within recheck_hours unless new evidence reached it since the last attempt; an unexplained price anomaly (symbol and window) at most once per anomaly_recheck_hours. The attempts are stored (research_jobs 'attempts:<key>'), so a restart does not research everything again. The search-budget topic cooldown of priorities 0 and 1 is at least recheck_hours. Before: the hot-topic loop ran every 60 s and re-planned every unresolved important event each minute (1466 planner calls in two days)."
+    },
+    "triggers": {
+      "min_interval_seconds": 30,
+      "analysis_triggers": ["BREAKING_EVENT", "MACRO_RELEASE", "CENTRAL_BANK_STATEMENT", "LARGE_MOVE", "TECHNICAL_BREAKOUT",
+                            "CROSS_ASSET_DIVERGENCE", "FACT_STATUS_CHANGE", "MARKET_OPEN_CLOSE"],
+      "note_analysis_triggers": "Triggers that re-run decisions now. Event-window, regime and score triggers only refresh the interpretation: decisions carry the event overlay at read time, and a score trigger re-running decisions would feed itself.",
+      "large_score_change": 15,
+      "breaking_min_importance": 0.6,
+      "breaking_event_types": [
+        "GEOPOLITICAL_ENERGY",
+        "BREAKING",
+        "CENTRAL_BANK",
+        "MACRO",
+        "OFFICIAL_RELEASE"
+      ],
+      "central_bank_event_types": [
+        "CENTRAL_BANK"
+      ],
+      "central_bank_sources": [
+        "fed",
+        "ecb",
+        "boe",
+        "boj",
+        "Federal Reserve",
+        "European Central Bank",
+        "Bank of England",
+        "Bank of Japan"
+      ],
+      "large_move": {
+        "pct": 1.5,
+        "bp": 10
+      },
+      "move_window_seconds": 900
+    },
+    "streams": {
+      "prefix": "hub:",
+      "maxlen": 10000,
+      "names": [
+        "quotes",
+        "events",
+        "decisions",
+        "alerts",
+        "providers",
+        "briefs",
+        "recalculations"
+      ],
+      "block_ms": 1000,
+      "read_count": 200
+    },
+    "metrics": {
+      "latency_window": 500,
+      "ai_run_window": 2000
+    },
+    "storage": {
+      "bar_intervals_seconds": [
+        1,
+        5,
+        60,
+        300,
+        3600
+      ],
+      "raw_tick_retention_hours": 168,
+      "bar_retention_days": {
+        "1": 1,
+        "5": 3,
+        "60": 30,
+        "300": 180,
+        "3600": 1825,
+        "86400": 800
+      },
+      "note_daily_bars": "Daily bars (interval 86400) come from Alpaca, keyed by the New York session date; they are never aggregated from ticks (not in bar_intervals_seconds) and kept 800 days (>= 400 needed)."
+    },
+    "locks": {
+      "default_timeout_seconds": 55,
+      "blocking_timeout_seconds": 1
+    }
+  }
+}

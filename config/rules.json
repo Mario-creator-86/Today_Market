@@ -1,0 +1,430 @@
+{
+  "version": "1.3.0",
+  "weights": {
+    "event": 0.3,
+    "macro": 0.2,
+    "reaction": 0.15,
+    "technical": 0.15,
+    "positioning": 0.08,
+    "cross_asset": 0.07,
+    "regime": 0.05
+  },
+  "thresholds": {
+    "lean": 15,
+    "setup": 30,
+    "strong": 60,
+    "fact_confirmation": 90,
+    "minimum_calibration": 200,
+    "min_history": 20,
+    "max_evidence_age_hours": 24,
+    "anomaly_pct": 1,
+    "slippage_bps": 5,
+    "max_spread_bps": 50
+  },
+  "assets": [
+    [
+      "BTC",
+      "Bitcoin",
+      "crypto"
+    ],
+    [
+      "ETH",
+      "Ethereum",
+      "crypto"
+    ],
+    [
+      "SP500",
+      "S&P 500",
+      "index"
+    ],
+    [
+      "NASDAQ",
+      "Nasdaq",
+      "index"
+    ],
+    [
+      "RUSSELL",
+      "Russell 2000",
+      "index"
+    ],
+    [
+      "DXY",
+      "US dollar index",
+      "index"
+    ],
+    [
+      "US2Y",
+      "US Treasury 2Y",
+      "bond"
+    ],
+    [
+      "US5Y",
+      "US Treasury 5Y",
+      "bond"
+    ],
+    [
+      "US10Y",
+      "US Treasury 10Y",
+      "bond"
+    ],
+    [
+      "US30Y",
+      "US Treasury 30Y",
+      "bond"
+    ],
+    [
+      "EURUSD",
+      "Euro / US dollar",
+      "fx"
+    ],
+    [
+      "GBPUSD",
+      "Pound / US dollar",
+      "fx"
+    ],
+    [
+      "USDJPY",
+      "US dollar / Yen",
+      "fx"
+    ],
+    [
+      "AUDUSD",
+      "Australian dollar / US dollar",
+      "fx"
+    ],
+    [
+      "USDCAD",
+      "US dollar / Canadian dollar",
+      "fx"
+    ],
+    [
+      "USDCHF",
+      "US dollar / Swiss franc",
+      "fx"
+    ],
+    [
+      "NZDUSD",
+      "New Zealand dollar / US dollar",
+      "fx"
+    ],
+    [
+      "GOLD",
+      "Gold",
+      "commodity"
+    ],
+    [
+      "WTI",
+      "WTI crude",
+      "commodity"
+    ],
+    [
+      "BRENT",
+      "Brent crude",
+      "commodity"
+    ],
+    [
+      "VIX",
+      "Volatility index",
+      "index"
+    ],
+    [
+      "COIN",
+      "Coinbase",
+      "equity"
+    ],
+    [
+      "MSTR",
+      "Strategy",
+      "equity"
+    ],
+    [
+      "BMNR",
+      "BitMine",
+      "equity"
+    ],
+    [
+      "NVDA",
+      "NVIDIA",
+      "equity"
+    ],
+    [
+      "MSFT",
+      "Microsoft",
+      "equity"
+    ],
+    [
+      "AAPL",
+      "Apple",
+      "equity"
+    ],
+    [
+      "AMZN",
+      "Amazon",
+      "equity"
+    ],
+    [
+      "META",
+      "Meta",
+      "equity"
+    ],
+    [
+      "GOOGL",
+      "Alphabet",
+      "equity"
+    ],
+    [
+      "TSLA",
+      "Tesla",
+      "equity"
+    ]
+  ],
+  "categories": {
+    "insufficient": {
+      "category": "WAIT / DATA INSUFFICIENT",
+      "direction": "WAIT"
+    },
+    "neutral": {
+      "category": "WAIT",
+      "direction": "WAIT"
+    },
+    "bands": [
+      {
+        "threshold": "strong",
+        "setup": true,
+        "long": {
+          "category": "STRONG LONG SETUP",
+          "direction": "STRONG LONG"
+        },
+        "short": {
+          "category": "STRONG SHORT SETUP",
+          "direction": "STRONG SHORT"
+        }
+      },
+      {
+        "threshold": "setup",
+        "setup": true,
+        "long": {
+          "category": "LONG SETUP",
+          "direction": "LONG"
+        },
+        "short": {
+          "category": "SHORT SETUP",
+          "direction": "SHORT"
+        }
+      },
+      {
+        "threshold": "lean",
+        "setup": false,
+        "long": {
+          "category": "BULLISH LEAN / WAIT",
+          "direction": "BULLISH LEAN / WAIT"
+        },
+        "short": {
+          "category": "BEARISH LEAN / WAIT",
+          "direction": "BEARISH LEAN / WAIT"
+        }
+      }
+    ],
+    "setup_requirements": {
+      "aligned": [
+        "technical"
+      ],
+      "min_abs_any": {
+        "components": [
+          "event",
+          "macro"
+        ],
+        "value": 20
+      }
+    }
+  },
+  "scoring": {
+    "weight_sum_tolerance": 1e-06,
+    "event": {
+      "source_quality_floor": 0.5,
+      "novelty_floor": 0.3,
+      "persistence_floor": 0.5,
+      "market_confirmation_floor": 0.5,
+      "priced_in_weight": 0.7,
+      "surprise": {
+        "z_neutral": 1.0,
+        "per_z": 0.15,
+        "min": 0.8,
+        "max": 1.5
+      }
+    },
+    "macro": {
+      "z_full_scale": 3.0,
+      "max_age_hours": 72
+    },
+    "reaction": {
+      "status_scores": {
+        "CONFIRMED": 100,
+        "PARTIAL": 50,
+        "NO_REACTION": 0,
+        "DIVERGENT": -50,
+        "REVERSED": -100
+      },
+      "own_weight": 0.6
+    },
+    "technical": {
+      "break_score": 60,
+      "per_atr": 20
+    },
+    "cross_asset": {
+      "min_observed": 2,
+      "reference_assets": [
+        "US2Y",
+        "US10Y",
+        "DXY",
+        "BRENT",
+        "GOLD",
+        "NASDAQ",
+        "VIX"
+      ],
+      "text_max_assets": 2
+    },
+    "regime": {
+      "variables": {
+        "RISK_ON": [
+          [
+            "risk_appetite",
+            1
+          ]
+        ],
+        "RISK_OFF": [
+          [
+            "risk_appetite",
+            -1
+          ],
+          [
+            "safe_haven_demand",
+            1
+          ]
+        ],
+        "INFLATION_SHOCK": [
+          [
+            "front_end_yields",
+            1
+          ],
+          [
+            "oil",
+            1
+          ],
+          [
+            "duration_assets",
+            -1
+          ]
+        ],
+        "GROWTH_SCARE": [
+          [
+            "risk_appetite",
+            -1
+          ],
+          [
+            "front_end_yields",
+            -1
+          ],
+          [
+            "oil",
+            -1
+          ]
+        ],
+        "LIQUIDITY_STRESS": [
+          [
+            "risk_appetite",
+            -1
+          ],
+          [
+            "usd",
+            1
+          ]
+        ],
+        "GEOPOLITICAL_SHOCK": [
+          [
+            "safe_haven_demand",
+            1
+          ],
+          [
+            "oil",
+            1
+          ]
+        ],
+        "USD_STRENGTH": [
+          [
+            "usd",
+            1
+          ]
+        ],
+        "USD_WEAKNESS": [
+          [
+            "usd",
+            -1
+          ]
+        ],
+        "VOLATILITY_EXPANSION": [
+          [
+            "risk_appetite",
+            -1
+          ]
+        ],
+        "LOW_VOLATILITY": [
+          [
+            "risk_appetite",
+            1
+          ]
+        ]
+      }
+    },
+    "market_confirmation": {
+      "own_weight": 0.5,
+      "credit": {
+        "CONFIRMED": 1.0,
+        "PARTIAL": 0.5
+      },
+      "horizon_weights": {
+        "1m": 0.5,
+        "5m": 0.75,
+        "15m": 1,
+        "30m": 1,
+        "1h": 1,
+        "4h": 1,
+        "close": 1,
+        "next_session": 1
+      }
+    },
+    "data_quality": {
+      "weights": {
+        "freshness": 0.4,
+        "provider": 0.2,
+        "coverage": 0.3,
+        "history": 0.1
+      },
+      "provider_scores": {
+        "ONLINE": 100,
+        "DEGRADED": 50
+      }
+    },
+    "text": {
+      "why_max_events": 3
+    },
+    "gates": {
+      "blocking_provider_statuses": [
+        "OFFLINE",
+        "AUTH_ERROR",
+        "RATE_LIMITED"
+      ],
+      "unverified_max_age_hours": 6,
+      "min_importance": 0.5,
+      "unassessed_min_tier_weight": 0.9,
+      "note_unverified": "Gate 'Important fact unverified' (UNCONFIRMED / PARTIALLY_CONFIRMED events first seen at most unverified_max_age_hours ago, with an ACTIVE causal path that contributes to the asset being decided). An event whose importance was assessed (source tier weight x extractor importance) blocks from min_importance. An event not yet assessed (importance null: the extractor has not rated it, was refused by the AI budget or does not run) never blocks by its missing rating: it blocks only when its source is authoritative, tier weight >= unassessed_min_tier_weight (0.9 = tiers 1 and 2: official institutions and the licensed wires). A tier-4 stock article (0.5) or a tier-5 item (0.2) with a keyword trigger therefore waits for its rating.",
+      "rumor_kinds": [
+        "social",
+        "anonymous"
+      ],
+      "live_states": [
+        "LIVE"
+      ]
+    }
+  }
+}

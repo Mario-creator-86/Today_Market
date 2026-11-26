@@ -1,0 +1,452 @@
+{
+  "market_version": "1.5.0",
+  "market_units": {
+    "bp_asset_classes": [
+      "bond"
+    ],
+    "bp_symbols": [],
+    "bp_per_unit": 100,
+    "note": "Yields are quoted in percent, so a 0.01 level change is 1 bp. Every other instrument uses percent change."
+  },
+  "market_data": {
+    "exclude_provider_suffix": "-stub",
+    "note": "Development-stub ticks (provider '<name>-stub') never feed reactions, anomalies or technical levels.",
+    "freshness": {
+      "providers": {
+        "finnhub": 60,
+        "alpaca": 30
+      },
+      "stale_label": "STALE: last price {as_of} is older than the {limit} s freshness limit",
+      "note": "Freshness limit of a LIVE quote in seconds, by provider (backend.config.freshness_seconds, the one lookup used by HubService.quote, the decision gates, the audit, data quality, reactions, the replay and outcome measurement). A provider not listed here is a one-second stream (Binance, Coinbase, Massive) and uses QUOTE_STALE_SECONDS (15 s). REST-polled feeds get the age their polling can meet. Finnhub /quote: the last-trade stamp is already old when the answer is stored (measured on 18,117 in-session ticks, 28 Sep - 2 Oct 2026: median 20.8 s, p95 31.5 s, p99 36.2 s), the next answer arrives one poll later (refresh equity_quotes: 15 s at a fixed rate) plus the round of 13 sequential calls (5-8 s): 31.5 + 15 + 8 = 54.5 s at p95, so 60 s; with the former 15 s limit the visible quote was FRESH 5.1% of the open session, with 60 s 99.2% (same stored ticks). Alpaca IEX snapshots (one call per round, stamp 2.9 s old at the median): 2.9 + 15 + 1 = 19 s typical, 30 s leaves one missed round of margin. A limit is never applied above the provider's own real-time definition (its realtime_max_age_seconds, 120 s for both): the smaller value wins. stale_label replaces a stored 'real-time ...' as-of label when the verdict at read time is STALE ({as_of} = the tick time in UTC, {limit} = the limit used); the quote also carries freshness_threshold_seconds."
+    }
+  },
+  "daily_closes": {
+    "note": "Publication schedule of each daily-close source (docs/MARKET_COVERAGE.md, close_status). A close is CURRENT when its observation date is on or after the latest business day whose value should already be out: business day + lag_days business days at 'publish' local time, plus grace_hours (weekly sources: the latest release, covering through covers_through_weekday). Otherwise it is STALE. Keys are '<provider>' or '<provider>:<symbol>' (the symbol entry wins). calendar is an exchange_calendars name or 'weekdays'; extra_holidays are ISO dates the source does not publish although the calendar is open. Every provider with a schedule here is a daily-close source whose ticks are kept for backend.database.DAILY_CLOSE_RETENTION_DAYS (they are the previous stored close of the next one), except live_source entries: live feeds whose schedule only dates their last trade by its session close, and whose ticks keep the normal tick retention.",
+    "schedules": {
+      "treasury": {
+        "calendar": "XNYS",
+        "timezone": "America/New_York",
+        "publish": "18:00",
+        "lag_days": 0,
+        "grace_hours": 2,
+        "extra_holidays": [
+          "2026-10-12",
+          "2026-11-11",
+          "2027-10-11",
+          "2027-11-11"
+        ],
+        "note": "Daily par yield curve, posted the same evening (NY Fed indicative bids near 15:30 ET). Bond-market holidays the NYSE keeps open (Columbus Day, Veterans Day) are listed explicitly; NYSE-only holidays such as Good Friday only make a published close newer than expected."
+      },
+      "ecb": {
+        "calendar": "XETR",
+        "timezone": "Europe/Berlin",
+        "publish": "16:00",
+        "lag_days": 0,
+        "grace_hours": 1,
+        "note": "ECB 14:15 CET reference fix, published around 16:00 CET on TARGET days. XETR closures are a superset of TARGET closures, so a missing fix on a TARGET holiday is never called late."
+      },
+      "ecb-derived": {
+        "calendar": "XETR",
+        "timezone": "Europe/Berlin",
+        "publish": "16:00",
+        "lag_days": 0,
+        "grace_hours": 1,
+        "note": "USD index replica computed from the ECB fix: same schedule as the fix."
+      },
+      "fred": {
+        "calendar": "XNYS",
+        "timezone": "America/New_York",
+        "publish": "12:00",
+        "lag_days": 1,
+        "grace_hours": 0,
+        "note": "FRED posts daily closes by the next business day (T+1). VIXCLS often lags longer and is then shown as STALE."
+      },
+      "eia": {
+        "calendar": "XNYS",
+        "timezone": "America/New_York",
+        "publish": "12:00",
+        "grace_hours": 30,
+        "weekly": {
+          "release_weekday": 2,
+          "covers_through_weekday": 1
+        },
+        "note": "EIA spot table: weekly Wednesday release covering through Tuesday; 30 h grace for a release moved to Thursday by a Monday holiday."
+      },
+      "fred:WTI": {
+        "calendar": "XNYS",
+        "timezone": "America/New_York",
+        "publish": "14:00",
+        "grace_hours": 30,
+        "weekly": {
+          "release_weekday": 2,
+          "covers_through_weekday": 1
+        },
+        "note": "DCOILWTICO mirrors the weekly EIA spot table."
+      },
+      "fred:BRENT": {
+        "calendar": "XNYS",
+        "timezone": "America/New_York",
+        "publish": "14:00",
+        "grace_hours": 30,
+        "weekly": {
+          "release_weekday": 2,
+          "covers_through_weekday": 1
+        },
+        "note": "DCOILBRENTEU mirrors the weekly EIA spot table."
+      },
+      "finnhub": {
+        "live_source": true,
+        "calendar": "XNYS",
+        "timezone": "America/New_York",
+        "publish": "16:00",
+        "lag_days": 0,
+        "grace_hours": 1,
+        "note": "Finnhub last trade outside the session is the regular-session close (16:00 ET); it is the current close until the next session ends."
+      },
+      "alpaca": {
+        "live_source": true,
+        "calendar": "XNYS",
+        "timezone": "America/New_York",
+        "publish": "16:00",
+        "lag_days": 0,
+        "grace_hours": 1,
+        "note": "Alpaca IEX last trade outside the session is the regular-session close (16:00 ET); it is the current close until the next session ends."
+      }
+    }
+  },
+  "proxy_sessions": {
+    "note": "Session venue (market_sessions.asset_classes) of the instruments each proxy source quotes: tokens trade 24/7, ETFs follow the NYSE calendar with extended hours.",
+    "sources": {
+      "binance": "crypto",
+      "coinbase": "crypto",
+      "alpaca": "equity",
+      "finnhub": "equity"
+    }
+  },
+  "baskets": {
+    "default": [
+      "US2Y",
+      "US5Y",
+      "US10Y",
+      "US30Y",
+      "DXY",
+      "EURUSD",
+      "USDJPY",
+      "GBPUSD",
+      "NASDAQ",
+      "SP500",
+      "RUSSELL",
+      "VIX",
+      "GOLD",
+      "WTI",
+      "BRENT",
+      "BTC",
+      "ETH"
+    ]
+  },
+  "reaction": {
+    "windows": [
+      {
+        "label": "1m",
+        "seconds": 60,
+        "confirm_scale": 0.3
+      },
+      {
+        "label": "5m",
+        "seconds": 300,
+        "confirm_scale": 0.5
+      },
+      {
+        "label": "15m",
+        "seconds": 900,
+        "confirm_scale": 0.7
+      },
+      {
+        "label": "30m",
+        "seconds": 1800,
+        "confirm_scale": 0.85
+      },
+      {
+        "label": "1h",
+        "seconds": 3600,
+        "confirm_scale": 1.0
+      },
+      {
+        "label": "4h",
+        "seconds": 14400,
+        "confirm_scale": 1.3
+      }
+    ],
+    "min_importance": 0.3,
+    "max_event_age_seconds": 432000,
+    "max_event_age_note": "5 days, so a 'next_session' window still resolves for an event before a long weekend.",
+    "max_publication_lag_seconds": 900,
+    "max_publication_lag_note": "Reactions are measured from first_seen (no lookahead). An event first seen more than this long after its publication time (a backfilled or late-ingested release) is not measured: the move after ingestion is not the release reaction.",
+    "tolerances": {
+      "default": {
+        "pct": {
+          "noise": 0.05,
+          "confirm": 0.3
+        },
+        "bp": {
+          "noise": 0.5,
+          "confirm": 3
+        }
+      },
+      "classes": {
+        "crypto": {
+          "noise": 0.1,
+          "confirm": 0.8
+        },
+        "index": {
+          "noise": 0.05,
+          "confirm": 0.4
+        },
+        "equity": {
+          "noise": 0.1,
+          "confirm": 0.8
+        },
+        "fx": {
+          "noise": 0.03,
+          "confirm": 0.2
+        },
+        "commodity": {
+          "noise": 0.1,
+          "confirm": 0.8
+        },
+        "bond": {
+          "noise": 0.5,
+          "confirm": 3
+        }
+      },
+      "symbols": {
+        "DXY": {
+          "noise": 0.03,
+          "confirm": 0.2
+        },
+        "VIX": {
+          "noise": 1.0,
+          "confirm": 4.0
+        },
+        "GOLD": {
+          "noise": 0.05,
+          "confirm": 0.4
+        }
+      }
+    },
+    "partial_weight": 0.5,
+    "divergence_min_aligned": 2,
+    "min_measured_for_level": 3,
+    "confirmation_levels": {
+      "high": 75,
+      "medium": 40
+    }
+  },
+  "anomaly": {
+    "mode": "fixed",
+    "rules": [
+      {
+        "symbol": "BTC",
+        "window_seconds": 300,
+        "threshold": 1.0
+      },
+      {
+        "symbol": "BTC",
+        "window_seconds": 900,
+        "threshold": 2.0
+      },
+      {
+        "symbol": "BRENT",
+        "window_seconds": 600,
+        "threshold": 1.5
+      },
+      {
+        "symbol": "US10Y",
+        "window_seconds": 900,
+        "threshold": 5
+      },
+      {
+        "symbol": "DXY",
+        "window_seconds": 900,
+        "threshold": 0.4
+      },
+      {
+        "symbol": "NASDAQ",
+        "window_seconds": 900,
+        "threshold": 0.8
+      },
+      {
+        "symbol": "VIX",
+        "window_seconds": 900,
+        "threshold": 10
+      }
+    ],
+    "class_defaults": [
+      {
+        "asset_class": "crypto",
+        "window_seconds": 300,
+        "threshold": 1.0
+      },
+      {
+        "asset_class": "crypto",
+        "window_seconds": 900,
+        "threshold": 2.0
+      },
+      {
+        "asset_class": "commodity",
+        "window_seconds": 600,
+        "threshold": 1.5
+      },
+      {
+        "asset_class": "bond",
+        "window_seconds": 900,
+        "threshold": 5
+      },
+      {
+        "asset_class": "fx",
+        "window_seconds": 900,
+        "threshold": 0.35
+      },
+      {
+        "asset_class": "index",
+        "window_seconds": 900,
+        "threshold": 0.8
+      },
+      {
+        "asset_class": "equity",
+        "window_seconds": 900,
+        "threshold": 2.0
+      }
+    ],
+    "note": "Thresholds are in the instrument unit (bp for yields, percent otherwise). 'Quickly' in the specification is read as 15 minutes.",
+    "max_baseline_gap_seconds": 120,
+    "volatility": {
+      "multiplier": 4.0,
+      "sample_seconds": 60,
+      "lookback_seconds": 14400,
+      "min_returns": 20,
+      "floor_ratio": 0.5
+    },
+    "correlation": {
+      "lookback_seconds": 3600,
+      "lookahead_seconds": 300,
+      "max_candidates": 5
+    }
+  },
+  "technical": {
+    "min_bars": 20,
+    "max_gap_seconds": 300,
+    "min_fresh_bars": 15,
+    "session_min_bars": 30,
+    "min_day_coverage": 0.9,
+    "note_gaps": "Data gaps (the app was stopped, a feed outage, a closed session). max_gap_seconds: one-minute bars further apart than this are not one series, and a last bar that ended longer ago than this is not a current reference (5 minutes: REST-polled equities can miss a few minutes during a rate limit without being a restart). min_fresh_bars: a live price is tested against support/resistance only when the current run (bars without such a hole, ending now) holds at least this many bars; until then the pair is withheld (technical component 'missing', no level-break alert, no lean) with the reason in levels.state. 15 = ATR period 14 + 1, so the intraday ATR of the current run exists as soon as the levels count. The intraday ATR and the session range, VWAP and volume profile use the current run only (a true range across a 20 h hole is not one minute's range). session_min_bars: session high/low, VWAP, point of control and value area become support/resistance candidates only from this many bars (the range of a few minutes is not a session range). min_day_coverage: a day aggregated from intraday bars (assets without stored daily bars: BTC, ETH) is a previous day/week only when it holds at least this share of the venue's minutes (1440 for a 24/7 venue, the session length for an exchange).",
+    "atr_period": 14,
+    "swing_bar_seconds": 900,
+    "swing_lookback": 2,
+    "swing_max": 5,
+    "profile_bins": 24,
+    "value_area_pct": 70,
+    "range_days": [
+      20,
+      50
+    ],
+    "options_top_strikes": 5,
+    "daily_bars": {
+      "timezone": "America/New_York",
+      "lookback_days": 400,
+      "sma_days": [
+        20,
+        50
+      ],
+      "labels": {
+        "alpaca": "Alpaca IEX",
+        "fred": "FRED",
+        "treasury": "U.S. Treasury",
+        "ecb": "ECB reference rate",
+        "ecb-derived": "USD index replica from ECB reference rates",
+        "eia": "EIA"
+      },
+      "note": "Stored daily bars (ohlc_bars interval 86400, start = session date 00:00 New York) are keyed by NY session date: Monday's previous day is Friday, and a weekend belongs to the coming week. Only sessions before the current one are used."
+    }
+  },
+  "positioning": {
+    "expiry_hour_utc": 8,
+    "skew_target_delta": 0.25,
+    "skew_max_delta_error": 0.1,
+    "top_strikes": 10,
+    "largest_expiries": 5,
+    "max_age_seconds": 900,
+    "future_tolerance_seconds": 60,
+    "note_future_tolerance": "A snapshot written after the reader took its time (a decision cycle or an asset page read in progress, up to a few seconds) has a small negative age: within future_tolerance_seconds it counts as age 0, beyond it as not fresh (a clock problem).",
+    "snapshot_window_seconds": 300,
+    "days_per_year": 365,
+    "front_min_days": 1,
+    "crowding": [
+      {
+        "flag": "PERP_FUNDING_HIGH",
+        "metric": "funding_8h",
+        "op": ">=",
+        "value": 0.0005,
+        "side": "long_crowded",
+        "points": -20
+      },
+      {
+        "flag": "PERP_FUNDING_NEGATIVE",
+        "metric": "funding_8h",
+        "op": "<=",
+        "value": -0.0002,
+        "side": "short_crowded",
+        "points": 20
+      },
+      {
+        "flag": "BASIS_RICH",
+        "metric": "front_annualized_basis_pct",
+        "op": ">=",
+        "value": 20,
+        "side": "long_crowded",
+        "points": -10
+      },
+      {
+        "flag": "BASIS_BACKWARDATION",
+        "metric": "front_annualized_basis_pct",
+        "op": "<=",
+        "value": -5,
+        "side": "short_crowded",
+        "points": 10
+      },
+      {
+        "flag": "PUT_HEAVY_OI",
+        "metric": "put_call_ratio",
+        "op": ">=",
+        "value": 1.3,
+        "side": "hedging_demand",
+        "points": 0
+      },
+      {
+        "flag": "CALL_HEAVY_OI",
+        "metric": "put_call_ratio",
+        "op": "<=",
+        "value": 0.4,
+        "side": "call_demand",
+        "points": 0
+      },
+      {
+        "flag": "PUT_SKEW_ELEVATED",
+        "metric": "front_put_minus_call_iv",
+        "op": ">=",
+        "value": 8,
+        "side": "hedging_demand",
+        "points": 0
+      },
+      {
+        "flag": "CALL_SKEW_ELEVATED",
+        "metric": "front_put_minus_call_iv",
+        "op": "<=",
+        "value": -5,
+        "side": "call_demand",
+        "points": 0
+      }
+    ],
+    "component_cap": 40
+  }
+}

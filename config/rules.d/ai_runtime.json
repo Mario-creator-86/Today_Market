@@ -1,0 +1,153 @@
+{
+  "ai_runtime_version": "1.5.1",
+  "ai_runtime": {
+    "note": "Per-role LLM chat limits. The timeout counts from the moment the HTTP request is sent (never the time a call waits in the limiter queue) and covers the provider's own queue plus the generation: Ollama cloud answered a trivial prompt only after 37-119 s while the app sent parallel calls. On a chat call a timeout, another transport failure or a 5xx never opens the provider circuit (the attempt is retried, then the call fails alone and the other roles keep working), and an HTTP 429 never opens it either (the limiter below backs off instead); none of them lengthens a later circuit pause. Only 401/403 open it. Ollama web_search/web_fetch have their own circuit ('ollama_web'), so a search failure never blocks chat; a 401/403 there also stops chat (the key is shared).",
+    "chat_timeout_seconds": {
+      "default": 180,
+      "market_interpreter": 300,
+      "chief_analyst": 240,
+      "auditor": 180
+    },
+    "chat_attempts": {
+      "default": 1,
+      "market_interpreter": 1
+    },
+    "chat_attempts_note": "HTTP attempts per chat request (the transport retry of HTTPProvider.request). 1 (default was 2): a read timeout re-sent the whole prompt while Ollama cloud probably kept generating the first answer, so one slow request cost two of the subscription's quota. Every HTTP request actually sent (transport retries and the limiter's retries after a 429/5xx included) is counted against the daily budget below.",
+    "generation": {
+      "note": "Per-role generation limits sent with a chat request (backend/ai.py generation_options; Ollama only). max_output_tokens caps the tokens of one answer (Ollama options.num_predict); an answer cut at the cap is stored with error OutputTruncated, is not corrected or sent to another model, and the caller's fallback runs: raise the cap if that error appears in ai_runs. think false switches the model's reasoning phase off (Ollama 'think': false; sent only when the model registry lists the model as thinking-capable). A role without an entry sends neither.",
+      "market_interpreter": {
+        "max_output_tokens": 4000,
+        "think": false
+      },
+      "market_interpreter_note": "The interpreter writes about 300 words (roughly 600-900 tokens of JSON). Measured before the role was slimmed (44 requests-rows, 29 Sep - 1 Oct): a median of 15,481 completion tokens per run for about 3,000 tokens of visible answer, the rest reasoning tokens, and 130 s per request. 4000 leaves room for a model that ignores think false."
+    },
+    "validation": {
+      "note": "What happens when a model's answer is rejected (backend/ai.py validation_policy). corrections: correction attempts per model, each one a full request in which the model is shown its answer and the error. correct: the kinds of error worth a correction: 'schema' (not JSON, or not the schema's shape) and 'content' (a schema-valid answer rejected by the evidence, number or role checks). next_model_after_invalid: whether the next model (backup, fallback) then gets the same prompt. A role's entry overrides default. An error is never corrected twice for the same reason, and a truncated answer is never corrected.",
+      "default": {
+        "corrections": 1,
+        "correct": [
+          "schema",
+          "content"
+        ],
+        "next_model_after_invalid": true
+      },
+      "market_interpreter": {
+        "corrections": 1,
+        "correct": [
+          "schema"
+        ],
+        "next_model_after_invalid": false
+      },
+      "market_interpreter_note": "Measured 29 Sep - 1 Oct: 44 runs sent 87 requests and 6 succeeded; every failed run had used its correction, and the backup and fallback models then received the same 22,000-character prompt (up to 6 requests for one market state). Now the unusable parts of an answer are removed instead of rejecting it (interpretation.sanitize), one correction is sent only for a schema-shape error, a content rejection ends the run with the deterministic summary, and the backup model runs only when the primary could not be reached."
+    },
+    "limiter": {
+      "note": "One process-wide queue for every chat call of the active LLM provider (Ollama or OpenAI), backend/llm_limiter.py. The subscription's real concurrency limit is not published, so the limit adapts: an HTTP 429 halves it (not below min_concurrent) and pauses new starts; recover_after_successes consecutive successes raise it by 1 up to max_concurrent, once the quiet times below have passed since the last 429.",
+      "max_concurrent": 4,
+      "min_concurrent": 1,
+      "start_concurrent": 4,
+      "start_concurrent_note": "Limit at process start (at most max_concurrent). Equal to max_concurrent: the app starts at full speed and only slows down when the provider answers 429.",
+      "recover_after_successes": 5,
+      "recover_after_seconds": 30,
+      "probe_after_seconds": 300,
+      "recover_note": "A raise also needs no 429 (or other backoff status) for recover_after_seconds, and for probe_after_seconds before the limit goes back up to the level at which the provider last answered 429. Without this memory a provider whose real limit is below max_concurrent was probed every 5-10 successes, each probe costing a full pause and a RATE_LIMITED/ONLINE flip of the health row.",
+      "role_priority": {
+        "note": "Lower starts sooner when a slot frees; FIFO within the same priority. The dashboard interpretation and the decision summary first, the bulk extraction of news documents last. integration_probe is the Settings 'Test Ollama' call (it runs the auditor role).",
+        "default": 3,
+        "market_interpreter": 0,
+        "chief_analyst": 0,
+        "auditor": 1,
+        "macro": 2,
+        "fx": 2,
+        "crypto": 2,
+        "equity_credit": 2,
+        "geopolitical_energy": 2,
+        "fact_checker": 3,
+        "research_planner": 4,
+        "extractor": 5,
+        "integration_probe": 0
+      },
+      "reserved_max_priority": 0,
+      "reserved_slots": 1,
+      "priority_aging_seconds": 60,
+      "priority_order_note": "Roles with role_priority <= reserved_max_priority always start before every other role, and the other roles never take the last reserved_slots slots (while the limit is above reserved_slots), so the interpreter and the chief analyst do not wait behind a full slot of extraction after a 429 halved the limit. Among the other roles each priority level counts as priority_aging_seconds of waiting: a call starts before a higher-priority one that arrived more than (difference x priority_aging_seconds) after it, so the extraction is never starved (an extractor call waits at most 4-5 minutes behind the specialists, auditor and planner that arrive after it).",
+      "max_queue_wait_seconds": {
+        "note": "How long one call may wait for a slot before it gives up with 'LLM queue wait exceeded' (not counted in chat_timeout_seconds). It is one overall wait per call: its 429 retries keep the same deadline and their place in the queue. The caller then uses its own fallback (deterministic summary, unenriched event, the auditor's blocked publication) and retries on its next cycle. One AI run can still wait once per model it tries (primary, then backup) and once more for its schema-correction attempt.",
+        "default": 900,
+        "market_interpreter": 600,
+        "chief_analyst": 600,
+        "extractor": 1800,
+        "research_planner": 1800,
+        "auditor": 600,
+        "integration_probe": 30
+      },
+      "rate_limit_retries": 1,
+      "rate_limit_retries_note": "How many times one chat call is sent again after an HTTP 429 or another backoff_statuses answer (each time after the pause, with a new slot and its original place in the queue) before it fails with 'Rate limited (HTTP 429)'. 1 (was 3): on the Ollama cloud subscription a 429 usually means the usage window is used up, so more retries only add requests that fail the same way; the pause still applies. A 429 whose Retry-After is above rate_limit_backoff_max_seconds (an exhausted quota) is not retried: the call fails at once with the asked wait in its error, and the pause stays capped.",
+      "backoff_statuses": [
+        429,
+        502,
+        503,
+        504
+      ],
+      "backoff_statuses_note": "Chat answers that mean 'too many requests right now': they halve the limit, pause new starts and are retried like a 429 (502/503/504: an overloaded Ollama cloud backend, after the transport attempts of chat_attempts). Only 429 counts in rate_limited_total and shows RATE_LIMITED.",
+      "rate_limit_backoff_seconds": 15,
+      "rate_limit_backoff_min_seconds": 2,
+      "rate_limit_backoff_growth": 1.5,
+      "rate_limit_backoff_max_seconds": 60,
+      "rate_limit_backoff_note": "Pause of new starts after a 429: the provider's Retry-After (seconds or an HTTP date) kept between rate_limit_backoff_min_seconds and rate_limit_backoff_max_seconds (a 'Retry-After: 0' or a past date would otherwise resend at once), else rate_limit_backoff_seconds multiplied by rate_limit_backoff_growth for each further consecutive 429, up to the max. A success resets the growth. Calls already sent keep running. The cap is deliberate: a wrong or account-wide Retry-After must never lock every role out for an hour again."
+    }
+  },
+  "budget": {
+    "note": "Daily AI request budget (backend/ai_budget.py, docs/AI_AGENTS.md). The Ollama cloud subscription's usage quota must last the whole day; its real size is not published, so these defaults aim at about 400 chat requests a day (measured before: 700-1000). A chat request is sent only while (1) its role is below role_daily, (2) the day's total is below daily_requests, the roles outside reserve.roles together staying below (1 - reserve.share) of it, and (3) the requests of the last spread.burst_hours hours stay below daily_requests x spread.hourly_share_of_daily x burst_hours. Counts are read from the stored ai_runs rows of the day (HTTP requests that reached the provider), so a restart never resets them; rows written before the budget existed (no requests field) show in the usage history only and never count against a day; primary, backup and schema-correction attempts all count. A refused call sends nothing and the caller's fallback runs (deterministic interpretation, rule-based extraction, no research); it is stored in ai_runs with success false and error 'AI daily budget reached' or 'AI hourly pace reached', at most one row per role per hour: further refusals in that hour only raise the row's suppressed count (150-250 refusal rows a day were stored before), and the usage record counts them all. Editable in Settings -> AI models (PUT /api/admin/config/ai_budget); a change applies without restart.",
+    "daily_requests": 400,
+    "daily_requests_note": "All roles together per day (0 to 10000). 0 switches every AI request off; the app keeps its rule-based fallbacks.",
+    "reset": "Europe/Bucharest midnight",
+    "reset_note": "The budget day: counts start again at midnight in this time zone (the first word is the zone name).",
+    "spread": {
+      "hourly_share_of_daily": 0.041666666666666664,
+      "burst_hours": 2,
+      "role_pace": true
+    },
+    "spread_note": "Pace: in any burst_hours hours (1 to 24) at most daily_requests x hourly_share_of_daily x burst_hours requests (400 / 24 x 2 = 33, rounded down, at least 1), so a startup or morning burst cannot use up the day; the roles outside reserve.roles may use (1 - reserve.share) of that window. role_pace true: each role may also have used at most ceil(its role_daily cap x (hours since midnight + burst_hours) / 24) today, so every cap lasts until the evening too (without it the planner, extraction and interpretation caps ran out by mid-afternoon, before the US session, while about 150 of the 400 requests stayed unused). Refused calls read 'AI hourly pace reached'.",
+    "role_daily": {
+      "market_interpreter": 36,
+      "chief_analyst": 60,
+      "auditor": 60,
+      "macro": 24,
+      "fx": 24,
+      "crypto": 24,
+      "equity_credit": 24,
+      "geopolitical_energy": 24,
+      "fact_checker": 40,
+      "research_planner": 40,
+      "extractor": 120
+    },
+    "role_daily_note": "Requests per role per day (0 to 5000; 0 means the role never calls the AI). market_interpreter 36 (was 72): a run is now one request (two with a schema correction, never the backup model after a rejected answer), an unchanged or still-true interpretation is reused for up to refresh.interpretation.unchanged_max_age_seconds, a minor change waits min_ai_interval_seconds and a rejected market state is not sent again for retry_failed_after_seconds. A normal day therefore needs 8 requests when nothing changes (one per 3 hours) and about 24 while minor facts keep changing (one per hour); the 12 above that are for a release day: a central-bank decision changes the core up to about 8 times in three hours (released, press conference started and ended, official documents, post-event) and each change is sent at once. With role_pace the role may have used 1.5 requests per hour of the day so far, so that room is still there in the evening. Measured before (29 Sep - 1 Oct): 96 interpreter requests in 27 runs for 6 usable texts, about 11,300 prompt and 8,300 completion tokens per request; now about 2,000-4,000 prompt tokens and at most generation.market_interpreter.max_output_tokens per request (docs/AI_AGENTS.md, 'A normal day'). It fits inside the reserve with the chief analyst and the auditor, whose answers are reused while a setup is unchanged (decision.ai_reuse_seconds). The caps add up to more than daily_requests on purpose: the daily total is the real limit, the caps stop one role (measured: the research planner, 77% of all calls) from taking it.",
+    "reserve": {
+      "roles": [
+        "market_interpreter",
+        "chief_analyst",
+        "auditor"
+      ],
+      "share": 0.25
+    },
+    "reserve_note": "share (0 to 0.9) of daily_requests (and of the pace window) that only these roles may use: the dashboard interpretation and the decision summary and audit always find room after the research planner and the extraction stopped for the day."
+  },
+  "extraction": {
+    "note": "Which news events are worth an AI extraction (backend/service.py enrich_event); every other one keeps the rule-based path (source-tier importance and the causal keyword rules, no AI request, no fact-check proposal). The extractor ran on nearly every ingested document, and again on every feed poll while its extraction had failed.",
+    "max_llm_tier": 2,
+    "max_llm_tier_note": "Documents from sources of tier 1..max_llm_tier, or official sources, go to the extractor.",
+    "match_assets": true,
+    "match_assets_note": "A document of a lower-tier source still goes when its title or text names a tracked asset: the symbol as a whole word in capitals (NVDA, BTC) or the asset name as a whole word in any case, except asset_name_exclusions.",
+    "asset_name_exclusions": [
+      "Strategy"
+    ],
+    "asset_name_exclusions_note": "Asset names that are ordinary words and would send almost every article (MSTR's name 'Strategy'); their symbols still match.",
+    "match_causal_rules": true,
+    "match_causal_rules_note": "A document of a lower-tier source still goes when it matches a causal trigger: the event's trigger from ingestion, or every keyword group of one config causal_triggers.keyword_rules entry in its title and text (as the causal classifier reads them). One keyword alone ('iran', 'oil supply') is not enough: it matched most geopolitical news.",
+    "strict_after_cap_share": 0.5,
+    "strict_after_cap_share_note": "Once the extractor has used this share of its daily cap (budget.role_daily.extractor), a page of a tier 1..max_llm_tier or official source also needs a tracked asset or a causal trigger match (as for lower tiers): 25 of the 32 sources are tier 1 and official, so the tier alone let the first pages of the day, in arrival order, take the whole cap. 1 switches this off.",
+    "max_page_age_hours": 12,
+    "max_page_age_hours_note": "A page the daily budget refused ('AI daily budget reached') is tried again on a later budget day only while it is younger than this (its publication time, else when it was first refused); an older one stays on the rule-based path, so a new day does not start on yesterday's backlog.",
+    "dedupe_note": "A page already extracted (same canonical URL, any http/https or www. spelling) is never extracted again, also after a failed extraction or a restart (research_jobs 'extracted:<hash>' records). A page refused by the hourly pace ('AI hourly pace reached') waits budget.spread.burst_hours, then may be extracted the same day; one refused by the daily or role cap waits for the next budget day and max_page_age_hours."
+  }
+}

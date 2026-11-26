@@ -1,0 +1,518 @@
+{
+  "regime_version": "1.5.0",
+  "regime": {
+    "defensive": [
+      "RISK_OFF",
+      "INFLATION_SHOCK",
+      "GROWTH_SCARE",
+      "LIQUIDITY_STRESS",
+      "GEOPOLITICAL_SHOCK",
+      "VOLATILITY_EXPANSION"
+    ],
+    "constructive": [
+      "RISK_ON",
+      "LOW_VOLATILITY"
+    ],
+    "min_observed_features": 2,
+    "last_close": {
+      "note": "Basis used when the live basis (FRESH intraday quotes only) observes fewer than min_observed_features: close-to-close changes of official daily closes (data_classes) that are the latest expected publication (close_status CURRENT), or older closes at most max_age_days old while their market is closed, plus proxy changes where proxy_features allows them (proxy symbol -> accepted change bases, at most max_age_days old). Proxies only ever fill change_pct (direction), never a level threshold such as the VIX level. Live-only features (the crypto rolling 24h change) are excluded from this basis and listed as such. Only live features count toward the live basis: a FRESH intraday quote, a curve of two of them, or a correlation whose legs both have FRESH quotes; the daily credit spread never does. Correlations are live-only and never enter this basis. This basis is for display (dashboard, /api/regime and briefs, always with its basis label); decision scoring keeps the live basis.",
+      "data_classes": [
+        "DAILY_CLOSE",
+        "DERIVED_DAILY"
+      ],
+      "max_age_days": 7,
+      "proxy_features": {
+        "SP500": {
+          "SPY": [
+            "previous_close"
+          ]
+        },
+        "NASDAQ": {
+          "QQQ": [
+            "previous_close"
+          ]
+        },
+        "RUSSELL": {
+          "IWM": [
+            "previous_close"
+          ]
+        },
+        "GOLD": {
+          "PAXG": [
+            "previous_close",
+            "rolling_24h"
+          ],
+          "GLD": [
+            "previous_close"
+          ]
+        },
+        "WTI": {
+          "USO": [
+            "previous_close"
+          ]
+        },
+        "BRENT": {
+          "BNO": [
+            "previous_close"
+          ]
+        },
+        "DXY": {
+          "UUP": [
+            "previous_close"
+          ]
+        }
+      },
+      "excluded_note": "rolling 24h change, not a close-to-close move"
+    },
+    "correlation_bars_cache_seconds": 15,
+    "note_correlation_bars_cache": "The display regime (dashboard, /api/regime, event risk) reuses the correlation legs' one-minute bars read up to this many seconds ago; decision scoring always reads them fresh. 0 disables the reuse.",
+    "correlation_pairs": [
+      [
+        "BTC",
+        "NASDAQ"
+      ],
+      [
+        "BTC",
+        "GOLD"
+      ]
+    ],
+    "rules": [
+      {
+        "regime": "RISK_ON",
+        "required": [
+          {
+            "feature": "SP500",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0.5
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "NASDAQ",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0.5
+          },
+          {
+            "feature": "VIX",
+            "field": "change_pct",
+            "op": "<",
+            "value": -5
+          },
+          {
+            "feature": "BTC",
+            "field": "change_pct",
+            "op": ">",
+            "value": 1
+          },
+          {
+            "feature": "GOLD",
+            "field": "change_pct",
+            "op": "<",
+            "value": 0
+          },
+          {
+            "feature": "CREDIT:BAA10Y",
+            "field": "change_bp",
+            "op": "<",
+            "value": -2
+          }
+        ]
+      },
+      {
+        "regime": "RISK_OFF",
+        "required": [
+          {
+            "feature": "SP500",
+            "field": "change_pct",
+            "op": "<",
+            "value": -0.5
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "VIX",
+            "field": "change_pct",
+            "op": ">",
+            "value": 5
+          },
+          {
+            "feature": "GOLD",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0.3
+          },
+          {
+            "feature": "US10Y",
+            "field": "change_bp",
+            "op": "<",
+            "value": 0
+          },
+          {
+            "feature": "BTC",
+            "field": "change_pct",
+            "op": "<",
+            "value": -1
+          },
+          {
+            "feature": "CREDIT:BAA10Y",
+            "field": "change_bp",
+            "op": ">",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "regime": "INFLATION_SHOCK",
+        "required": [
+          {
+            "feature": "BRENT",
+            "field": "change_pct",
+            "op": ">",
+            "value": 2
+          },
+          {
+            "feature": "NASDAQ",
+            "field": "change_pct",
+            "op": "<",
+            "value": -1
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "US2Y",
+            "field": "change_bp",
+            "op": ">",
+            "value": 0
+          },
+          {
+            "feature": "DXY",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0
+          },
+          {
+            "feature": "GOLD",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0
+          },
+          {
+            "feature": "CURVE:US10Y-US2Y",
+            "field": "change_bp",
+            "op": "<",
+            "value": 0
+          }
+        ],
+        "confirmed_events": [
+          "INFLATION_HOT"
+        ]
+      },
+      {
+        "regime": "GROWTH_SCARE",
+        "required": [
+          {
+            "feature": "SP500",
+            "field": "change_pct",
+            "op": "<",
+            "value": -1
+          },
+          {
+            "feature": "US10Y",
+            "field": "change_bp",
+            "op": "<",
+            "value": -5
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "BRENT",
+            "field": "change_pct",
+            "op": "<",
+            "value": -1
+          },
+          {
+            "feature": "RUSSELL",
+            "field": "change_pct",
+            "op": "<",
+            "value": -1.5
+          },
+          {
+            "feature": "GOLD",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0
+          },
+          {
+            "feature": "CURVE:US10Y-US2Y",
+            "field": "change_bp",
+            "op": ">",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "regime": "LIQUIDITY_STRESS",
+        "required": [
+          {
+            "feature": "VIX",
+            "field": "change_pct",
+            "op": ">",
+            "value": 15
+          },
+          {
+            "feature": "DXY",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0.5
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "GOLD",
+            "field": "change_pct",
+            "op": "<",
+            "value": -0.5
+          },
+          {
+            "feature": "BTC",
+            "field": "change_pct",
+            "op": "<",
+            "value": -3
+          },
+          {
+            "feature": "SP500",
+            "field": "change_pct",
+            "op": "<",
+            "value": -1.5
+          },
+          {
+            "feature": "CREDIT:BAA10Y",
+            "field": "change_bp",
+            "op": ">",
+            "value": 5
+          },
+          {
+            "feature": "CORR:BTC:NASDAQ",
+            "field": "value",
+            "op": ">",
+            "value": 0.6
+          }
+        ]
+      },
+      {
+        "regime": "GEOPOLITICAL_SHOCK",
+        "required": [
+          {
+            "feature": "BRENT",
+            "field": "change_pct",
+            "op": ">",
+            "value": 2
+          },
+          {
+            "feature": "GOLD",
+            "field": "change_pct",
+            "op": ">",
+            "value": 1
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "VIX",
+            "field": "change_pct",
+            "op": ">",
+            "value": 5
+          },
+          {
+            "feature": "SP500",
+            "field": "change_pct",
+            "op": "<",
+            "value": -0.5
+          }
+        ],
+        "confirmed_events": [
+          "GEOPOLITICAL_ENERGY"
+        ]
+      },
+      {
+        "regime": "USD_STRENGTH",
+        "required": [
+          {
+            "feature": "DXY",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0.4
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "EURUSD",
+            "field": "change_pct",
+            "op": "<",
+            "value": -0.3
+          },
+          {
+            "feature": "USDJPY",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0.3
+          }
+        ]
+      },
+      {
+        "regime": "USD_WEAKNESS",
+        "required": [
+          {
+            "feature": "DXY",
+            "field": "change_pct",
+            "op": "<",
+            "value": -0.4
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "EURUSD",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0.3
+          },
+          {
+            "feature": "USDJPY",
+            "field": "change_pct",
+            "op": "<",
+            "value": -0.3
+          }
+        ]
+      },
+      {
+        "regime": "VOLATILITY_EXPANSION",
+        "required": [
+          {
+            "feature": "VIX",
+            "field": "change_pct",
+            "op": ">",
+            "value": 10
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "SP500",
+            "field": "change_pct",
+            "op": "<",
+            "value": -1
+          },
+          {
+            "feature": "BTC",
+            "field": "change_pct",
+            "op": "<",
+            "value": -3
+          }
+        ]
+      },
+      {
+        "regime": "LOW_VOLATILITY",
+        "required": [
+          {
+            "feature": "VIX",
+            "field": "price",
+            "op": "<",
+            "value": 14
+          }
+        ],
+        "supporting": [
+          {
+            "feature": "SP500",
+            "field": "change_pct",
+            "op": ">",
+            "value": 0
+          }
+        ]
+      }
+    ],
+    "curves": [
+      {
+        "name": "CURVE:US10Y-US2Y",
+        "long": "US10Y",
+        "short": "US2Y"
+      }
+    ],
+    "credit_features": [
+      "BAA10Y"
+    ],
+    "credit_providers": {
+      "BAA10Y": "fred"
+    },
+    "drivers": [
+      {
+        "name": "Rates",
+        "inputs": [
+          {
+            "feature": "US2Y",
+            "field": "change_bp",
+            "sign": 1,
+            "flat": 2
+          },
+          {
+            "feature": "US10Y",
+            "field": "change_bp",
+            "sign": 1,
+            "flat": 2
+          }
+        ]
+      },
+      {
+        "name": "USD",
+        "inputs": [
+          {
+            "feature": "DXY",
+            "field": "change_pct",
+            "sign": 1,
+            "flat": 0.1
+          }
+        ]
+      },
+      {
+        "name": "Oil",
+        "inputs": [
+          {
+            "feature": "BRENT",
+            "field": "change_pct",
+            "sign": 1,
+            "flat": 0.5
+          },
+          {
+            "feature": "WTI",
+            "field": "change_pct",
+            "sign": 1,
+            "flat": 0.5
+          }
+        ]
+      },
+      {
+        "name": "Risk appetite",
+        "inputs": [
+          {
+            "feature": "SP500",
+            "field": "change_pct",
+            "sign": 1,
+            "flat": 0.2
+          },
+          {
+            "feature": "NASDAQ",
+            "field": "change_pct",
+            "sign": 1,
+            "flat": 0.3
+          },
+          {
+            "feature": "VIX",
+            "field": "change_pct",
+            "sign": -1,
+            "flat": 3
+          }
+        ]
+      }
+    ],
+    "credit_note": "Displayed credit input is FRED BAA10Y (Moody's Baa minus 10Y Treasury). ICE BofA OAS series are internal-use only under ICE terms. BAA10Y daily moves are roughly a third of HY OAS moves, so thresholds were scaled accordingly. credit_providers names the adapter each spread comes from (BAA10Y is only ever read from FRED), so its provider notice can be shown. A spread is a daily close: it is used while FRESH at poll time and at most last_close.max_age_days old, and it never counts as a live feature."
+  }
+}

@@ -1,0 +1,595 @@
+{
+  "sources_version": "2.2.0",
+  "source_tiers": {
+    "1": "Official source of truth (central banks, statistical agencies, government, regulators, filings, company IR, exchanges)",
+    "2": "Licensed wire services (Reuters, AP)",
+    "3": "Credible financial publications",
+    "4": "Specialized publications",
+    "5": "Social and anonymous sources (discovery unless the account is official)"
+  },
+  "source_weights": {
+    "official_statistics": 1.0,
+    "central_bank": 1.0,
+    "sec_filing": 0.99,
+    "exchange": 0.99,
+    "government": 0.98,
+    "wire": 0.97,
+    "company_ir": 0.95,
+    "press": 0.85,
+    "specialist": 0.75,
+    "analyst": 0.65,
+    "social": 0.2,
+    "anonymous": 0.1,
+    "official": 1.0,
+    "company": 0.95
+  },
+  "sources": [
+    {
+      "id": "fed",
+      "name": "Federal Reserve",
+      "domain": "federalreserve.gov",
+      "homepage": "https://www.federalreserve.gov/",
+      "kind": "central_bank",
+      "tier": 1,
+      "official": true,
+      "independence_group": "fed",
+      "topics": [
+        "FED_POLICY"
+      ],
+      "rss": "https://www.federalreserve.gov/feeds/press_all.xml"
+    },
+    {
+      "id": "ecb",
+      "name": "European Central Bank",
+      "domain": "ecb.europa.eu",
+      "homepage": "https://www.ecb.europa.eu/",
+      "kind": "central_bank",
+      "tier": 1,
+      "official": true,
+      "independence_group": "ecb",
+      "topics": [
+        "ECB_POLICY"
+      ],
+      "rss": "https://www.ecb.europa.eu/rss/press.html"
+    },
+    {
+      "id": "boe",
+      "name": "Bank of England",
+      "domain": "bankofengland.co.uk",
+      "homepage": "https://www.bankofengland.co.uk/",
+      "kind": "central_bank",
+      "tier": 1,
+      "official": true,
+      "independence_group": "boe",
+      "topics": [
+        "BOE_POLICY"
+      ],
+      "rss": "https://www.bankofengland.co.uk/rss/news"
+    },
+    {
+      "id": "boj",
+      "name": "Bank of Japan",
+      "domain": "boj.or.jp",
+      "homepage": "https://www.boj.or.jp/en/",
+      "kind": "central_bank",
+      "tier": 1,
+      "official": true,
+      "independence_group": "boj",
+      "topics": [
+        "BOJ_POLICY"
+      ],
+      "rss": "https://www.boj.or.jp/en/rss/whatsnew.xml"
+    },
+    {
+      "id": "bls",
+      "name": "Bureau of Labor Statistics",
+      "domain": "bls.gov",
+      "homepage": "https://www.bls.gov/",
+      "kind": "official_statistics",
+      "tier": 1,
+      "official": true,
+      "independence_group": "bls",
+      "topics": [
+        "US_INFLATION",
+        "US_LABOR"
+      ],
+      "rss": "https://www.bls.gov/feed/cpi.rss",
+      "feeds": [
+        "https://www.bls.gov/feed/empsit.rss",
+        "https://www.bls.gov/feed/ppi.rss",
+        "https://www.bls.gov/feed/jolts.rss"
+      ]
+    },
+    {
+      "id": "bea",
+      "name": "Bureau of Economic Analysis",
+      "domain": "bea.gov",
+      "homepage": "https://www.bea.gov/",
+      "kind": "official_statistics",
+      "tier": 1,
+      "official": true,
+      "independence_group": "bea",
+      "topics": [
+        "US_GROWTH",
+        "US_INFLATION"
+      ],
+      "rss": "https://apps.bea.gov/rss/rss.xml"
+    },
+    {
+      "id": "treasury",
+      "name": "US Treasury",
+      "domain": "treasury.gov",
+      "homepage": "https://home.treasury.gov/",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "treasury",
+      "topics": [
+        "US_FISCAL",
+        "SANCTIONS"
+      ],
+      "rss": "https://home.treasury.gov/rss.xml"
+    },
+    {
+      "id": "whitehouse",
+      "name": "The White House",
+      "domain": "whitehouse.gov",
+      "homepage": "https://www.whitehouse.gov/",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "whitehouse",
+      "topics": [
+        "US_POLICY",
+        "TRADE"
+      ],
+      "rss": "https://www.whitehouse.gov/news/feed/"
+    },
+    {
+      "id": "sec",
+      "name": "SEC press releases",
+      "domain": "sec.gov",
+      "homepage": "https://www.sec.gov/",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "sec",
+      "topics": [
+        "REGULATION"
+      ],
+      "rss": "https://www.sec.gov/news/pressreleases.rss"
+    },
+    {
+      "id": "sec-filings",
+      "name": "SEC EDGAR filings",
+      "domain": "sec.gov",
+      "homepage": "https://www.sec.gov/edgar/search/",
+      "provider": "sec_edgar",
+      "kind": "sec_filing",
+      "tier": 1,
+      "official": true,
+      "independence_group": "sec-filings",
+      "topics": [
+        "EARNINGS",
+        "CORPORATE"
+      ]
+    },
+    {
+      "id": "cftc",
+      "name": "CFTC",
+      "domain": "cftc.gov",
+      "homepage": "https://www.cftc.gov/",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "cftc",
+      "topics": [
+        "REGULATION"
+      ],
+      "rss": "https://www.cftc.gov/RSS/RSSGP/rssgp.xml"
+    },
+    {
+      "id": "eia",
+      "name": "US Energy Information Administration",
+      "domain": "eia.gov",
+      "homepage": "https://www.eia.gov/",
+      "kind": "official_statistics",
+      "tier": 1,
+      "official": true,
+      "independence_group": "eia",
+      "topics": [
+        "ENERGY"
+      ],
+      "rss": "https://www.eia.gov/rss/press_rss.xml"
+    },
+    {
+      "id": "congress",
+      "name": "Congress.gov",
+      "domain": "congress.gov",
+      "homepage": "https://www.congress.gov/",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "congress",
+      "topics": [
+        "LEGISLATION"
+      ],
+      "rss": "https://www.congress.gov/rss/presented-to-president.xml"
+    },
+    {
+      "id": "opec",
+      "name": "OPEC",
+      "domain": "opec.org",
+      "homepage": "https://www.opec.org/",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "opec",
+      "topics": [
+        "ENERGY"
+      ],
+      "note": "Public feed blocks automated clients (HTTP 403); documents enter through licensed gateways or admin import."
+    },
+    {
+      "id": "reuters",
+      "name": "Reuters",
+      "domain": "reuters.com",
+      "homepage": "https://www.reuters.com/",
+      "kind": "wire",
+      "tier": 2,
+      "official": false,
+      "independence_group": "reuters",
+      "topics": []
+    },
+    {
+      "id": "ap",
+      "name": "Associated Press",
+      "domain": "apnews.com",
+      "homepage": "https://apnews.com/",
+      "kind": "wire",
+      "tier": 2,
+      "official": false,
+      "independence_group": "ap",
+      "topics": []
+    },
+    {
+      "id": "x-federalreserve",
+      "name": "Federal Reserve (X)",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "central_bank",
+      "tier": 1,
+      "official": true,
+      "independence_group": "fed",
+      "topics": [
+        "FED_POLICY"
+      ],
+      "x_account": "federalreserve"
+    },
+    {
+      "id": "x-ecb",
+      "name": "European Central Bank (X)",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "central_bank",
+      "tier": 1,
+      "official": true,
+      "independence_group": "ecb",
+      "topics": [
+        "ECB_POLICY"
+      ],
+      "x_account": "ecb"
+    },
+    {
+      "id": "x-ustreasury",
+      "name": "US Treasury (X)",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "treasury",
+      "topics": [
+        "US_FISCAL"
+      ],
+      "x_account": "USTreasury"
+    },
+    {
+      "id": "x-whitehouse",
+      "name": "The White House (X)",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "whitehouse",
+      "topics": [
+        "US_POLICY"
+      ],
+      "x_account": "WhiteHouse"
+    },
+    {
+      "id": "x-secgov",
+      "name": "SEC (X)",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "sec",
+      "topics": [
+        "REGULATION"
+      ],
+      "x_account": "SECGov"
+    },
+    {
+      "id": "x-bls",
+      "name": "BLS (X)",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "official_statistics",
+      "tier": 1,
+      "official": true,
+      "independence_group": "bls",
+      "topics": [
+        "US_INFLATION",
+        "US_LABOR"
+      ],
+      "x_account": "BLS_gov"
+    },
+    {
+      "id": "benzinga",
+      "name": "Benzinga (via Alpaca News API)",
+      "domain": "benzinga.com",
+      "homepage": "https://www.benzinga.com/",
+      "provider": "alpaca",
+      "kind": "specialist",
+      "tier": 4,
+      "official": false,
+      "independence_group": "benzinga",
+      "topics": []
+    },
+    {
+      "id": "x-reuters",
+      "name": "Reuters (X)",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "wire",
+      "tier": 2,
+      "official": false,
+      "independence_group": "reuters",
+      "topics": [],
+      "x_account": "Reuters"
+    },
+    {
+      "id": "x-ap",
+      "name": "Associated Press (X)",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "wire",
+      "tier": 2,
+      "official": false,
+      "independence_group": "ap",
+      "topics": [],
+      "x_account": "AP"
+    },
+    {
+      "id": "hm-treasury",
+      "name": "HM Treasury (GOV.UK)",
+      "domain": "gov.uk",
+      "homepage": "https://www.gov.uk/government/organisations/hm-treasury",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "hm-treasury",
+      "topics": [
+        "UK_FISCAL",
+        "SANCTIONS"
+      ],
+      "rss": "https://www.gov.uk/search/news-and-communications.atom?organisations%5B%5D=hm-treasury",
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0 (HM Treasury, GOV.UK)"
+    },
+    {
+      "id": "ofsi",
+      "name": "Office of Financial Sanctions Implementation (GOV.UK)",
+      "domain": "gov.uk",
+      "homepage": "https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "hm-treasury",
+      "topics": [
+        "SANCTIONS"
+      ],
+      "rss": "https://www.gov.uk/government/organisations/office-of-financial-sanctions-implementation.atom",
+      "attribution": "Contains public sector information licensed under the Open Government Licence v3.0 (OFSI, HM Treasury, GOV.UK)"
+    },
+    {
+      "id": "ec-presscorner",
+      "name": "European Commission Press Corner",
+      "domain": "ec.europa.eu",
+      "homepage": "https://ec.europa.eu/commission/presscorner/home/en",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "european-commission",
+      "topics": [
+        "EU_POLICY",
+        "TRADE",
+        "SANCTIONS"
+      ],
+      "rss": "https://ec.europa.eu/commission/presscorner/api/rss?language=en&documenttype=1,7&pagesize=30",
+      "attribution": "Source: European Commission"
+    },
+    {
+      "id": "ofac",
+      "name": "OFAC (US Treasury)",
+      "domain": "ofac.treasury.gov",
+      "homepage": "https://ofac.treasury.gov/",
+      "provider": "ofac_actions",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "treasury",
+      "topics": [
+        "SANCTIONS"
+      ]
+    },
+    {
+      "id": "ofac-sls",
+      "name": "OFAC Sanctions List Service",
+      "domain": "ofac.treas.gov",
+      "homepage": "https://ofac.treasury.gov/sanctions-list-service",
+      "provider": "ofac_sls",
+      "kind": "government",
+      "tier": 1,
+      "official": true,
+      "independence_group": "treasury",
+      "topics": [
+        "SANCTIONS"
+      ]
+    },
+    {
+      "id": "x-unknown",
+      "name": "Unverified X account",
+      "domain": "x.com",
+      "homepage": null,
+      "provider": "x",
+      "kind": "social",
+      "tier": 5,
+      "official": false,
+      "independence_group": "x-unknown",
+      "topics": []
+    },
+    {
+      "id": "dev-stub",
+      "name": "Development stub (synthetic, not news)",
+      "domain": "example.invalid",
+      "homepage": null,
+      "kind": "anonymous",
+      "tier": 5,
+      "official": false,
+      "independence_group": "dev-stub",
+      "topics": []
+    }
+  ],
+  "x_accounts": [
+    {
+      "account": "federalreserve",
+      "type": "official",
+      "source_id": "x-federalreserve",
+      "trust_weight": 1.0,
+      "official": true,
+      "topics": [
+        "FED_POLICY"
+      ],
+      "historical_accuracy": null
+    },
+    {
+      "account": "ecb",
+      "type": "official",
+      "source_id": "x-ecb",
+      "trust_weight": 1.0,
+      "official": true,
+      "topics": [
+        "ECB_POLICY"
+      ],
+      "historical_accuracy": null
+    },
+    {
+      "account": "USTreasury",
+      "type": "official",
+      "source_id": "x-ustreasury",
+      "trust_weight": 0.98,
+      "official": true,
+      "topics": [
+        "US_FISCAL"
+      ],
+      "historical_accuracy": null
+    },
+    {
+      "account": "WhiteHouse",
+      "type": "official",
+      "source_id": "x-whitehouse",
+      "trust_weight": 0.98,
+      "official": true,
+      "topics": [
+        "US_POLICY"
+      ],
+      "historical_accuracy": null
+    },
+    {
+      "account": "SECGov",
+      "type": "official",
+      "source_id": "x-secgov",
+      "trust_weight": 0.98,
+      "official": true,
+      "topics": [
+        "REGULATION"
+      ],
+      "historical_accuracy": null
+    },
+    {
+      "account": "BLS_gov",
+      "type": "official",
+      "source_id": "x-bls",
+      "trust_weight": 1.0,
+      "official": true,
+      "topics": [
+        "US_INFLATION",
+        "US_LABOR"
+      ],
+      "historical_accuracy": null
+    },
+    {
+      "account": "Reuters",
+      "type": "wire",
+      "source_id": "x-reuters",
+      "trust_weight": 0.97,
+      "official": false,
+      "topics": [],
+      "historical_accuracy": null
+    },
+    {
+      "account": "AP",
+      "type": "wire",
+      "source_id": "x-ap",
+      "trust_weight": 0.97,
+      "official": false,
+      "topics": [],
+      "historical_accuracy": null
+    }
+  ],
+  "x_monitoring": {
+    "trusted_journalists": [],
+    "keywords": [
+      "Hormuz",
+      "OPEC",
+      "FOMC",
+      "rate decision",
+      "sanctions",
+      "tariff",
+      "SEC approves",
+      "ETF approval",
+      "default",
+      "emergency meeting"
+    ],
+    "cashtags": [
+      "$BTC",
+      "$ETH",
+      "$COIN",
+      "$MSTR",
+      "$NVDA"
+    ],
+    "exclude": "-is:retweet",
+    "max_results": 50
+  }
+}

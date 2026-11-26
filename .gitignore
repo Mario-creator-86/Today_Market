@@ -1,0 +1,27 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.pyc
+.env
+.env.provider-settings.tmp
+*.db
+*.db-shm
+*.db-wal
+node_modules/
+.next/
+test-results/
+playwright-report/
+*.log
+*.egg-info/
+.playwright-mcp/
+frontend/tsconfig.tsbuildinfo
+
+# IDE and local test artifacts (hundreds of MB of pytest output)
+.idea/
+artifacts/
+
+# personal notes / unrelated scripts kept locally
+imbunatatire.md
+TestPtMine.py

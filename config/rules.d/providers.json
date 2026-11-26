@@ -1,0 +1,722 @@
+{
+  "providers_version": "1.6.0",
+  "provider_routing": {
+    "massive": {
+      "equities": [
+        "COIN",
+        "MSTR",
+        "BMNR",
+        "NVDA",
+        "MSFT",
+        "AAPL",
+        "AMZN",
+        "META",
+        "GOOGL",
+        "TSLA"
+      ],
+      "indices": {
+        "I:SPX": "SP500",
+        "I:NDX": "NASDAQ",
+        "I:RUT": "RUSSELL",
+        "I:VIX": "VIX"
+      },
+      "fx": [
+        "EURUSD",
+        "GBPUSD",
+        "USDJPY",
+        "AUDUSD",
+        "USDCAD",
+        "USDCHF",
+        "NZDUSD"
+      ],
+      "futures": {
+        "GC": "GOLD",
+        "CL": "WTI",
+        "BZ": "BRENT",
+        "DX": "DXY"
+      },
+      "option_underlyings": [
+        "SPY",
+        "QQQ",
+        "COIN",
+        "MSTR",
+        "NVDA"
+      ],
+      "websocket_url": "wss://socket.massive.com/stocks"
+    },
+    "treasury_yields": {
+      "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml",
+      "fields": {
+        "BC_2YEAR": "US2Y",
+        "BC_5YEAR": "US5Y",
+        "BC_10YEAR": "US10Y",
+        "BC_30YEAR": "US30Y"
+      },
+      "record_time": "16:00",
+      "record_timezone": "America/New_York",
+      "labels": {
+        "US2Y": "US Treasury 2Y par yield",
+        "US5Y": "US Treasury 5Y par yield",
+        "US10Y": "US Treasury 10Y par yield",
+        "US30Y": "US Treasury 30Y par yield"
+      },
+      "attribution": "Source: U.S. Department of the Treasury",
+      "as_of_label": "daily close {date} (Treasury par yield curve; NY Fed indicative bid quotes near 15:30 ET)",
+      "note": "Official daily par yield curve: end-of-day levels, labelled LAST CLOSE, never shown as live. The change is vs the previous business day in the same monthly file (the previous month's file on the first business day)."
+    },
+    "alpaca": {
+      "note": "Alpaca Market Data, free Basic plan: real-time from the IEX exchange only (about 2.5% of US volume, not the consolidated tape); personal, non-commercial use, no redistribution (Alpaca Terms and Conditions, Customer Agreement s.30). Market data host only: the app never calls Alpaca trading endpoints. A Paper Only account is entitled to IEX data only, so feed=iex always.",
+      "base_url": "https://data.alpaca.markets",
+      "feed": "iex",
+      "equities_from": "finnhub",
+      "rate_limit": {"calls": 150, "per_seconds": 60, "documented": "Basic plan: 200 historical API calls per minute, shared by every app using the same account"},
+      "realtime_max_age_seconds": 120,
+      "attribution": "Source: Alpaca Market Data (IEX exchange only)",
+      "change_basis_label": "vs IEX prior-session close",
+      "delay_labels": {
+        "realtime": "real-time IEX (single exchange, not consolidated)",
+        "stale_open": "STALE: no IEX trade for {minutes} min while the market is open (last IEX trade {as_of})",
+        "unknown_session": "last IEX trade {as_of} (market session unknown; not live)",
+        "last_close": "{state} (IEX last trade {as_of})",
+        "session_close": "{state} (IEX regular-session close {as_of})",
+        "session_close_open": "IEX regular-session close {as_of} (no regular-session IEX trade yet today)",
+        "extended_hours": "IEX extended-hours trade {as_of} (outside the regular session; not a close)",
+        "note": "A trade outside the regular session (premarket or after hours) never uses realtime or last_close: it gives way to the IEX regular-session close of the snapshot's closed daily bar (session_close, or session_close_open while the market is open), or is labelled extended_hours when no such bar is available."
+      },
+      "daily_bars": {
+        "extra_symbols": ["SPY", "QQQ", "IWM", "GLD", "USO", "BNO", "UUP"],
+        "days": 420,
+        "adjustment": "split",
+        "limit": 10000,
+        "max_pages": 5,
+        "refresh_days": 14
+      },
+      "news": {
+        "source_id": "benzinga",
+        "limit": 50,
+        "max_pages": 3,
+        "first_lookback_hours": 6,
+        "overlap_minutes": 5,
+        "crypto_symbols": {"BTCUSD": "BTC", "BTC/USD": "BTC", "ETHUSD": "ETH", "ETH/USD": "ETH"},
+        "attribution": "Source: Benzinga via Alpaca News API"
+      }
+    },
+    "sec": {
+      "base_url": "https://data.sec.gov",
+      "archive_url": "https://www.sec.gov",
+      "cik_watchlist": {
+        "COIN": "1679788",
+        "MSTR": "1050446",
+        "BMNR": "1829311",
+        "NVDA": "1045810",
+        "MSFT": "789019",
+        "AAPL": "320193",
+        "AMZN": "1018724",
+        "META": "1326801",
+        "GOOGL": "1652044",
+        "TSLA": "1318605"
+      },
+      "forms": [
+        "8-K",
+        "10-Q",
+        "10-K",
+        "6-K",
+        "S-1",
+        "S-3",
+        "424B5",
+        "SC 13D",
+        "SC 13G"
+      ],
+      "max_filings_per_company": 10
+    },
+    "deribit": {
+      "currencies": [
+        "BTC",
+        "ETH"
+      ],
+      "kinds": [
+        "option",
+        "future"
+      ]
+    },
+    "calendars": {
+      "treasury_auctions_url": "https://www.treasurydirect.gov/TA_WS/securities/upcoming?format=json",
+      "fomc_url": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "fomc_decision_time": "14:00",
+      "fomc_timezone": "America/New_York",
+      "central_bank_meetings": [],
+      "auction_impact": {
+        "Bill": 3,
+        "Note": 6,
+        "Bond": 7,
+        "TIPS": 5,
+        "FRN": 3,
+        "CMB": 2
+      },
+      "option_expiry_impact": 4,
+      "option_expiry_importance": {"daily": 20, "weekly": 35, "monthly": 50, "quarterly": 60},
+      "note_option_expiry_importance": "Importance (0-100) of a Deribit options expiry by tenor, written to the calendar row as importance_score (the event layer reads a row's importance_score before the class value): quarterly = the last Friday of March, June, September or December, monthly = the last Friday of any other month, weekly = any other Friday, daily = every other day. A routine daily expiry (no size information, impact 4/10) scores 0.30 x 20 + 0.20 x 40 + 15 + 1.25 + 5 = 35.3 at its closest, below the 40 a 'next key event' needs, so it no longer displaces the week's real events every morning; the quarterly expiry (60) can.",
+      "fomc_impact": 10,
+      "earnings_impact": 6,
+      "legislation_impact": 5,
+      "fetch_days": 45,
+      "fomc_press_conference_time": "14:30",
+      "fomc_press_conference_impact": 9,
+      "fomc_attribution": "Source: Federal Reserve Board",
+      "fomc_time_basis": "FOMC statement 2:00 p.m. ET (configured standard time; fomccalendars.htm lists dates only; federalreserve.gov calendar.json lists 2:00 p.m.)",
+      "fomc_press_conference_time_basis": "Chair's press conference 2:30 p.m. ET (configured; federalreserve.gov calendar.json lists 2:30 p.m.); sub-event of the decision",
+      "note_hygiene": "A successful refresh replaces the provider's stored rows inside its fetch window (rescheduled or cancelled rows disappear; rows with an actual are kept). The same release from two providers is deduplicated by (event_class, sub_event, symbol, publisher-local date, speaker for speeches/testimony): an exact time beats a rule time beats a date, then provider_priority (official first). Values are never lost: every metric row of the release (e.g. FMP CPI MoM / YoY / core) is kept on the surviving row as metrics [{name, provider, consensus, actual, previous, unit, ...}], and the headline metric (dedupe.headline_metrics, first matching pattern; a lone metric otherwise) is lent as the row's consensus/actual with values_source, lent_fields and headline_metric. A row with a structured vendor estimate (Finnhub) keeps its estimate and is lent the actual only.",
+      "decision_classes": ["FOMC", "ECB", "BOE", "BOJ"],
+      "kinds": {
+        "note": "Row kind (docs/EVENT_AWARENESS.md §8): an explicit kind wins, then the sub_event, then DECISION for a decision class, then the event class, then the category; unknown stays null (the event engine derives it). is_decision is true only for DECISION rows of decision_classes.",
+        "values": ["DECISION", "PRESS_CONFERENCE", "MINUTES", "SPEECH", "TESTIMONY", "PROJECTIONS", "RELEASE", "AUCTION", "EARNINGS",
+                   "EXPIRY", "STATEMENT", "OTHER"],
+        "sub_events": ["PRESS_CONFERENCE", "MINUTES", "PROJECTIONS", "STATEMENT"],
+        "classes": {"EARNINGS": "EARNINGS", "CRYPTO_EXPIRY": "EXPIRY", "FOMC_MINUTES": "MINUTES", "FED_BEIGE_BOOK": "RELEASE"},
+        "categories": {"MACRO": "RELEASE", "TREASURY_AUCTION": "AUCTION", "EARNINGS": "EARNINGS", "OPTION_EXPIRY": "EXPIRY",
+                       "LEGISLATION": "OTHER"}
+      },
+      "country_timezones": {
+        "US": "America/New_York",
+        "EU": "Europe/Berlin",
+        "GB": "Europe/London",
+        "JP": "Asia/Tokyo",
+        "CRYPTO": "UTC",
+        "default": "UTC"
+      },
+      "inactive_statuses": [
+        "SUSPENDED",
+        "CANCELLED",
+        "POSTPONED"
+      ],
+      "auction_classes": {
+        "types": [
+          "Note",
+          "Bond"
+        ],
+        "benchmarks": [
+          2,
+          3,
+          5,
+          7,
+          10,
+          20,
+          30
+        ],
+        "class_format": "UST_AUCTION_{tenor}Y"
+      },
+      "dedupe": {
+        "time_rank": {
+          "source": 2,
+          "config": 2,
+          "rule": 1,
+          "none": 0
+        },
+        "provider_priority": [
+          "fomc_calendar",
+          "fed_events_calendar",
+          "ecb_calendar",
+          "boe_mpc_calendar",
+          "boj_mpm_calendar",
+          "bls_release_calendar",
+          "bea_release_calendar",
+          "census_calendar",
+          "treasury_auctions",
+          "treasury_refunding",
+          "eia_wpsr_calendar",
+          "crypto_expiries",
+          "fred",
+          "finnhub",
+          "dol_claims_rule",
+          "survey_schedule",
+          "calendar",
+          "configured"
+        ],
+        "speech_kinds": ["SPEECH", "TESTIMONY"],
+        "structured_estimate_lendable": ["actual", "previous", "unit", "actual_ingested_at"],
+        "note_headline_metrics": "Per event_class, ordered name patterns (case-insensitive regex) choosing the metric whose consensus/actual the kept row carries as its scalar values (surprise direction, MACRO_RELEASE, alerts). Without a match a lone metric is used; several unmatched metrics are listed in metrics only (never guessed).",
+        "headline_metrics": {
+          "US_CPI": ["core (cpi|inflation rate).*m/?o/?m", "\\bcpi\\b.*m/?o/?m", "inflation rate.*m/?o/?m", "\\bcpi\\b.*y/?o/?y", "inflation rate.*y/?o/?y", "\\bcpi\\b"],
+          "US_PCE": ["core pce.*m/?o/?m", "pce.*m/?o/?m", "core pce.*y/?o/?y", "pce.*y/?o/?y", "\\bpce\\b"],
+          "US_PPI": ["core ppi.*m/?o/?m", "\\bppi\\b.*m/?o/?m", "\\bppi\\b.*y/?o/?y", "\\bppi\\b"],
+          "US_NFP": ["non ?farm payrolls"],
+          "note_US_NFP": "Payrolls only. The unemployment rate and average hourly earnings stay in the row's metrics but never become its scalar consensus/actual: the labour template reads 'above consensus' as a stronger labour market, and a HIGHER unemployment rate is a weaker one (rate 4.2 vs consensus 4.1 was resolved as 'Stronger than consensus').",
+          "US_GDP": ["gdp growth rate.*q/?o/?q", "\\bgdp\\b.*q/?o/?q", "\\bgdp\\b"],
+          "US_RETAIL_SALES": ["^retail sales.*m/?o/?m", "retail sales"],
+          "US_CLAIMS": ["initial jobless claims"],
+          "US_JOLTS": ["job openings", "jolts"],
+          "US_ISM": ["\\bism\\b.*pmi", "\\bism\\b"],
+          "UMICH": ["consumer sentiment", "michigan"],
+          "CONF_BOARD": ["consumer confidence"],
+          "FOMC": ["interest rate decision"],
+          "ECB": ["deposit facility rate", "interest rate decision"],
+          "BOE": ["interest rate decision", "bank rate"],
+          "BOJ": ["interest rate decision"]
+        }
+      },
+      "event_class_patterns": [
+        {
+          "pattern": "fed(eral)? (funds )?interest rate decision|fomc (rate|interest rate) decision|fomc statement",
+          "country": "US",
+          "event_class": "FOMC",
+          "sub_event": "DECISION"
+        },
+        {
+          "pattern": "fomc economic projections|summary of economic projections",
+          "country": "US",
+          "event_class": "FOMC",
+          "sub_event": "PROJECTIONS"
+        },
+        {
+          "pattern": "fomc (meeting )?minutes",
+          "country": "US",
+          "event_class": "FOMC_MINUTES",
+          "sub_event": "MINUTES"
+        },
+        {
+          "pattern": "fomc press conference",
+          "country": "US",
+          "event_class": "FOMC",
+          "sub_event": "PRESS_CONFERENCE"
+        },
+        {
+          "pattern": "\\bcpi\\b|consumer price index",
+          "country": "US",
+          "event_class": "US_CPI"
+        },
+        {
+          "pattern": "\\bpce\\b|personal (income|spending)",
+          "country": "US",
+          "event_class": "US_PCE"
+        },
+        {
+          "pattern": "non ?farm payrolls|unemployment rate|average hourly earnings",
+          "country": "US",
+          "event_class": "US_NFP"
+        },
+        {
+          "pattern": "\\bgdp\\b",
+          "country": "US",
+          "event_class": "US_GDP"
+        },
+        {
+          "pattern": "(initial|continuing) jobless claims",
+          "country": "US",
+          "event_class": "US_CLAIMS"
+        },
+        {
+          "pattern": "retail sales",
+          "country": "US",
+          "event_class": "US_RETAIL_SALES"
+        },
+        {
+          "pattern": "\\bppi\\b|producer price",
+          "country": "US",
+          "event_class": "US_PPI"
+        },
+        {
+          "pattern": "jolts",
+          "country": "US",
+          "event_class": "US_JOLTS"
+        },
+        {
+          "pattern": "\\bism\\b",
+          "country": "US",
+          "event_class": "US_ISM"
+        },
+        {
+          "pattern": "michigan",
+          "country": "US",
+          "event_class": "UMICH"
+        },
+        {
+          "pattern": "cb consumer confidence|conference board",
+          "country": "US",
+          "event_class": "CONF_BOARD"
+        },
+        {
+          "pattern": "ecb press conference",
+          "country": "EU",
+          "event_class": "ECB",
+          "sub_event": "PRESS_CONFERENCE"
+        },
+        {
+          "pattern": "ecb (interest rate|monetary policy) decision|deposit facility rate|main refinancing (operations )?rate|marginal lending (facility )?rate",
+          "country": "EU",
+          "event_class": "ECB",
+          "sub_event": "DECISION"
+        },
+        {
+          "pattern": "boe press conference",
+          "country": "GB",
+          "event_class": "BOE",
+          "sub_event": "PRESS_CONFERENCE"
+        },
+        {
+          "pattern": "boe interest rate decision|bank rate|boe mpc vote",
+          "country": "GB",
+          "event_class": "BOE",
+          "sub_event": "DECISION"
+        },
+        {
+          "pattern": "boj press conference",
+          "country": "JP",
+          "event_class": "BOJ",
+          "sub_event": "PRESS_CONFERENCE"
+        },
+        {
+          "pattern": "boj interest rate decision|boj monetary policy statement",
+          "country": "JP",
+          "event_class": "BOJ",
+          "sub_event": "DECISION"
+        }
+      ],
+      "note_event_class_patterns": "Vendor (FMP) rows are classified into the taxonomy so the dedupe merges them with the official rows (official first): decisions, press conferences (sub-events), projections and minutes. Speeches and testimony are not classified here: only the Federal Reserve calendar names the speaker."
+    },
+    "econ_calendars": {
+      "note": "Official release schedules (backend/providers/econ_calendars.py): schedule facts with attribution, never page text. Classes follow config/rules.d/event_exposure.json. Rows carry kind and is_decision (calendars.kinds), speaker_role CHAIR|VICE_CHAIR|GOVERNOR and speaker on speeches and testimony, and session (earnings BMO|AMC, BoJ TOKYO_DAY) for date-only rows anchored to a session.",
+      "timezone_aliases": {
+        "US-Eastern": "America/New_York",
+        "US/Eastern": "America/New_York"
+      },
+      "fed_events": {
+        "provider": "fed_events_calendar",
+        "base_url": "https://www.federalreserve.gov",
+        "path": "/json/calendar.json",
+        "site_url": "https://www.federalreserve.gov",
+        "page_url": "https://www.federalreserve.gov/newsevents/calendar.htm",
+        "timezone": "America/New_York",
+        "time_basis": "Federal Reserve calendar (federalreserve.gov/json/calendar.json; times are ET)",
+        "attribution": "Source: Federal Reserve Board",
+        "terms": "Public domain; please cite the Board (federalreserve.gov/disclaimer.htm).",
+        "holiday_type": "Other",
+        "holiday_pattern": "^Holiday",
+        "note_rules": "First match wins (type + title pattern); Vice Chair before Chair. FOMC Meeting / Press Conference rows are skipped: fomccalendars.htm (fomc_calendar) is the authority for decisions. Speakers come from the source title, never from a template. Only the Chair uses the Chair-level classes (FED_TESTIMONY, FED_SPEECH_CHAIR): a Vice Chair's testimony or speech is FED_SPEECH (kind TESTIMONY or SPEECH), and a row whose title names no Chair is moved to official_class whatever rule matched.",
+        "speaker_roles": [
+          {"pattern": "(?i)\\bVice Chair", "role": "VICE_CHAIR"},
+          {"pattern": "(?i)\\bChair(man|woman|person)?\\b", "role": "CHAIR"},
+          {"pattern": "(?i)\\bGovernor\\b", "role": "GOVERNOR"}
+        ],
+        "speaker_separator": "\\s+-{1,2}\\s+|:\\s+",
+        "chair_classes": ["FED_TESTIMONY", "FED_SPEECH_CHAIR"],
+        "official_class": "FED_SPEECH",
+        "official_impact": 5,
+        "rules": [
+          {
+            "type": "FOMC",
+            "pattern": "(?i)^FOMC Minutes",
+            "name": "FOMC minutes",
+            "category": "CENTRAL_BANK",
+            "event_class": "FOMC_MINUTES",
+            "sub_event": "MINUTES",
+            "kind": "MINUTES",
+            "impact": 6
+          },
+          {
+            "type": "Beige",
+            "pattern": "(?i)Beige Book",
+            "name": "Fed Beige Book",
+            "category": "CENTRAL_BANK",
+            "event_class": "FED_BEIGE_BOOK",
+            "kind": "RELEASE",
+            "impact": 4
+          },
+          {
+            "type": "Testimony",
+            "pattern": "(?i)\\bVice Chair",
+            "category": "CENTRAL_BANK",
+            "event_class": "FED_SPEECH",
+            "kind": "TESTIMONY",
+            "impact": 5
+          },
+          {
+            "type": "Testimony",
+            "pattern": "(?i)\\bChair(man|woman|person)?\\b",
+            "category": "CENTRAL_BANK",
+            "event_class": "FED_TESTIMONY",
+            "kind": "TESTIMONY",
+            "impact": 8
+          },
+          {
+            "type": "Speeches",
+            "pattern": "(?i)\\bVice Chair",
+            "category": "CENTRAL_BANK",
+            "event_class": "FED_SPEECH",
+            "kind": "SPEECH",
+            "impact": 5
+          },
+          {
+            "type": "Speeches",
+            "pattern": "(?i)\\bChair(man|woman|person)?\\b",
+            "category": "CENTRAL_BANK",
+            "event_class": "FED_SPEECH_CHAIR",
+            "kind": "SPEECH",
+            "impact": 7
+          },
+          {
+            "type": "Stat",
+            "pattern": "(?i)Industrial Production",
+            "name": "US industrial production (G.17)",
+            "category": "MACRO",
+            "event_class": "US_INDUSTRIAL_PRODUCTION",
+            "kind": "RELEASE",
+            "impact": 4
+          }
+        ]
+      },
+      "bea": {
+        "provider": "bea_release_calendar",
+        "ics_url": "https://www.bea.gov/news/schedule/ics/online-calendar-subscription.ics",
+        "json_url": "https://apps.bea.gov/API/signup/release_dates.json",
+        "page_url": "https://www.bea.gov/news/schedule",
+        "time_basis": "BEA release schedule (ICS, UTC)",
+        "json_time_basis": "BEA release schedule (release_dates.json, UTC)",
+        "attribution": "Source: U.S. Bureau of Economic Analysis",
+        "terms": "US federal work (17 U.S.C. 105); cite BEA without implying endorsement.",
+        "releases": [
+          {
+            "pattern": "^GDP \\(|^Gross Domestic Product(?! by State)",
+            "name": "US GDP",
+            "event_class": "US_GDP",
+            "impact": 8,
+            "advance_impact": 9
+          },
+          {
+            "pattern": "^Personal Income and Outlays",
+            "name": "US personal income & outlays (PCE)",
+            "event_class": "US_PCE",
+            "impact": 9
+          }
+        ]
+      },
+      "census": {
+        "provider": "census_calendar",
+        "base_url": "https://www.census.gov",
+        "path": "/economic-indicators/calendar-listview.html",
+        "timezone": "America/New_York",
+        "time_basis": "Census economic indicators calendar (times ET; the page prints no zone, its indicator feed pubDate carries the New York offset)",
+        "attribution": "Source: U.S. Census Bureau",
+        "terms": "US federal work; cite the Census Bureau.",
+        "indicators": [
+          {
+            "pattern": "^Advance Monthly Sales for Retail",
+            "name": "US retail sales (advance)",
+            "event_class": "US_RETAIL_SALES",
+            "impact": 8
+          },
+          {
+            "pattern": "Durable Goods",
+            "name": "US durable goods orders (advance)",
+            "event_class": "US_DURABLE_GOODS",
+            "impact": 6
+          },
+          {
+            "pattern": "^New Residential Construction",
+            "name": "US housing starts and permits",
+            "event_class": "US_HOUSING_STARTS",
+            "impact": 5
+          },
+          {
+            "pattern": "^New Residential Sales",
+            "name": "US new home sales",
+            "event_class": "US_NEW_HOME_SALES",
+            "impact": 5
+          }
+        ]
+      },
+      "bls": {
+        "provider": "bls_release_calendar",
+        "base_url": "https://www.bls.gov",
+        "path": "/schedule/news_release/bls.ics",
+        "page_url": "https://www.bls.gov/schedule/news_release/",
+        "user_agent_format": "MarketIntelligenceHub/1.0 (release schedule; contact: {contact})",
+        "time_basis": "BLS release schedule (ICS)",
+        "attribution": "Source: U.S. Bureau of Labor Statistics",
+        "terms": "Public domain; please cite BLS (bls.gov/bls/linksite.htm). Robots must identify a contact (bls.gov/bls/pss.htm).",
+        "releases": [
+          {
+            "pattern": "^Consumer Price Index",
+            "name": "US CPI",
+            "event_class": "US_CPI",
+            "impact": 10
+          },
+          {
+            "pattern": "Employment Situation",
+            "name": "US employment situation (NFP, unemployment, AHE)",
+            "event_class": "US_NFP",
+            "impact": 10
+          },
+          {
+            "pattern": "^Producer Price Index",
+            "name": "US PPI",
+            "event_class": "US_PPI",
+            "impact": 7
+          },
+          {
+            "pattern": "Job Openings and Labor Turnover",
+            "name": "US JOLTS",
+            "event_class": "US_JOLTS",
+            "impact": 6
+          },
+          {
+            "pattern": "^Employment Cost Index",
+            "name": "US employment cost index",
+            "event_class": "US_ECI",
+            "impact": 6
+          }
+        ]
+      },
+      "claims": {
+        "provider": "dol_claims_rule",
+        "name": "US initial jobless claims",
+        "event_class": "US_CLAIMS",
+        "impact": 6,
+        "time": "08:30",
+        "timezone": "America/New_York",
+        "time_basis": "DOL weekly rule: Thursday 08:30 ET, Wednesday when Thursday is a US federal holiday (no official machine-readable schedule)",
+        "source_url": "https://www.dol.gov/ui/data.pdf",
+        "attribution": "Source: U.S. Department of Labor (weekly release rule)"
+      },
+      "surveys": {
+        "provider": "survey_schedule",
+        "note": "Schedule-only rows: the survey values, consensus and actuals are proprietary and never stored.",
+        "umich": {
+          "name": "UMich consumer sentiment",
+          "event_class": "UMICH",
+          "impact": 6,
+          "time": "10:00",
+          "timezone": "America/New_York",
+          "time_basis": "University of Michigan release dates (2026 schedule PDF, transcribed) at 10:00 ET as stated on sca.isr.umich.edu",
+          "source_url": "https://www.sca.isr.umich.edu/",
+          "attribution": "Source: University of Michigan Surveys of Consumers (schedule only)",
+          "dates": [
+            {
+              "date": "2026-10-09",
+              "kind": "preliminary",
+              "reference_period": "October 2026"
+            },
+            {
+              "date": "2026-10-23",
+              "kind": "final",
+              "reference_period": "October 2026"
+            },
+            {
+              "date": "2026-11-06",
+              "kind": "preliminary",
+              "reference_period": "November 2026"
+            },
+            {
+              "date": "2026-11-20",
+              "kind": "final",
+              "reference_period": "November 2026"
+            },
+            {
+              "date": "2026-12-04",
+              "kind": "preliminary",
+              "reference_period": "December 2026"
+            },
+            {
+              "date": "2026-12-18",
+              "kind": "final",
+              "reference_period": "December 2026"
+            }
+          ]
+        },
+        "conference_board": {
+          "name": "Conference Board consumer confidence",
+          "event_class": "CONF_BOARD",
+          "impact": 5,
+          "time": "10:00",
+          "timezone": "America/New_York",
+          "time_basis": "Conference Board published rule: last Tuesday of the month, 10:00 ET (exceptions configured when announced)",
+          "source_url": "https://www.conference-board.org/topics/consumer-confidence/",
+          "attribution": "Source: The Conference Board (schedule only)",
+          "exceptions": {}
+        }
+      },
+      "treasury_refunding": {
+        "provider": "treasury_refunding",
+        "base_url": "https://home.treasury.gov",
+        "path": "/policy-issues/financing-the-government/quarterly-refunding/most-recent-quarterly-refunding-documents",
+        "timezone": "America/New_York",
+        "event_class": "UST_REFUNDING",
+        "assume_previous_release_time": true,
+        "time_basis": "next release date from the Treasury refunding page; clock time = time of the previous release listed on the same page",
+        "auction_time_basis": "date only (tentative auction schedule; the closing time is published at announcement)",
+        "attribution": "Source: U.S. Department of the Treasury",
+        "documents": [
+          {
+            "label": "Financing Estimates",
+            "name": "Treasury financing estimates (refunding)",
+            "kind": "RELEASE",
+            "impact": 5
+          },
+          {
+            "label": "Policy Statement",
+            "name": "Treasury quarterly refunding statement",
+            "kind": "STATEMENT",
+            "impact": 7
+          }
+        ]
+      }
+    },
+    "stub_fixtures_dir": "backend/providers/fixtures"
+  },
+  "provider_labels": {
+    "note": "Human names of provider ids for provider health, alerts and Settings (docs/DATA_SOURCES.md). category is the provider_settings category id of the Settings group that lists the provider (bls_release_calendar sits in the SEC group, which shares its contact), so a provider has the same heading in Settings and on /providers. A news feed without an entry is named after its source (feed / extra_feed), a development stub after the adapter it replaces (stub); an unknown id is shown as is.",
+    "feed": "{source} news feed",
+    "extra_feed": "{source} {feed} feed",
+    "feed_category": "news",
+    "stub": "Development stub for {label}",
+    "names": {
+      "ollama": {"label": "Ollama (AI analysis and web search)", "category": "ai"},
+      "openai": {"label": "OpenAI (AI analysis)", "category": "ai"},
+      "binance": {"label": "Binance (crypto spot)", "category": "market"},
+      "coinbase": {"label": "Coinbase (crypto spot)", "category": "market"},
+      "deribit": {"label": "Deribit (crypto options and futures)", "category": "market"},
+      "massive": {"label": "Massive (US stocks, indices and FX)", "category": "market"},
+      "finnhub": {"label": "Finnhub (US equities)", "category": "market"},
+      "alpaca": {"label": "Alpaca (US stocks, IEX exchange)", "category": "market"},
+      "binance_futures": {"label": "Binance futures (funding and open interest)", "category": "market"},
+      "coinbase_intx": {"label": "Coinbase International (crypto perpetuals)", "category": "market"},
+      "cftc_cot": {"label": "CFTC Commitments of Traders", "category": "market"},
+      "eia_spot": {"label": "EIA spot prices (crude oil)", "category": "market"},
+      "treasury_yields": {"label": "US Treasury yield curve", "category": "macro"},
+      "fred": {"label": "FRED (St. Louis Fed)", "category": "macro"},
+      "bls_data": {"label": "BLS data (CPI, payrolls, unemployment)", "category": "macro"},
+      "ecb_data": {"label": "ECB Data Portal (policy rates and reference FX)", "category": "macro"},
+      "eurostat": {"label": "Eurostat (euro-area inflation)", "category": "macro"},
+      "treasury_fiscal": {"label": "US Treasury fiscal data", "category": "macro"},
+      "nyfed_rates": {"label": "New York Fed reference rates", "category": "macro"},
+      "eia_wpsr": {"label": "EIA weekly petroleum status report", "category": "macro"},
+      "calendar": {"label": "Financial Modeling Prep (economic calendar)", "category": "calendars"},
+      "congress_api": {"label": "Congress.gov (legislation)", "category": "calendars"},
+      "fomc_calendar": {"label": "FOMC meeting calendar", "category": "calendars"},
+      "ecb_calendar": {"label": "ECB monetary policy meetings", "category": "calendars"},
+      "boe_mpc_calendar": {"label": "Bank of England MPC meetings", "category": "calendars"},
+      "boj_mpm_calendar": {"label": "Bank of Japan policy meetings", "category": "calendars"},
+      "fed_events_calendar": {"label": "Federal Reserve events calendar", "category": "calendars"},
+      "treasury_auctions": {"label": "US Treasury auction calendar", "category": "calendars"},
+      "treasury_refunding": {"label": "US Treasury quarterly refunding", "category": "calendars"},
+      "crypto_expiries": {"label": "Crypto futures and options expiries (Deribit)", "category": "calendars"},
+      "bea_release_calendar": {"label": "BEA release schedule", "category": "calendars"},
+      "bls_release_calendar": {"label": "BLS release schedule", "category": "filings"},
+      "census_calendar": {"label": "Census Bureau indicator schedule", "category": "calendars"},
+      "dol_claims_rule": {"label": "Jobless claims schedule (weekly rule)", "category": "calendars"},
+      "survey_schedule": {"label": "Survey release schedule (UMich, Conference Board)", "category": "calendars"},
+      "eia_wpsr_calendar": {"label": "EIA weekly petroleum report schedule", "category": "calendars"},
+      "sec_edgar": {"label": "SEC EDGAR filings", "category": "filings"},
+      "sec_fulltext": {"label": "SEC EDGAR full-text search", "category": "filings"},
+      "x": {"label": "X (Twitter) posts", "category": "news"},
+      "reuters": {"label": "Reuters (licensed news)", "category": "news"},
+      "ap": {"label": "AP (licensed news)", "category": "news"},
+      "gdelt_events": {"label": "GDELT world events", "category": "news"},
+      "ofac_actions": {"label": "OFAC recent actions", "category": "news"},
+      "ofac_sls": {"label": "OFAC sanctions list", "category": "news"},
+      "bls": {"label": "BLS consumer prices feed", "category": "news"},
+      "bls-empsit": {"label": "BLS employment situation feed", "category": "news"},
+      "bls-ppi": {"label": "BLS producer prices feed", "category": "news"},
+      "bls-jolts": {"label": "BLS job openings feed", "category": "news"}
+    }
+  }
+}

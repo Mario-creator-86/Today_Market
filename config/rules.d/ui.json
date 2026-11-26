@@ -1,0 +1,30 @@
+{
+  "ui_version": "1.3.0",
+  "ui": {
+    "market_strip": ["BTC", "ETH", "SP500", "NASDAQ", "DXY", "US2Y", "US10Y", "EURUSD", "GBPUSD", "USDJPY", "GOLD", "WTI", "BRENT"],
+    "calendar_recent_hours": 6,
+    "calendar_upcoming_hours": 168,
+    "calendar_date_only_hours": 24,
+    "note_calendar_date_only_hours": "A date-only calendar row (time_known false) is anchored at the start of its local day and can happen at any time that day: it stays in the recent window until this many hours after its anchor (plus calendar_recent_hours).",
+    "dashboard_calendar_limit": 8,
+    "cross_asset_overlay": {"default": ["DXY", "US10Y", "NASDAQ"], "fx": ["DXY", "US2Y", "US10Y"], "commodity": ["DXY", "US10Y", "SP500"]},
+    "cross_asset_daily_sessions": 90,
+    "asset_page_bars_cache_seconds": 10,
+    "note_asset_page_bars_cache": "The asset page (display only) reuses its one-minute bars read at most this many seconds ago: the page polls every few seconds and two days of crypto ticks are ~90,000 rows. Decisions and the regime always read fresh bars. 0 disables the reuse.",
+    "daily_bars_sessions": 260,
+    "note_daily_bars": "GET /api/assets/{symbol} daily_bars: at most daily_bars_sessions sessions (stored daily bars, else official daily closes, else for a 24/7 asset the last hourly close of each completed UTC day). An overlay whose latest quote is a daily close, or that has fewer than 2 live one-minute bars, falls back to its last cross_asset_daily_sessions daily closes. Minute bars (charts and overlays) never include official daily closes.",
+    "analysis_stale_cadences": 2,
+    "note_analysis_stale_cadences": "The dashboard marks the full analysis stale when the last attempt failed, or when more than this many analysis cadences (refresh cadences.interpretation.seconds) passed since the last successful cycle finished. A cycle that is running is stale only when it started more than that after the last success or has itself run longer.",
+    "dashboard_alerts": 30,
+    "note_dashboard_alerts": "GET /api/dashboard carries the newest dashboard_alerts alerts and alerts_total, the number stored (GET /api/alerts pages through up to 500).",
+    "events_list_limit": 100,
+    "breaking_stream_limit": 20,
+    "social_corroboration_min_groups": 2,
+    "note_social_corroboration_min_groups": "An X post linked to a PARTIALLY_CONFIRMED event is shown CORROBORATED only when at least this many independent source groups support the event; otherwise UNVERIFIED.",
+    "http_compression": {
+      "minimum_bytes": 1000,
+      "level": 6,
+      "note": "gzip for HTTP responses of at least minimum_bytes when the client accepts it (the dashboard and asset payloads are several hundred KB of JSON). WebSocket frames are not compressed by this middleware."
+    }
+  }
+}

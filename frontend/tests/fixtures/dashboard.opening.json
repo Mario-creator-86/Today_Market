@@ -1,0 +1,5101 @@
+{
+ "as_of": "2026-10-02T07:34:45.068974+00:00",
+ "timezone": "Europe/Bucharest",
+ "market_strip": [
+  "BTC",
+  "ETH",
+  "SP500",
+  "NASDAQ",
+  "DXY",
+  "US2Y",
+  "US10Y",
+  "EURUSD",
+  "GBPUSD",
+  "USDJPY",
+  "GOLD",
+  "WTI",
+  "BRENT"
+ ],
+ "calendar_min_impact": 5,
+ "regimes": [
+  "USD_STRENGTH"
+ ],
+ "regime": {
+  "coverage_pct": 86.7,
+  "evaluated": [
+   {
+    "regime": "RISK_ON",
+    "state": "INACTIVE",
+    "confidence": 0.0,
+    "missing_inputs": [
+     "BTC"
+    ]
+   },
+   {
+    "regime": "RISK_OFF",
+    "state": "INACTIVE",
+    "confidence": 33.3,
+    "missing_inputs": [
+     "BTC"
+    ]
+   },
+   {
+    "regime": "INFLATION_SHOCK",
+    "state": "INACTIVE",
+    "confidence": 28.6,
+    "missing_inputs": []
+   },
+   {
+    "regime": "GROWTH_SCARE",
+    "state": "INACTIVE",
+    "confidence": 50.0,
+    "missing_inputs": []
+   },
+   {
+    "regime": "LIQUIDITY_STRESS",
+    "state": "INACTIVE",
+    "confidence": 0.0,
+    "missing_inputs": [
+     "BTC",
+     "CORR:BTC:NASDAQ"
+    ]
+   },
+   {
+    "regime": "GEOPOLITICAL_SHOCK",
+    "state": "INACTIVE",
+    "confidence": 0.0,
+    "missing_inputs": []
+   },
+   {
+    "regime": "USD_STRENGTH",
+    "state": "ACTIVE",
+    "confidence": 100.0,
+    "missing_inputs": []
+   },
+   {
+    "regime": "USD_WEAKNESS",
+    "state": "INACTIVE",
+    "confidence": 0.0,
+    "missing_inputs": []
+   },
+   {
+    "regime": "VOLATILITY_EXPANSION",
+    "state": "INACTIVE",
+    "confidence": 0.0,
+    "missing_inputs": [
+     "BTC"
+    ]
+   },
+   {
+    "regime": "LOW_VOLATILITY",
+    "state": "INACTIVE",
+    "confidence": 50.0,
+    "missing_inputs": []
+   }
+  ],
+  "features": {
+   "SP500": {
+    "price": 7666.45,
+    "change_pct": 0.1949
+   },
+   "NASDAQ": {
+    "price": 26871.6,
+    "change_pct": 0.0392
+   },
+   "RUSSELL": {
+    "change_pct": 0.4066
+   },
+   "DXY": {
+    "price": 101.728,
+    "change_pct": 0.487
+   },
+   "US2Y": {
+    "price": 4.78,
+    "change_pct": -2.0492,
+    "change_bp": -10.0
+   },
+   "US5Y": {
+    "price": 5.01,
+    "change_pct": -1.5717,
+    "change_bp": -8.0
+   },
+   "US10Y": {
+    "price": 5.24,
+    "change_pct": -0.9452,
+    "change_bp": -5.0
+   },
+   "US30Y": {
+    "price": 5.61,
+    "change_pct": -0.5319,
+    "change_bp": -3.0
+   },
+   "EURUSD": {
+    "price": 1.1298,
+    "change_pct": -0.502
+   },
+   "GBPUSD": {
+    "price": 1.32337,
+    "change_pct": -0.3974
+   },
+   "USDJPY": {
+    "price": 157.984,
+    "change_pct": 0.6287
+   },
+   "AUDUSD": {
+    "price": 0.69505,
+    "change_pct": -0.244
+   },
+   "USDCAD": {
+    "price": 1.42459,
+    "change_pct": 0.4421
+   },
+   "USDCHF": {
+    "price": 0.83528,
+    "change_pct": 0.0695
+   },
+   "NZDUSD": {
+    "price": 0.5615,
+    "change_pct": -0.5314
+   },
+   "GOLD": {
+    "change_pct": 0.425
+   },
+   "WTI": {
+    "price": 96.16,
+    "change_pct": -3.2304
+   },
+   "BRENT": {
+    "price": 113.96,
+    "change_pct": -5.0096
+   },
+   "VIX": {
+    "price": 16.34,
+    "change_pct": 1.8703
+   },
+   "COIN": {
+    "price": 189.29,
+    "change_pct": 1.545
+   },
+   "MSTR": {
+    "price": 160.5,
+    "change_pct": 4.8403
+   },
+   "BMNR": {
+    "price": 26.73,
+    "change_pct": 1.1351
+   },
+   "NVDA": {
+    "price": 230.86,
+    "change_pct": 1.0859
+   },
+   "MSFT": {
+    "price": 512.8,
+    "change_pct": -0.0195
+   },
+   "AAPL": {
+    "price": 330.32,
+    "change_pct": -0.8108
+   },
+   "AMZN": {
+    "price": 248.23,
+    "change_pct": -0.3693
+   },
+   "META": {
+    "price": 725.93,
+    "change_pct": 0.1034
+   },
+   "GOOGL": {
+    "price": 338.24,
+    "change_pct": -1.6973
+   },
+   "TSLA": {
+    "price": 354.11,
+    "change_pct": -0.1973
+   },
+   "CURVE:US10Y-US2Y": {
+    "change_bp": 5.0,
+    "level_bp": 46.0
+   },
+   "CREDIT:BAA10Y": {
+    "value": 1.47,
+    "change_bp": 1.0
+   }
+  },
+  "feature_sources": {
+   "SP500": {
+    "basis": "last_close",
+    "source": "fred",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "S&P 500 close (FRED)",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "NASDAQ": {
+    "basis": "last_close",
+    "source": "fred",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "Nasdaq Composite close (FRED)",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "RUSSELL": {
+    "basis": "proxy",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "IWM ETF — proxy for Russell 2000 direction",
+    "close_date": null,
+    "close_status": null,
+    "session": "LAST CLOSE",
+    "via": "IWM"
+   },
+   "DXY": {
+    "basis": "last_close",
+    "source": "ecb-derived",
+    "as_of": "2026-10-01T12:15:00+00:00",
+    "change_basis": "previous_fix",
+    "label": "USD index replica (ICE DXY formula) — ECB fix, derived by this app",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "US2Y": {
+    "basis": "last_close",
+    "source": "treasury",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "US Treasury 2Y par yield",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "US5Y": {
+    "basis": "last_close",
+    "source": "treasury",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "US Treasury 5Y par yield",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "US10Y": {
+    "basis": "last_close",
+    "source": "treasury",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "US Treasury 10Y par yield",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "US30Y": {
+    "basis": "last_close",
+    "source": "treasury",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "US Treasury 30Y par yield",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "EURUSD": {
+    "basis": "last_close",
+    "source": "ecb",
+    "as_of": "2026-10-01T12:15:00+00:00",
+    "change_basis": "previous_fix",
+    "label": "ECB reference rate",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "GBPUSD": {
+    "basis": "last_close",
+    "source": "ecb",
+    "as_of": "2026-10-01T12:15:00+00:00",
+    "change_basis": "previous_fix",
+    "label": "ECB reference rate (cross via EUR)",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "USDJPY": {
+    "basis": "last_close",
+    "source": "ecb",
+    "as_of": "2026-10-01T12:15:00+00:00",
+    "change_basis": "previous_fix",
+    "label": "ECB reference rate (cross via EUR)",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "AUDUSD": {
+    "basis": "last_close",
+    "source": "ecb",
+    "as_of": "2026-10-01T12:15:00+00:00",
+    "change_basis": "previous_fix",
+    "label": "ECB reference rate (cross via EUR)",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "USDCAD": {
+    "basis": "last_close",
+    "source": "ecb",
+    "as_of": "2026-10-01T12:15:00+00:00",
+    "change_basis": "previous_fix",
+    "label": "ECB reference rate (cross via EUR)",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "USDCHF": {
+    "basis": "last_close",
+    "source": "ecb",
+    "as_of": "2026-10-01T12:15:00+00:00",
+    "change_basis": "previous_fix",
+    "label": "ECB reference rate (cross via EUR)",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "NZDUSD": {
+    "basis": "last_close",
+    "source": "ecb",
+    "as_of": "2026-10-01T12:15:00+00:00",
+    "change_basis": "previous_fix",
+    "label": "ECB reference rate (cross via EUR)",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "GOLD": {
+    "basis": "proxy",
+    "source": "binance",
+    "as_of": "2026-10-02T07:34:37.987000+00:00",
+    "change_basis": "rolling_24h",
+    "label": "PAXG gold token — proxy for spot gold",
+    "close_date": null,
+    "close_status": null,
+    "session": "LIVE",
+    "via": "PAXG"
+   },
+   "WTI": {
+    "basis": "last_close",
+    "source": "eia",
+    "as_of": "2026-09-29T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "WTI spot (Cushing, OK)",
+    "close_date": "2026-09-29",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "BRENT": {
+    "basis": "last_close",
+    "source": "eia",
+    "as_of": "2026-09-29T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "Brent spot (Europe)",
+    "close_date": "2026-09-29",
+    "close_status": "CURRENT",
+    "session": "LIVE"
+   },
+   "VIX": {
+    "basis": "last_close",
+    "source": "fred",
+    "as_of": "2026-09-30T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "VIX close (FRED, lags Cboe by days)",
+    "close_date": "2026-09-30",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "COIN": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "COIN",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "MSTR": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "MSTR",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "BMNR": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "BMNR",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "NVDA": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "NVDA",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "MSFT": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "MSFT",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "AAPL": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "AAPL",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "AMZN": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "AMZN",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "META": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "META",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "GOOGL": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "GOOGL",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "TSLA": {
+    "basis": "last_close",
+    "source": "finnhub",
+    "as_of": "2026-10-01T20:00:00+00:00",
+    "change_basis": "previous_close",
+    "label": "TSLA",
+    "close_date": "2026-10-01",
+    "close_status": "CURRENT",
+    "session": "LAST CLOSE"
+   },
+   "CURVE:US10Y-US2Y": {
+    "basis": "last_close",
+    "source": "computed from US10Y and US2Y",
+    "as_of": "2026-10-01T20:00:00+00:00"
+   },
+   "CREDIT:BAA10Y": {
+    "basis": "last_close",
+    "source": "Source: FRED, Federal Reserve Bank of St. Louis (Moody's via FRED)",
+    "as_of": "2026-09-30T00:00:00Z",
+    "provider": "fred"
+   }
+  },
+  "drivers": [
+   {
+    "driver": "Rates",
+    "direction": "down",
+    "arrow": "↓",
+    "inputs": [
+     {
+      "feature": "US2Y",
+      "field": "change_bp",
+      "value": -10.0,
+      "vote": -1,
+      "basis": "last_close",
+      "source": "treasury",
+      "as_of": "2026-10-01T20:00:00+00:00",
+      "via": null,
+      "close_status": "CURRENT",
+      "close_date": "2026-10-01"
+     },
+     {
+      "feature": "US10Y",
+      "field": "change_bp",
+      "value": -5.0,
+      "vote": -1,
+      "basis": "last_close",
+      "source": "treasury",
+      "as_of": "2026-10-01T20:00:00+00:00",
+      "via": null,
+      "close_status": "CURRENT",
+      "close_date": "2026-10-01"
+     }
+    ],
+    "missing": [],
+    "input": "US2Y −10 bp, US10Y −5 bp",
+    "basis": "last_close"
+   },
+   {
+    "driver": "USD",
+    "direction": "up",
+    "arrow": "↑",
+    "inputs": [
+     {
+      "feature": "DXY",
+      "field": "change_pct",
+      "value": 0.487,
+      "vote": 1,
+      "basis": "last_close",
+      "source": "ecb-derived",
+      "as_of": "2026-10-01T12:15:00+00:00",
+      "via": null,
+      "close_status": "CURRENT",
+      "close_date": "2026-10-01"
+     }
+    ],
+    "missing": [],
+    "input": "DXY +0.49%",
+    "basis": "last_close"
+   },
+   {
+    "driver": "Oil",
+    "direction": "down",
+    "arrow": "↓",
+    "inputs": [
+     {
+      "feature": "BRENT",
+      "field": "change_pct",
+      "value": -5.0096,
+      "vote": -1,
+      "basis": "last_close",
+      "source": "eia",
+      "as_of": "2026-09-29T20:00:00+00:00",
+      "via": null,
+      "close_status": "CURRENT",
+      "close_date": "2026-09-29"
+     },
+     {
+      "feature": "WTI",
+      "field": "change_pct",
+      "value": -3.2304,
+      "vote": -1,
+      "basis": "last_close",
+      "source": "eia",
+      "as_of": "2026-09-29T20:00:00+00:00",
+      "via": null,
+      "close_status": "CURRENT",
+      "close_date": "2026-09-29"
+     }
+    ],
+    "missing": [],
+    "input": "BRENT −5.01%, WTI −3.23%",
+    "basis": "last_close"
+   },
+   {
+    "driver": "Risk appetite",
+    "direction": "flat",
+    "arrow": "→",
+    "inputs": [
+     {
+      "feature": "SP500",
+      "field": "change_pct",
+      "value": 0.1949,
+      "vote": 0,
+      "basis": "last_close",
+      "source": "fred",
+      "as_of": "2026-10-01T20:00:00+00:00",
+      "via": null,
+      "close_status": "CURRENT",
+      "close_date": "2026-10-01"
+     },
+     {
+      "feature": "NASDAQ",
+      "field": "change_pct",
+      "value": 0.0392,
+      "vote": 0,
+      "basis": "last_close",
+      "source": "fred",
+      "as_of": "2026-10-01T20:00:00+00:00",
+      "via": null,
+      "close_status": "CURRENT",
+      "close_date": "2026-10-01"
+     },
+     {
+      "feature": "VIX",
+      "field": "change_pct",
+      "value": 1.8703,
+      "vote": 0,
+      "basis": "last_close",
+      "source": "fred",
+      "as_of": "2026-09-30T20:00:00+00:00",
+      "via": null,
+      "close_status": "CURRENT",
+      "close_date": "2026-09-30"
+     }
+    ],
+    "missing": [],
+    "input": "SP500 +0.19%, NASDAQ +0.04%, VIX +1.87%",
+    "basis": "last_close"
+   }
+  ],
+  "basis": "last_close",
+  "basis_label": "last close 29 Sep–Thu 1 Oct + proxies (IWM, PAXG)",
+  "missing_required": [],
+  "regimes": [
+   "USD_STRENGTH"
+  ],
+  "posture": "MIXED",
+  "confidence": 100.0,
+  "method": "Rule coverage across observed features; not a calibrated probability",
+  "excluded": [
+   {
+    "feature": "BTC",
+    "reason": "rolling 24h change, not a close-to-close move"
+   }
+  ],
+  "current_drivers": [
+   {
+    "driver": "Rates",
+    "direction": "unavailable",
+    "arrow": null,
+    "inputs": [],
+    "missing": [
+     "US2Y",
+     "US10Y"
+    ],
+    "input": null,
+    "basis": null
+   },
+   {
+    "driver": "USD",
+    "direction": "unavailable",
+    "arrow": null,
+    "inputs": [],
+    "missing": [
+     "DXY"
+    ],
+    "input": null,
+    "basis": null
+   },
+   {
+    "driver": "Oil",
+    "direction": "unavailable",
+    "arrow": null,
+    "inputs": [],
+    "missing": [
+     "BRENT",
+     "WTI"
+    ],
+    "input": null,
+    "basis": null
+   },
+   {
+    "driver": "Risk appetite",
+    "direction": "unavailable",
+    "arrow": null,
+    "inputs": [],
+    "missing": [
+     "SP500",
+     "NASDAQ",
+     "VIX"
+    ],
+    "input": null,
+    "basis": null
+   }
+  ],
+  "divergences": [],
+  "as_of": "2026-10-02T07:34:45.395077+00:00"
+ },
+ "last_analysis": "2026-10-02T07:30:51.138220+00:00",
+ "analysis": {
+  "last_success_at": "2026-10-02T07:30:51.138220+00:00",
+  "last_attempt_at": "2026-10-02T07:30:51.138220+00:00",
+  "last_error_type": null,
+  "cadence_seconds": 300,
+  "stale": false,
+  "failed_symbols": []
+ },
+ "freshness_threshold_seconds": 15,
+ "notices": [
+  {
+   "id": "fred_api",
+   "text": "This product uses the FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.",
+   "providers": [
+    "fred"
+   ]
+  }
+ ],
+ "assets": [
+  {
+   "symbol": "BTC",
+   "name": "Bitcoin",
+   "asset_class": "crypto",
+   "quote": {
+    "symbol": "BTC",
+    "price": 85887.13,
+    "timestamp": "2026-10-02T07:34:44.017000+00:00",
+    "provider": "binance",
+    "latency_ms": 417.226,
+    "stub": false,
+    "daily_close": false,
+    "bid": 85887.13,
+    "ask": 85887.14,
+    "volume": 20455.71845,
+    "change_pct": 2.694,
+    "previous_close": null,
+    "previous_close_at": null,
+    "change_bp": null,
+    "change_basis": "rolling_24h",
+    "data_class": "LIVE",
+    "as_of_label": null,
+    "label": null,
+    "attribution": "Source: Binance",
+    "derived": false,
+    "feed": null,
+    "close_status": null,
+    "close_date": null,
+    "close_expected_date": null,
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "CRYPTO",
+     "venue_label": "Crypto (24/7)",
+     "basis": "24/7 venue; the daily close is the configured UTC cut-off",
+     "session_close": "2026-10-03T00:00:00+00:00",
+     "next_session_close": "2026-10-04T00:00:00+00:00"
+    },
+    "freshness_status": "FRESH",
+    "age_seconds": 1.05,
+    "freshness_threshold_seconds": 15,
+    "delay_label": null
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "CRYPTO",
+    "venue_label": "Crypto (24/7)",
+    "basis": "24/7 venue; the daily close is the configured UTC cut-off",
+    "session_close": "2026-10-03T00:00:00+00:00",
+    "next_session_close": "2026-10-04T00:00:00+00:00"
+   },
+   "proxy": null,
+   "event_risk": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 13.8,
+    "base_confidence": 16.02,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "OK",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "ETH",
+   "name": "Ethereum",
+   "asset_class": "crypto",
+   "quote": {
+    "symbol": "ETH",
+    "price": 2725.6,
+    "timestamp": "2026-10-02T07:34:44.019000+00:00",
+    "provider": "binance",
+    "latency_ms": 420.056,
+    "stub": false,
+    "daily_close": false,
+    "bid": 2725.6,
+    "ask": 2725.61,
+    "volume": 301474.1898,
+    "change_pct": 1.224,
+    "previous_close": null,
+    "previous_close_at": null,
+    "change_bp": null,
+    "change_basis": "rolling_24h",
+    "data_class": "LIVE",
+    "as_of_label": null,
+    "label": null,
+    "attribution": "Source: Binance",
+    "derived": false,
+    "feed": null,
+    "close_status": null,
+    "close_date": null,
+    "close_expected_date": null,
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "CRYPTO",
+     "venue_label": "Crypto (24/7)",
+     "basis": "24/7 venue; the daily close is the configured UTC cut-off",
+     "session_close": "2026-10-03T00:00:00+00:00",
+     "next_session_close": "2026-10-04T00:00:00+00:00"
+    },
+    "freshness_status": "FRESH",
+    "age_seconds": 1.05,
+    "freshness_threshold_seconds": 15,
+    "delay_label": null
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "CRYPTO",
+    "venue_label": "Crypto (24/7)",
+    "basis": "24/7 venue; the daily close is the configured UTC cut-off",
+    "session_close": "2026-10-03T00:00:00+00:00",
+    "next_session_close": "2026-10-04T00:00:00+00:00"
+   },
+   "proxy": null,
+   "event_risk": {
+    "score": 59.2,
+    "level": "MODERATE",
+    "event_id": "REG-20261001-a39b6305",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 6.0,
+    "base_confidence": 6.47,
+    "penalty": 0.08,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "OK",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "SP500",
+   "name": "S&P 500",
+   "asset_class": "index",
+   "quote": {
+    "symbol": "SP500",
+    "price": 7666.45,
+    "timestamp": "2026-10-01T20:00:00+00:00",
+    "provider": "fred",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": 0.1949,
+    "previous_close": 7651.54,
+    "previous_close_at": "2026-09-30T20:00:00Z",
+    "change_bp": null,
+    "change_basis": "previous_close",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "FRED daily close Thu 1 Oct (FRED lags its source)",
+    "label": "S&P 500 close (FRED)",
+    "attribution": "Source: S&P Dow Jones Indices LLC via FRED. Copyright S&P Dow Jones Indices LLC; reproduction requires S&P DJI's prior written permission",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-10-01",
+    "close_expected_date": "2026-09-30",
+    "market_status": "LAST CLOSE",
+    "market_state": "LAST CLOSE",
+    "session": {
+     "state": "LAST CLOSE",
+     "label": "Market closed · last close",
+     "venue": "XNYS_INDEX",
+     "venue_label": "NYSE (cash index hours)",
+     "basis": "Cash index computed during the NYSE regular session only",
+     "session_close": "2026-10-02T20:00:00+00:00",
+     "next_session_close": "2026-10-05T20:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 41685.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LAST CLOSE",
+    "label": "Market closed · last close",
+    "venue": "XNYS_INDEX",
+    "venue_label": "NYSE (cash index hours)",
+    "basis": "Cash index computed during the NYSE regular session only",
+    "session_close": "2026-10-02T20:00:00+00:00",
+    "next_session_close": "2026-10-05T20:00:00+00:00"
+   },
+   "proxy": {
+    "symbol": "SPY",
+    "proxy_for": "SP500",
+    "label": "SPY ETF — proxy for S&P 500 direction",
+    "caveat": "ETF price, not the index level (about 1/10 of the index); direction only",
+    "price": 763.99,
+    "change_pct": 0.1783,
+    "change_basis": "previous_close",
+    "previous_close": 762.63,
+    "timestamp": "2026-10-01T20:00:00+00:00",
+    "provider": "finnhub",
+    "feed": null,
+    "delay_label": "LAST CLOSE (last trade Thu 1 Oct 16:00 ET)",
+    "attribution": "Source: Finnhub",
+    "relation": "direction_only",
+    "market_status": "LAST CLOSE",
+    "freshness_status": "STALE",
+    "age_seconds": 41685.07,
+    "max_age_seconds": 120
+   },
+   "event_risk": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "NASDAQ",
+   "name": "Nasdaq",
+   "asset_class": "index",
+   "quote": {
+    "symbol": "NASDAQ",
+    "price": 26871.6,
+    "timestamp": "2026-10-01T20:00:00+00:00",
+    "provider": "fred",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": 0.0392,
+    "previous_close": 26861.06,
+    "previous_close_at": "2026-09-30T20:00:00Z",
+    "change_bp": null,
+    "change_basis": "previous_close",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "FRED daily close Thu 1 Oct (FRED lags its source)",
+    "label": "Nasdaq Composite close (FRED)",
+    "attribution": "Source: Nasdaq, Inc. via FRED. Copyright NASDAQ OMX Group, Inc. (FRED: copyrighted, pre-approval required)",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-10-01",
+    "close_expected_date": "2026-09-30",
+    "market_status": "LAST CLOSE",
+    "market_state": "LAST CLOSE",
+    "session": {
+     "state": "LAST CLOSE",
+     "label": "Market closed · last close",
+     "venue": "XNYS_INDEX",
+     "venue_label": "NYSE (cash index hours)",
+     "basis": "Cash index computed during the NYSE regular session only",
+     "session_close": "2026-10-02T20:00:00+00:00",
+     "next_session_close": "2026-10-05T20:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 41685.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LAST CLOSE",
+    "label": "Market closed · last close",
+    "venue": "XNYS_INDEX",
+    "venue_label": "NYSE (cash index hours)",
+    "basis": "Cash index computed during the NYSE regular session only",
+    "session_close": "2026-10-02T20:00:00+00:00",
+    "next_session_close": "2026-10-05T20:00:00+00:00"
+   },
+   "proxy": {
+    "symbol": "QQQ",
+    "proxy_for": "NASDAQ",
+    "label": "QQQ ETF — proxy (Nasdaq-100)",
+    "caveat": "Tracks the Nasdaq-100, not the Composite; ETF price, direction only",
+    "price": 742.03,
+    "change_pct": 0.3055,
+    "change_basis": "previous_close",
+    "previous_close": 739.77,
+    "timestamp": "2026-10-01T20:00:00+00:00",
+    "provider": "finnhub",
+    "feed": null,
+    "delay_label": "LAST CLOSE (last trade Thu 1 Oct 16:00 ET)",
+    "attribution": "Source: Finnhub",
+    "relation": "direction_only",
+    "market_status": "LAST CLOSE",
+    "freshness_status": "STALE",
+    "age_seconds": 41685.07,
+    "max_age_seconds": 120
+   },
+   "event_risk": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "DXY",
+   "name": "US dollar index",
+   "asset_class": "index",
+   "quote": {
+    "symbol": "DXY",
+    "price": 101.728,
+    "timestamp": "2026-10-01T12:15:00+00:00",
+    "provider": "ecb-derived",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": 0.487,
+    "previous_close": 101.235,
+    "previous_close_at": "2026-09-30T12:15:00Z",
+    "change_bp": null,
+    "change_basis": "previous_fix",
+    "data_class": "DERIVED_DAILY",
+    "as_of_label": "ECB 14:15 CET fix, Thu 1 Oct (daily replica, not live; not ICE's index)",
+    "label": "USD index replica (ICE DXY formula) — ECB fix, derived by this app",
+    "attribution": "Computed from ECB reference rates",
+    "derived": true,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-10-01",
+    "close_expected_date": "2026-10-01",
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "ICE_US",
+     "venue_label": "ICE US futures",
+     "basis": "ICE US futures session calendar",
+     "session_close": "2026-10-02T22:00:00+00:00",
+     "next_session_close": "2026-10-05T22:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 69585.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "ICE_US",
+    "venue_label": "ICE US futures",
+    "basis": "ICE US futures session calendar",
+    "session_close": "2026-10-02T22:00:00+00:00",
+    "next_session_close": "2026-10-05T22:00:00+00:00"
+   },
+   "proxy": {
+    "symbol": "UUP",
+    "proxy_for": "DXY",
+    "label": "UUP ETF (IEX) — US dollar direction proxy",
+    "caveat": "Futures-based dollar-bullish fund; direction only, not the index level",
+    "price": 28.965,
+    "change_pct": 0.6428,
+    "change_basis": "previous_close",
+    "previous_close": 28.78,
+    "timestamp": "2026-10-01T20:00:00+00:00",
+    "provider": "alpaca",
+    "feed": "iex",
+    "delay_label": "LAST CLOSE (IEX regular-session close Thu 1 Oct 16:00 ET)",
+    "attribution": "Source: Alpaca Market Data (IEX exchange only)",
+    "relation": "direction_only",
+    "market_status": "LAST CLOSE",
+    "freshness_status": "STALE",
+    "age_seconds": 41685.07,
+    "max_age_seconds": 300
+   },
+   "event_risk": {
+    "score": 87.5,
+    "level": "VERY HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1979,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "US2Y",
+   "name": "US Treasury 2Y",
+   "asset_class": "bond",
+   "quote": {
+    "symbol": "US2Y",
+    "price": 4.78,
+    "timestamp": "2026-10-01T20:00:00+00:00",
+    "provider": "treasury",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": -2.0492,
+    "previous_close": 4.88,
+    "previous_close_at": "2026-09-30T20:00:00Z",
+    "change_bp": -10.0,
+    "change_basis": "previous_close",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "daily close Thu 1 Oct (Treasury par yield curve; NY Fed indicative bid quotes near 15:30 ET)",
+    "label": "US Treasury 2Y par yield",
+    "attribution": "Source: U.S. Department of the Treasury",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-10-01",
+    "close_expected_date": "2026-10-01",
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "US_TREASURY",
+     "venue_label": "US Treasury (CBOT futures hours)",
+     "basis": "CBOT Treasury futures session as the rates proxy; SIFMA cash-market holiday differences are not modelled",
+     "session_close": "2026-10-02T22:00:00+00:00",
+     "next_session_close": "2026-10-05T22:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 41685.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "US_TREASURY",
+    "venue_label": "US Treasury (CBOT futures hours)",
+    "basis": "CBOT Treasury futures session as the rates proxy; SIFMA cash-market holiday differences are not modelled",
+    "session_close": "2026-10-02T22:00:00+00:00",
+    "next_session_close": "2026-10-05T22:00:00+00:00"
+   },
+   "proxy": null,
+   "event_risk": {
+    "score": 87.5,
+    "level": "VERY HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1979,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "US10Y",
+   "name": "US Treasury 10Y",
+   "asset_class": "bond",
+   "quote": {
+    "symbol": "US10Y",
+    "price": 5.24,
+    "timestamp": "2026-10-01T20:00:00+00:00",
+    "provider": "treasury",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": -0.9452,
+    "previous_close": 5.29,
+    "previous_close_at": "2026-09-30T20:00:00Z",
+    "change_bp": -5.0,
+    "change_basis": "previous_close",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "daily close Thu 1 Oct (Treasury par yield curve; NY Fed indicative bid quotes near 15:30 ET)",
+    "label": "US Treasury 10Y par yield",
+    "attribution": "Source: U.S. Department of the Treasury",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-10-01",
+    "close_expected_date": "2026-10-01",
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "US_TREASURY",
+     "venue_label": "US Treasury (CBOT futures hours)",
+     "basis": "CBOT Treasury futures session as the rates proxy; SIFMA cash-market holiday differences are not modelled",
+     "session_close": "2026-10-02T22:00:00+00:00",
+     "next_session_close": "2026-10-05T22:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 41685.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "US_TREASURY",
+    "venue_label": "US Treasury (CBOT futures hours)",
+    "basis": "CBOT Treasury futures session as the rates proxy; SIFMA cash-market holiday differences are not modelled",
+    "session_close": "2026-10-02T22:00:00+00:00",
+    "next_session_close": "2026-10-05T22:00:00+00:00"
+   },
+   "proxy": null,
+   "event_risk": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "EURUSD",
+   "name": "Euro / US dollar",
+   "asset_class": "fx",
+   "quote": {
+    "symbol": "EURUSD",
+    "price": 1.1298,
+    "timestamp": "2026-10-01T12:15:00+00:00",
+    "provider": "ecb",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": -0.502,
+    "previous_close": 1.1355,
+    "previous_close_at": "2026-09-30T12:15:00Z",
+    "change_bp": null,
+    "change_basis": "previous_fix",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "ECB 14:15 CET fix, Thu 1 Oct (daily, not a tradable quote)",
+    "label": "ECB reference rate",
+    "attribution": "Source: ECB",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-10-01",
+    "close_expected_date": "2026-10-01",
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "FX",
+     "venue_label": "Spot FX",
+     "basis": "Spot FX: sessions roll at 17:00 New York; weekend and configured holiday closures",
+     "session_close": "2026-10-02T21:00:00+00:00",
+     "next_session_close": "2026-10-05T21:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 69585.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "FX",
+    "venue_label": "Spot FX",
+    "basis": "Spot FX: sessions roll at 17:00 New York; weekend and configured holiday closures",
+    "session_close": "2026-10-02T21:00:00+00:00",
+    "next_session_close": "2026-10-05T21:00:00+00:00"
+   },
+   "proxy": null,
+   "event_risk": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "GBPUSD",
+   "name": "Pound / US dollar",
+   "asset_class": "fx",
+   "quote": {
+    "symbol": "GBPUSD",
+    "price": 1.32337,
+    "timestamp": "2026-10-01T12:15:00+00:00",
+    "provider": "ecb",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": -0.3974,
+    "previous_close": 1.32865,
+    "previous_close_at": "2026-09-30T12:15:00Z",
+    "change_bp": null,
+    "change_basis": "previous_fix",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "ECB 14:15 CET fix, Thu 1 Oct (daily, not a tradable quote)",
+    "label": "ECB reference rate (cross via EUR)",
+    "attribution": "Source: ECB",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-10-01",
+    "close_expected_date": "2026-10-01",
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "FX",
+     "venue_label": "Spot FX",
+     "basis": "Spot FX: sessions roll at 17:00 New York; weekend and configured holiday closures",
+     "session_close": "2026-10-02T21:00:00+00:00",
+     "next_session_close": "2026-10-05T21:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 69585.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "FX",
+    "venue_label": "Spot FX",
+    "basis": "Spot FX: sessions roll at 17:00 New York; weekend and configured holiday closures",
+    "session_close": "2026-10-02T21:00:00+00:00",
+    "next_session_close": "2026-10-05T21:00:00+00:00"
+   },
+   "proxy": null,
+   "event_risk": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "USDJPY",
+   "name": "US dollar / Yen",
+   "asset_class": "fx",
+   "quote": {
+    "symbol": "USDJPY",
+    "price": 157.984,
+    "timestamp": "2026-10-01T12:15:00+00:00",
+    "provider": "ecb",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": 0.6287,
+    "previous_close": 156.997,
+    "previous_close_at": "2026-09-30T12:15:00Z",
+    "change_bp": null,
+    "change_basis": "previous_fix",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "ECB 14:15 CET fix, Thu 1 Oct (daily, not a tradable quote)",
+    "label": "ECB reference rate (cross via EUR)",
+    "attribution": "Source: ECB",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-10-01",
+    "close_expected_date": "2026-10-01",
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "FX",
+     "venue_label": "Spot FX",
+     "basis": "Spot FX: sessions roll at 17:00 New York; weekend and configured holiday closures",
+     "session_close": "2026-10-02T21:00:00+00:00",
+     "next_session_close": "2026-10-05T21:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 69585.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "FX",
+    "venue_label": "Spot FX",
+    "basis": "Spot FX: sessions roll at 17:00 New York; weekend and configured holiday closures",
+    "session_close": "2026-10-02T21:00:00+00:00",
+    "next_session_close": "2026-10-05T21:00:00+00:00"
+   },
+   "proxy": null,
+   "event_risk": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "GOLD",
+   "name": "Gold",
+   "asset_class": "commodity",
+   "quote": null,
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "CME",
+    "venue_label": "CME Globex",
+    "basis": "CME Globex session calendar with the daily maintenance break",
+    "session_close": "2026-10-02T22:00:00+00:00",
+    "next_session_close": "2026-10-05T22:00:00+00:00"
+   },
+   "proxy": {
+    "symbol": "PAXG",
+    "proxy_for": "GOLD",
+    "label": "PAXG gold token — proxy for spot gold",
+    "caveat": "Paxos token, 1 PAXG = 1 fine troy oz London Good Delivery gold; trades 24/7 and can deviate from spot by a few tenths of a percent",
+    "price": 4190.15,
+    "change_pct": 0.425,
+    "change_basis": "rolling_24h",
+    "previous_close": null,
+    "timestamp": "2026-10-02T07:34:37.987000+00:00",
+    "provider": "binance",
+    "feed": null,
+    "delay_label": "real-time (Binance WebSocket; the token trades 24/7)",
+    "attribution": "Source: Binance",
+    "relation": "direction_only",
+    "market_status": "LIVE",
+    "freshness_status": "FRESH",
+    "age_seconds": 7.08,
+    "max_age_seconds": 180
+   },
+   "event_risk": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "PROXY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "WTI",
+   "name": "WTI crude",
+   "asset_class": "commodity",
+   "quote": {
+    "symbol": "WTI",
+    "price": 96.16,
+    "timestamp": "2026-09-29T20:00:00+00:00",
+    "provider": "eia",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": -3.2304,
+    "previous_close": 99.37,
+    "previous_close_at": "2026-09-28T20:00:00Z",
+    "change_bp": null,
+    "change_basis": "previous_close",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "EIA spot, as of Tue 29 Sep",
+    "label": "WTI spot (Cushing, OK)",
+    "attribution": "Source: U.S. Energy Information Administration",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-09-29",
+    "close_expected_date": "2026-09-29",
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "CME",
+     "venue_label": "CME Globex",
+     "basis": "CME Globex session calendar with the daily maintenance break",
+     "session_close": "2026-10-02T22:00:00+00:00",
+     "next_session_close": "2026-10-05T22:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 214485.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "CME",
+    "venue_label": "CME Globex",
+    "basis": "CME Globex session calendar with the daily maintenance break",
+    "session_close": "2026-10-02T22:00:00+00:00",
+    "next_session_close": "2026-10-05T22:00:00+00:00"
+   },
+   "proxy": {
+    "symbol": "USO",
+    "proxy_for": "WTI",
+    "label": "USO ETF (IEX) — WTI direction proxy",
+    "caveat": "Front-month futures fund (roll costs); direction only, not the spot price",
+    "price": 150.05,
+    "change_pct": 3.0068,
+    "change_basis": "previous_close",
+    "previous_close": 145.67,
+    "timestamp": "2026-10-01T19:59:48.735962+00:00",
+    "provider": "alpaca",
+    "feed": "iex",
+    "delay_label": "LAST CLOSE (IEX last trade Thu 1 Oct 15:59 ET)",
+    "attribution": "Source: Alpaca Market Data (IEX exchange only)",
+    "relation": "direction_only",
+    "market_status": "LAST CLOSE",
+    "freshness_status": "STALE",
+    "age_seconds": 41696.33,
+    "max_age_seconds": 300
+   },
+   "event_risk": {
+    "score": 37.5,
+    "level": "LOW",
+    "event_id": "SANC-20261001-f87011fd",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "OFAC sanctions list update (publication 1041): 31 additions, 4 amendments [IRAN-EO13871, IRAN-EO13902, TCO]",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  },
+  {
+   "symbol": "BRENT",
+   "name": "Brent crude",
+   "asset_class": "commodity",
+   "quote": {
+    "symbol": "BRENT",
+    "price": 113.96,
+    "timestamp": "2026-09-29T20:00:00+00:00",
+    "provider": "eia",
+    "latency_ms": 0.0,
+    "stub": false,
+    "daily_close": true,
+    "bid": null,
+    "ask": null,
+    "volume": null,
+    "change_pct": -5.0096,
+    "previous_close": 119.97,
+    "previous_close_at": "2026-09-28T20:00:00Z",
+    "change_bp": null,
+    "change_basis": "previous_close",
+    "data_class": "DAILY_CLOSE",
+    "as_of_label": "EIA spot, as of Tue 29 Sep",
+    "label": "Brent spot (Europe)",
+    "attribution": "Source: U.S. Energy Information Administration",
+    "derived": false,
+    "feed": null,
+    "close_status": "CURRENT",
+    "close_date": "2026-09-29",
+    "close_expected_date": "2026-09-29",
+    "market_status": "LIVE",
+    "market_state": "LIVE",
+    "session": {
+     "state": "LIVE",
+     "label": "Market open",
+     "venue": "ICE_US",
+     "venue_label": "ICE US futures",
+     "basis": "ICE US futures session calendar",
+     "session_close": "2026-10-02T22:00:00+00:00",
+     "next_session_close": "2026-10-05T22:00:00+00:00"
+    },
+    "freshness_status": "STALE",
+    "age_seconds": 214485.07,
+    "freshness_threshold_seconds": 15,
+    "delay_label": "daily close"
+   },
+   "session": {
+    "state": "LIVE",
+    "label": "Market open",
+    "venue": "ICE_US",
+    "venue_label": "ICE US futures",
+    "basis": "ICE US futures session calendar",
+    "session_close": "2026-10-02T22:00:00+00:00",
+    "next_session_close": "2026-10-05T22:00:00+00:00"
+   },
+   "proxy": {
+    "symbol": "BNO",
+    "proxy_for": "BRENT",
+    "label": "BNO ETF (IEX) — Brent direction proxy",
+    "caveat": "Futures fund (roll costs); direction only, not the spot price",
+    "price": 62.955,
+    "change_pct": 4.7243,
+    "change_basis": "previous_close",
+    "previous_close": 60.115,
+    "timestamp": "2026-10-01T19:59:54.565633+00:00",
+    "provider": "alpaca",
+    "feed": "iex",
+    "delay_label": "LAST CLOSE (IEX last trade Thu 1 Oct 15:59 ET)",
+    "attribution": "Source: Alpaca Market Data (IEX exchange only)",
+    "relation": "direction_only",
+    "market_status": "LAST CLOSE",
+    "freshness_status": "STALE",
+    "age_seconds": 41690.5,
+    "max_age_seconds": 300
+   },
+   "event_risk": {
+    "score": 37.5,
+    "level": "LOW",
+    "event_id": "SANC-20261001-f87011fd",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "OFAC sanctions list update (publication 1041): 31 additions, 4 amendments [IRAN-EO13871, IRAN-EO13902, TCO]",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "coverage": {
+    "status": "DAILY_ONLY",
+    "missing_keys": [],
+    "disabled": []
+   },
+   "decision": null
+  }
+ ],
+ "events": [
+  {
+   "id": "f87011fd-6f49-41bf-aaa0-fb0deba3bae7",
+   "summary_fact": "OFAC sanctions list update (publication 1041): 31 additions, 4 amendments [IRAN-EO13871, IRAN-EO13902, TCO]",
+   "event_type": "SANCTIONS",
+   "verification_status": "CONFIRMED",
+   "fact_confidence": 95.02,
+   "first_seen_utc": "2026-10-02T07:28:10.135935+00:00",
+   "last_updated_utc": "2026-10-02T07:28:11.017718+00:00",
+   "sources": [
+    "OFAC Sanctions List Service"
+   ],
+   "assets": [
+    "BRENT",
+    "GOLD",
+    "WTI"
+   ],
+   "affected_assets": [],
+   "event_time": "2026-10-01T16:36:06.277880+00:00",
+   "importance": null,
+   "importance_basis": "not assessed",
+   "topic": "ADDED_AMENDED",
+   "topic_basis": "entities",
+   "interpretation": null
+  },
+  {
+   "id": "a39b6305-4b90-49c2-8c0e-20aa290939f5",
+   "summary_fact": "SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws",
+   "event_type": "OFFICIAL_RELEASE",
+   "verification_status": "CONFIRMED",
+   "fact_confidence": 94.95,
+   "first_seen_utc": "2026-10-02T07:27:53.974597+00:00",
+   "last_updated_utc": "2026-10-02T07:27:54.234597+00:00",
+   "sources": [
+    "SEC press releases"
+   ],
+   "assets": [
+    "BTC",
+    "ETH",
+    "COIN",
+    "MSTR",
+    "BMNR"
+   ],
+   "affected_assets": [
+    "BTC",
+    "ETH",
+    "COIN",
+    "MSTR",
+    "BMNR"
+   ],
+   "event_time": "2026-10-01T16:16:07+00:00",
+   "importance": null,
+   "importance_basis": "not assessed",
+   "topic": "CRYPTO_REGULATION",
+   "topic_basis": "rule",
+   "interpretation": null
+  },
+  {
+   "id": "e6c7a66f-305c-4929-8ff5-ce7019b34189",
+   "summary_fact": "'Amazon Seeks To Offload $8bn of Nvidia Chips To Investors' - FT",
+   "event_type": "NEWS",
+   "verification_status": "PARTIALLY_CONFIRMED",
+   "fact_confidence": 73.72,
+   "first_seen_utc": "2026-10-02T07:27:21.377549+00:00",
+   "last_updated_utc": "2026-10-02T07:27:21.377549+00:00",
+   "sources": [
+    "Benzinga (via Alpaca News API)"
+   ],
+   "assets": [
+    "AMZN",
+    "NVDA"
+   ],
+   "affected_assets": [],
+   "event_time": "2026-10-02T06:41:06+00:00",
+   "importance": null,
+   "importance_basis": "not assessed",
+   "topic": "AMAZON SEEKS TO OFFLOAD_FT",
+   "topic_basis": "entities",
+   "interpretation": null
+  },
+  {
+   "id": "a16a4e26-7bdd-4c94-8398-7270d7c65d8e",
+   "summary_fact": "Nvidia AI Servers Allegedly Routed Through Malaysia and Singapore In $300 Million China Scheme, California Man Charged",
+   "event_type": "NEWS",
+   "verification_status": "PARTIALLY_CONFIRMED",
+   "fact_confidence": 73.1,
+   "first_seen_utc": "2026-10-02T07:27:22.791726+00:00",
+   "last_updated_utc": "2026-10-02T07:27:22.791726+00:00",
+   "sources": [
+    "Benzinga (via Alpaca News API)"
+   ],
+   "assets": [
+    "NVDA"
+   ],
+   "affected_assets": [],
+   "event_time": "2026-10-02T06:14:39+00:00",
+   "importance": null,
+   "importance_basis": "not assessed",
+   "topic": "AI_CALIFORNIA MAN CHARGED CALIFORNIA",
+   "topic_basis": "entities",
+   "interpretation": null
+  },
+  {
+   "id": "0d690d68-7dd6-4de3-89bd-258066e46733",
+   "summary_fact": "Elon Musk Says SpaceX's Starmind AI Satellites Could Pack in More Power Than ISS — NVIDIA's AI Racks Are Coming to Space",
+   "event_type": "NEWS",
+   "verification_status": "PARTIALLY_CONFIRMED",
+   "fact_confidence": 72.29,
+   "first_seen_utc": "2026-10-02T07:27:23.435595+00:00",
+   "last_updated_utc": "2026-10-02T07:27:23.435595+00:00",
+   "sources": [
+    "Benzinga (via Alpaca News API)"
+   ],
+   "assets": [
+    "NVDA"
+   ],
+   "affected_assets": [],
+   "event_time": "2026-10-02T05:40:06+00:00",
+   "importance": null,
+   "importance_basis": "not assessed",
+   "topic": "AI_ELON MUSK SAYS",
+   "topic_basis": "entities",
+   "interpretation": null
+  },
+  {
+   "id": "d336e5f9-9e8b-4b2d-8536-ac57ca343460",
+   "summary_fact": "Bitcoin Boost Gives Alpha Modus (AMOD) Stock 61% Spike After Hours: What You Should Know",
+   "event_type": "NEWS",
+   "verification_status": "PARTIALLY_CONFIRMED",
+   "fact_confidence": 70.78,
+   "first_seen_utc": "2026-10-02T07:27:23.692963+00:00",
+   "last_updated_utc": "2026-10-02T07:27:23.692963+00:00",
+   "sources": [
+    "Benzinga (via Alpaca News API)"
+   ],
+   "assets": [
+    "BTC"
+   ],
+   "affected_assets": [],
+   "event_time": "2026-10-02T04:34:28+00:00",
+   "importance": null,
+   "importance_basis": "not assessed",
+   "topic": "AMOD_BITCOIN BOOST GIVES ALPHA MODUS",
+   "topic_basis": "entities",
+   "interpretation": null
+  }
+ ],
+ "calendar": [
+  {
+   "name": "ETH options expiry",
+   "country": "CRYPTO",
+   "category": "OPTION_EXPIRY",
+   "scheduled_at": "2026-10-02T08:00:00+00:00",
+   "scheduled_utc": "2026-10-02T08:00:00+00:00",
+   "impact": 4,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "crypto_expiries",
+   "source_url": "https://www.deribit.com/",
+   "instruments": 60,
+   "currency": "ETH",
+   "event_class": "CRYPTO_EXPIRY",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "instrument expiration timestamp (Deribit)",
+   "attribution": "Source: Deribit",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "EXPIRY",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "7ddaceaaa8ac1fb7b78a945cb53eb347b10823f87ccb0d9ac68c4afe8b9fe7e9",
+   "ingested_at": "2026-09-27T05:28:19.467697+00:00"
+  },
+  {
+   "name": "BTC options expiry",
+   "country": "CRYPTO",
+   "category": "OPTION_EXPIRY",
+   "scheduled_at": "2026-10-02T08:00:00+00:00",
+   "scheduled_utc": "2026-10-02T08:00:00+00:00",
+   "impact": 4,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "crypto_expiries",
+   "source_url": "https://www.deribit.com/",
+   "instruments": 58,
+   "currency": "BTC",
+   "event_class": "CRYPTO_EXPIRY",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "instrument expiration timestamp (Deribit)",
+   "attribution": "Source: Deribit",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "EXPIRY",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "2da20d12586929ab7cd42788146feb2f56b8bccc4e520553c314c60a9d2ebc98",
+   "ingested_at": "2026-09-27T05:28:19.467697+00:00"
+  },
+  {
+   "name": "US employment situation (NFP, unemployment, AHE)",
+   "country": "US",
+   "category": "MACRO",
+   "scheduled_at": "2026-10-02T12:30:00+00:00",
+   "scheduled_utc": "2026-10-02T12:30:00+00:00",
+   "impact": 10,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "fred",
+   "source_url": "https://fred.stlouisfed.org/releases/calendar?rid=50",
+   "event_class": "US_NFP",
+   "time_known": true,
+   "time_source": "config",
+   "time_basis": "FRED release calendar date + BLS standard release time 08:30 ET (configured)",
+   "attribution": "Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics)",
+   "release_id": 50,
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "RELEASE",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "bbb390638745438b8a3fa96cb4978aa8c0dcf5babed08407fdb0f2a992e950df",
+   "ingested_at": "2026-09-27T16:28:41.198164+00:00"
+  },
+  {
+   "name": "ETH options expiry",
+   "country": "CRYPTO",
+   "category": "OPTION_EXPIRY",
+   "scheduled_at": "2026-10-03T08:00:00+00:00",
+   "scheduled_utc": "2026-10-03T08:00:00+00:00",
+   "impact": 4,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "crypto_expiries",
+   "source_url": "https://www.deribit.com/",
+   "instruments": 64,
+   "currency": "ETH",
+   "event_class": "CRYPTO_EXPIRY",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "instrument expiration timestamp (Deribit)",
+   "attribution": "Source: Deribit",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "EXPIRY",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "f2c147f719bef24def196fac3d5f643f76b6ea461d8b7fdc85c49d9422c2f728",
+   "ingested_at": "2026-09-29T17:14:59.507836+00:00"
+  },
+  {
+   "name": "BTC options expiry",
+   "country": "CRYPTO",
+   "category": "OPTION_EXPIRY",
+   "scheduled_at": "2026-10-03T08:00:00+00:00",
+   "scheduled_utc": "2026-10-03T08:00:00+00:00",
+   "impact": 4,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "crypto_expiries",
+   "source_url": "https://www.deribit.com/",
+   "instruments": 58,
+   "currency": "BTC",
+   "event_class": "CRYPTO_EXPIRY",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "instrument expiration timestamp (Deribit)",
+   "attribution": "Source: Deribit",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "EXPIRY",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "cf041e57026ade02245ef982842287a9e2f512d7155f5a58c12fbf487a86995a",
+   "ingested_at": "2026-09-29T17:14:59.507836+00:00"
+  },
+  {
+   "name": "ETH options expiry",
+   "country": "CRYPTO",
+   "category": "OPTION_EXPIRY",
+   "scheduled_at": "2026-10-04T08:00:00+00:00",
+   "scheduled_utc": "2026-10-04T08:00:00+00:00",
+   "impact": 4,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "crypto_expiries",
+   "source_url": "https://www.deribit.com/",
+   "instruments": 60,
+   "currency": "ETH",
+   "event_class": "CRYPTO_EXPIRY",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "instrument expiration timestamp (Deribit)",
+   "attribution": "Source: Deribit",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "EXPIRY",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "854b6da59a5d1e36a0ae1a95c082baae9c63224d034266bdd5d5b50c58942d02",
+   "ingested_at": "2026-09-30T08:22:58.321079+00:00"
+  },
+  {
+   "name": "BTC options expiry",
+   "country": "CRYPTO",
+   "category": "OPTION_EXPIRY",
+   "scheduled_at": "2026-10-04T08:00:00+00:00",
+   "scheduled_utc": "2026-10-04T08:00:00+00:00",
+   "impact": 4,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "crypto_expiries",
+   "source_url": "https://www.deribit.com/",
+   "instruments": 60,
+   "currency": "BTC",
+   "event_class": "CRYPTO_EXPIRY",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "instrument expiration timestamp (Deribit)",
+   "attribution": "Source: Deribit",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "EXPIRY",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "a3414e47e33adcec73c22451c615c2512fe74d84cc5b9282ad9528cc0774b8c2",
+   "ingested_at": "2026-09-30T08:22:58.321079+00:00"
+  },
+  {
+   "name": "ETH options expiry",
+   "country": "CRYPTO",
+   "category": "OPTION_EXPIRY",
+   "scheduled_at": "2026-10-05T08:00:00+00:00",
+   "scheduled_utc": "2026-10-05T08:00:00+00:00",
+   "impact": 4,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "crypto_expiries",
+   "source_url": "https://www.deribit.com/",
+   "instruments": 56,
+   "currency": "ETH",
+   "event_class": "CRYPTO_EXPIRY",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "instrument expiration timestamp (Deribit)",
+   "attribution": "Source: Deribit",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "EXPIRY",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "144b6474f07b77e878982df6ab7b4b902e7e772b372892975018d19090f1c028",
+   "ingested_at": "2026-10-01T09:46:51.990412+00:00"
+  },
+  {
+   "name": "BTC options expiry",
+   "country": "CRYPTO",
+   "category": "OPTION_EXPIRY",
+   "scheduled_at": "2026-10-05T08:00:00+00:00",
+   "scheduled_utc": "2026-10-05T08:00:00+00:00",
+   "impact": 4,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "crypto_expiries",
+   "source_url": "https://www.deribit.com/",
+   "instruments": 62,
+   "currency": "BTC",
+   "event_class": "CRYPTO_EXPIRY",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "instrument expiration timestamp (Deribit)",
+   "attribution": "Source: Deribit",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "EXPIRY",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "f9625e330853b9f9745b2739401f51b5d0534541ee2f93c9172f0b0bdd17a313",
+   "ingested_at": "2026-10-01T09:46:51.990412+00:00"
+  },
+  {
+   "name": "26-Week Bill auction",
+   "country": "US",
+   "category": "TREASURY_AUCTION",
+   "scheduled_at": "2026-10-05T15:30:00+00:00",
+   "scheduled_utc": "2026-10-05T15:30:00+00:00",
+   "impact": 3,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "treasury_auctions",
+   "source_url": "https://www.treasurydirect.gov/auctions/upcoming/",
+   "cusip": "912797WU7",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "competitive close (TreasuryDirect)",
+   "event_class": null,
+   "attribution": "Source: TreasuryDirect (U.S. Department of the Treasury)",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "AUCTION",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "92ccf6c061e80b4850edc7092cf4ceffd73db9a14e65049d16e84cce7f9e65ec",
+   "ingested_at": "2026-10-02T07:28:16.212963+00:00"
+  },
+  {
+   "name": "13-Week Bill auction",
+   "country": "US",
+   "category": "TREASURY_AUCTION",
+   "scheduled_at": "2026-10-05T15:30:00+00:00",
+   "scheduled_utc": "2026-10-05T15:30:00+00:00",
+   "impact": 3,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "treasury_auctions",
+   "source_url": "https://www.treasurydirect.gov/auctions/upcoming/",
+   "cusip": "912797VS3",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "competitive close (TreasuryDirect)",
+   "event_class": null,
+   "attribution": "Source: TreasuryDirect (U.S. Department of the Treasury)",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "AUCTION",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "1af45edeb7d9cc5d38b23f5efeb96964f7e29be7ae4529561af96544621b5465",
+   "ingested_at": "2026-10-02T07:28:16.212963+00:00"
+  },
+  {
+   "name": "Speech - Vice Chair for Supervision Michelle W. Bowman",
+   "country": "US",
+   "category": "CENTRAL_BANK",
+   "scheduled_at": "2026-10-06T14:45:00+00:00",
+   "scheduled_utc": "2026-10-06T14:45:00+00:00",
+   "impact": 5,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "fed_events_calendar",
+   "source_url": "https://www.federalreserve.gov/newsevents/calendar.htm",
+   "event_class": "FED_SPEECH",
+   "sub_event": null,
+   "kind": "SPEECH",
+   "speaker_role": "VICE_CHAIR",
+   "speaker": "Vice Chair for Supervision Michelle W. Bowman",
+   "bank": "fed",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "Federal Reserve calendar (federalreserve.gov/json/calendar.json; times are ET)",
+   "attribution": "Source: Federal Reserve Board",
+   "title": "Speech - Vice Chair for Supervision Michelle W. Bowman",
+   "location": "At the 2026 Community Banking Research Conference, St. Louis, Missouri",
+   "reference_period": null,
+   "parent_event_id": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "db22ce6d0090b456538228e05a84e80a66114d860a9cdfa307c9558b6316bec5",
+   "ingested_at": "2026-10-02T07:28:16.212963+00:00"
+  },
+  {
+   "name": "6-Week Bill auction",
+   "country": "US",
+   "category": "TREASURY_AUCTION",
+   "scheduled_at": "2026-10-06T15:30:00+00:00",
+   "scheduled_utc": "2026-10-06T15:30:00+00:00",
+   "impact": 3,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "treasury_auctions",
+   "source_url": "https://www.treasurydirect.gov/auctions/upcoming/",
+   "cusip": "912797UZ8",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "competitive close (TreasuryDirect)",
+   "event_class": null,
+   "attribution": "Source: TreasuryDirect (U.S. Department of the Treasury)",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "AUCTION",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "fa721bc1ba0a6e19c807516a798cc13dcfce4426e0bb611e5f6795af44071561",
+   "ingested_at": "2026-10-02T07:28:16.212963+00:00"
+  },
+  {
+   "name": "3-Year Note auction",
+   "country": "US",
+   "category": "TREASURY_AUCTION",
+   "scheduled_at": "2026-10-06T17:00:00+00:00",
+   "scheduled_utc": "2026-10-06T17:00:00+00:00",
+   "impact": 6,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "treasury_auctions",
+   "source_url": "https://www.treasurydirect.gov/auctions/upcoming/",
+   "cusip": "91282CRQ6",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "competitive close (TreasuryDirect)",
+   "event_class": "UST_AUCTION_3Y",
+   "attribution": "Source: TreasuryDirect (U.S. Department of the Treasury)",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "AUCTION",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "22599d1b3c6b50a2dae6e0853c5ca592babe0fe69a17d76c68b715fcb80f902e",
+   "ingested_at": "2026-10-02T07:28:16.212963+00:00"
+  },
+  {
+   "name": "EIA Weekly Petroleum Status Report",
+   "country": "US",
+   "category": "MACRO",
+   "scheduled_at": "2026-10-07T14:30:00+00:00",
+   "scheduled_utc": "2026-10-07T14:30:00+00:00",
+   "impact": 6,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "eia_wpsr_calendar",
+   "source_url": "https://www.eia.gov/petroleum/supply/weekly/schedule.php",
+   "week_ending": "2026-10-02",
+   "time_known": true,
+   "event_class": "EIA_WPSR",
+   "time_source": "config",
+   "time_basis": "standard Wednesday 10:30 ET",
+   "reference_period": "week ending 2026-10-02",
+   "attribution": "Source: U.S. Energy Information Administration (EIA)",
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "RELEASE",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "0e960a067f6d36e578e667edffac47d96aa18e84812035055ce16ec36e168433",
+   "ingested_at": "2026-09-27T05:28:19.467697+00:00"
+  },
+  {
+   "name": "9-Year 10-Month Note auction",
+   "country": "US",
+   "category": "TREASURY_AUCTION",
+   "scheduled_at": "2026-10-07T17:00:00+00:00",
+   "scheduled_utc": "2026-10-07T17:00:00+00:00",
+   "impact": 6,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "treasury_auctions",
+   "source_url": "https://www.treasurydirect.gov/auctions/upcoming/",
+   "cusip": "91282CRF0",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "competitive close (TreasuryDirect)",
+   "event_class": "UST_AUCTION_10Y",
+   "attribution": "Source: TreasuryDirect (U.S. Department of the Treasury)",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "AUCTION",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "89868bc7fc172639a2ee7ff7e8f5c0b942b3d0f041ceb4adb7e80ca29d35c47f",
+   "ingested_at": "2026-10-02T07:28:16.212963+00:00"
+  },
+  {
+   "name": "FOMC minutes",
+   "country": "US",
+   "category": "CENTRAL_BANK",
+   "scheduled_at": "2026-10-07T18:00:00+00:00",
+   "scheduled_utc": "2026-10-07T18:00:00+00:00",
+   "impact": 6,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "fed_events_calendar",
+   "source_url": "https://www.federalreserve.gov/newsevents/calendar.htm",
+   "event_class": "FOMC_MINUTES",
+   "sub_event": "MINUTES",
+   "kind": "MINUTES",
+   "speaker_role": null,
+   "speaker": null,
+   "bank": "fed",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "Federal Reserve calendar (federalreserve.gov/json/calendar.json; times are ET)",
+   "attribution": "Source: Federal Reserve Board",
+   "title": "FOMC Minutes",
+   "location": null,
+   "reference_period": null,
+   "parent_event_id": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "e6c2bdb6351cdaf59665064d8269f352346d839a32accfd9c1c45cc5d62edb09",
+   "ingested_at": "2026-09-27T16:28:41.198164+00:00"
+  },
+  {
+   "name": "US initial jobless claims",
+   "country": "US",
+   "category": "MACRO",
+   "scheduled_at": "2026-10-08T12:30:00+00:00",
+   "scheduled_utc": "2026-10-08T12:30:00+00:00",
+   "impact": 6,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "dol_claims_rule",
+   "source_url": "https://www.dol.gov/ui/data.pdf",
+   "event_class": "US_CLAIMS",
+   "reference_period": "week ending 2026-10-03",
+   "time_known": true,
+   "time_source": "rule",
+   "time_basis": "DOL weekly rule: Thursday 08:30 ET, Wednesday when Thursday is a US federal holiday (no official machine-readable schedule)",
+   "attribution": "Source: U.S. Department of Labor (weekly release rule)",
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "RELEASE",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "27db5bc0cb075defbbbb8ccc699a39b4b13b06d258047ae9504efa7b56497ae9",
+   "ingested_at": "2026-09-27T16:28:41.198164+00:00"
+  },
+  {
+   "name": "29-Year 10-Month Bond auction",
+   "country": "US",
+   "category": "TREASURY_AUCTION",
+   "scheduled_at": "2026-10-08T17:00:00+00:00",
+   "scheduled_utc": "2026-10-08T17:00:00+00:00",
+   "impact": 7,
+   "consensus": null,
+   "previous": null,
+   "actual": null,
+   "unit": null,
+   "provider": "treasury_auctions",
+   "source_url": "https://www.treasurydirect.gov/auctions/upcoming/",
+   "cusip": "912810UW6",
+   "time_known": true,
+   "time_source": "source",
+   "time_basis": "competitive close (TreasuryDirect)",
+   "event_class": "UST_AUCTION_30Y",
+   "attribution": "Source: TreasuryDirect (U.S. Department of the Treasury)",
+   "reference_period": null,
+   "parent_event_id": null,
+   "sub_event": null,
+   "kind": "AUCTION",
+   "speaker_role": null,
+   "speaker": null,
+   "session": null,
+   "sep": false,
+   "is_decision": false,
+   "id": "d395fe14628ac10c89aac6c3c562ffa379a9e5ccbfbf71dfe09467df36869c4f",
+   "ingested_at": "2026-10-02T07:28:16.212963+00:00"
+  }
+ ],
+ "providers": [],
+ "alerts": [],
+ "event_risk": {
+  "generated_at": "2026-10-02T07:34:45.068974+00:00",
+  "timezone": "Europe/Bucharest",
+  "markets_open": {
+   "crypto": true,
+   "us_equities": false,
+   "us_rates": true,
+   "fx": true,
+   "commodities": true
+  },
+  "mode": {
+   "active": false,
+   "event_id": null,
+   "name": null,
+   "time_bucharest": null,
+   "time_utc": null,
+   "minutes_until": null,
+   "impact_10": null,
+   "impact": null,
+   "relevance_score": null,
+   "relevance_level": null,
+   "affected_groups": [],
+   "phase": null
+  },
+  "next_event": {
+   "event_id": "BLS-20261002-US_NFP",
+   "row_id": "bbb390638745438b8a3fa96cb4978aa8c0dcf5babed08407fdb0f2a992e950df",
+   "name": "US employment situation (NFP, unemployment, AHE)",
+   "event_class": "US_NFP",
+   "category": "MACRO",
+   "kind": "RELEASE",
+   "is_decision": false,
+   "speaker_role": null,
+   "symbol": null,
+   "status": "APPROACHING",
+   "phase": "APPROACHING",
+   "timing": "SCHEDULED",
+   "time_utc": "2026-10-02T12:30:00+00:00",
+   "time_bucharest": "15:30",
+   "date_bucharest": "2026-10-02",
+   "time_known": true,
+   "time_basis": "FRED release calendar date + BLS standard release time 08:30 ET (configured)",
+   "date_window": null,
+   "minutes_until_event": 295,
+   "first_seen_utc": null,
+   "importance_score": 100.0,
+   "expected_volatility_score": 95.0,
+   "relevance_score": 87.5,
+   "relevance_level": "VERY HIGH",
+   "relevance_components": {
+    "importance": 100.0,
+    "expected_volatility": 95.0,
+    "proximity": 80.4,
+    "regime_sensitivity": 76.6,
+    "exposure_breadth": 100.0,
+    "pricing_uncertainty": 50.0
+   },
+   "relevance_missing": [],
+   "dominance_score": 87.5,
+   "dominance_basis": {
+    "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+    "regime_sensitivity": "exposed drivers moving: Rates, USD",
+    "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+   },
+   "impact_10": 8.8,
+   "impact": 10.0,
+   "affected_assets": [
+    {
+     "symbol": "DXY",
+     "level": "very_high",
+     "weight": 1.0
+    },
+    {
+     "symbol": "US2Y",
+     "level": "very_high",
+     "weight": 1.0
+    },
+    {
+     "symbol": "BTC",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "SP500",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "NASDAQ",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "RUSSELL",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "US10Y",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "EURUSD",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "GBPUSD",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "USDJPY",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "GOLD",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "ETH",
+     "level": "medium",
+     "weight": 0.5
+    }
+   ],
+   "consensus": "NO CONSENSUS",
+   "market_pricing": "UNKNOWN",
+   "actual": null,
+   "known_information": [
+    "Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics)",
+    "Time basis: FRED release calendar date + BLS standard release time 08:30 ET (configured)"
+   ],
+   "possible_surprises": [
+    "A",
+    "B"
+   ],
+   "scenarios": [
+    {
+     "id": "A",
+     "label": "Stronger than consensus",
+     "condition": "Stronger than consensus",
+     "trigger": "JOBS_STRONG",
+     "expected": {
+      "DXY": 1,
+      "US2Y": 1,
+      "BTC": -1,
+      "SP500": -1,
+      "NASDAQ": -1,
+      "RUSSELL": -1,
+      "EURUSD": -1,
+      "GBPUSD": -1,
+      "USDJPY": 1,
+      "ETH": -1
+     },
+     "basis": "causal graph: jobs-strong-rates, jobs-strong-growth",
+     "note": null,
+     "likelihood": "possible"
+    },
+    {
+     "id": "B",
+     "label": "Weaker than consensus",
+     "condition": "Weaker than consensus",
+     "trigger": "JOBS_WEAK",
+     "expected": {
+      "DXY": -1,
+      "US2Y": -1,
+      "BTC": -1,
+      "SP500": -1,
+      "NASDAQ": -1,
+      "RUSSELL": -1,
+      "EURUSD": 1,
+      "GBPUSD": 1,
+      "USDJPY": -1,
+      "ETH": -1
+     },
+     "basis": "causal graph: jobs-weak-rates, jobs-weak-growth",
+     "note": null,
+     "likelihood": "possible"
+    }
+   ],
+   "consequences": {},
+   "source_ids": [
+    "fred"
+   ],
+   "source_url": "https://fred.stlouisfed.org/releases/calendar?rid=50",
+   "attribution": "Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics)",
+   "fact_confidence": 95.0,
+   "sub_events": [],
+   "parent_event_id": null,
+   "status_note": null,
+   "data_incomplete": [
+    "NO CONSENSUS"
+   ],
+   "data_incomplete_flag": true,
+   "verification_status": null,
+   "surprise_basis": null,
+   "surprise": {
+    "assessment": "UNDETERMINED",
+    "source": "none",
+    "evidence_ids": [],
+    "validated": false
+   },
+   "official_documents": [],
+   "live_assets": [],
+   "awaiting_reopen": []
+  },
+  "dominant_event": {
+   "event_id": "BLS-20261002-US_NFP",
+   "row_id": "bbb390638745438b8a3fa96cb4978aa8c0dcf5babed08407fdb0f2a992e950df",
+   "name": "US employment situation (NFP, unemployment, AHE)",
+   "event_class": "US_NFP",
+   "category": "MACRO",
+   "kind": "RELEASE",
+   "is_decision": false,
+   "speaker_role": null,
+   "symbol": null,
+   "status": "APPROACHING",
+   "phase": "APPROACHING",
+   "timing": "SCHEDULED",
+   "time_utc": "2026-10-02T12:30:00+00:00",
+   "time_bucharest": "15:30",
+   "date_bucharest": "2026-10-02",
+   "time_known": true,
+   "time_basis": "FRED release calendar date + BLS standard release time 08:30 ET (configured)",
+   "date_window": null,
+   "minutes_until_event": 295,
+   "first_seen_utc": null,
+   "importance_score": 100.0,
+   "expected_volatility_score": 95.0,
+   "relevance_score": 87.5,
+   "relevance_level": "VERY HIGH",
+   "relevance_components": {
+    "importance": 100.0,
+    "expected_volatility": 95.0,
+    "proximity": 80.4,
+    "regime_sensitivity": 76.6,
+    "exposure_breadth": 100.0,
+    "pricing_uncertainty": 50.0
+   },
+   "relevance_missing": [],
+   "dominance_score": 87.5,
+   "dominance_basis": {
+    "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+    "regime_sensitivity": "exposed drivers moving: Rates, USD",
+    "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+   },
+   "impact_10": 8.8,
+   "impact": 10.0,
+   "affected_assets": [
+    {
+     "symbol": "DXY",
+     "level": "very_high",
+     "weight": 1.0
+    },
+    {
+     "symbol": "US2Y",
+     "level": "very_high",
+     "weight": 1.0
+    },
+    {
+     "symbol": "BTC",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "SP500",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "NASDAQ",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "RUSSELL",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "US10Y",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "EURUSD",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "GBPUSD",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "USDJPY",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "GOLD",
+     "level": "high",
+     "weight": 0.75
+    },
+    {
+     "symbol": "ETH",
+     "level": "medium",
+     "weight": 0.5
+    }
+   ],
+   "consensus": "NO CONSENSUS",
+   "market_pricing": "UNKNOWN",
+   "actual": null,
+   "known_information": [
+    "Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics)",
+    "Time basis: FRED release calendar date + BLS standard release time 08:30 ET (configured)"
+   ],
+   "possible_surprises": [
+    "A",
+    "B"
+   ],
+   "scenarios": [
+    {
+     "id": "A",
+     "label": "Stronger than consensus",
+     "condition": "Stronger than consensus",
+     "trigger": "JOBS_STRONG",
+     "expected": {
+      "DXY": 1,
+      "US2Y": 1,
+      "BTC": -1,
+      "SP500": -1,
+      "NASDAQ": -1,
+      "RUSSELL": -1,
+      "EURUSD": -1,
+      "GBPUSD": -1,
+      "USDJPY": 1,
+      "ETH": -1
+     },
+     "basis": "causal graph: jobs-strong-rates, jobs-strong-growth",
+     "note": null,
+     "likelihood": "possible"
+    },
+    {
+     "id": "B",
+     "label": "Weaker than consensus",
+     "condition": "Weaker than consensus",
+     "trigger": "JOBS_WEAK",
+     "expected": {
+      "DXY": -1,
+      "US2Y": -1,
+      "BTC": -1,
+      "SP500": -1,
+      "NASDAQ": -1,
+      "RUSSELL": -1,
+      "EURUSD": 1,
+      "GBPUSD": 1,
+      "USDJPY": -1,
+      "ETH": -1
+     },
+     "basis": "causal graph: jobs-weak-rates, jobs-weak-growth",
+     "note": null,
+     "likelihood": "possible"
+    }
+   ],
+   "consequences": {},
+   "source_ids": [
+    "fred"
+   ],
+   "source_url": "https://fred.stlouisfed.org/releases/calendar?rid=50",
+   "attribution": "Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics)",
+   "fact_confidence": 95.0,
+   "sub_events": [],
+   "parent_event_id": null,
+   "status_note": null,
+   "data_incomplete": [
+    "NO CONSENSUS"
+   ],
+   "data_incomplete_flag": true,
+   "verification_status": null,
+   "surprise_basis": null,
+   "surprise": {
+    "assessment": "UNDETERMINED",
+    "source": "none",
+    "evidence_ids": [],
+    "validated": false
+   },
+   "official_documents": [],
+   "live_assets": [],
+   "awaiting_reopen": []
+  },
+  "events": [
+   {
+    "event_id": "DERIBIT-20261002-BTC-CRYPTO_EXPIRY",
+    "row_id": "2da20d12586929ab7cd42788146feb2f56b8bccc4e520553c314c60a9d2ebc98",
+    "name": "BTC options expiry",
+    "event_class": "CRYPTO_EXPIRY",
+    "category": "CRYPTO",
+    "kind": "EXPIRY",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": "BTC",
+    "status": "APPROACHING",
+    "phase": "APPROACHING",
+    "timing": "SCHEDULED",
+    "time_utc": "2026-10-02T08:00:00+00:00",
+    "time_bucharest": "11:00",
+    "date_bucharest": "2026-10-02",
+    "time_known": true,
+    "time_basis": "instrument expiration timestamp (Deribit)",
+    "date_window": null,
+    "minutes_until_event": 25,
+    "first_seen_utc": null,
+    "importance_score": 45.0,
+    "expected_volatility_score": 40.0,
+    "relevance_score": 42.8,
+    "relevance_level": "MODERATE",
+    "relevance_components": {
+     "importance": 45.0,
+     "expected_volatility": 40.0,
+     "proximity": 100.0,
+     "regime_sensitivity": 0.0,
+     "exposure_breadth": 12.5,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 47.2,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "no exposed driver moving (static exposure mean)",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 4.3,
+    "impact": 4.0,
+    "affected_assets": [
+     {
+      "symbol": "BTC",
+      "level": "high",
+      "weight": 0.75
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Source: Deribit",
+     "Time basis: instrument expiration timestamp (Deribit)"
+    ],
+    "possible_surprises": [],
+    "scenarios": [],
+    "consequences": {},
+    "source_ids": [
+     "crypto_expiries"
+    ],
+    "source_url": "https://www.deribit.com/",
+    "attribution": "Source: Deribit",
+    "fact_confidence": 99.0,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [],
+    "data_incomplete_flag": false,
+    "verification_status": null,
+    "surprise_basis": null,
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [],
+    "awaiting_reopen": []
+   },
+   {
+    "event_id": "DERIBIT-20261002-ETH-CRYPTO_EXPIRY",
+    "row_id": "7ddaceaaa8ac1fb7b78a945cb53eb347b10823f87ccb0d9ac68c4afe8b9fe7e9",
+    "name": "ETH options expiry",
+    "event_class": "CRYPTO_EXPIRY",
+    "category": "CRYPTO",
+    "kind": "EXPIRY",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": "ETH",
+    "status": "APPROACHING",
+    "phase": "APPROACHING",
+    "timing": "SCHEDULED",
+    "time_utc": "2026-10-02T08:00:00+00:00",
+    "time_bucharest": "11:00",
+    "date_bucharest": "2026-10-02",
+    "time_known": true,
+    "time_basis": "instrument expiration timestamp (Deribit)",
+    "date_window": null,
+    "minutes_until_event": 25,
+    "first_seen_utc": null,
+    "importance_score": 45.0,
+    "expected_volatility_score": 40.0,
+    "relevance_score": 42.8,
+    "relevance_level": "MODERATE",
+    "relevance_components": {
+     "importance": 45.0,
+     "expected_volatility": 40.0,
+     "proximity": 100.0,
+     "regime_sensitivity": 0.0,
+     "exposure_breadth": 12.5,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 47.2,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "no exposed driver moving (static exposure mean)",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 4.3,
+    "impact": 4.0,
+    "affected_assets": [
+     {
+      "symbol": "ETH",
+      "level": "high",
+      "weight": 0.75
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Source: Deribit",
+     "Time basis: instrument expiration timestamp (Deribit)"
+    ],
+    "possible_surprises": [],
+    "scenarios": [],
+    "consequences": {},
+    "source_ids": [
+     "crypto_expiries"
+    ],
+    "source_url": "https://www.deribit.com/",
+    "attribution": "Source: Deribit",
+    "fact_confidence": 99.0,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [],
+    "data_incomplete_flag": false,
+    "verification_status": null,
+    "surprise_basis": null,
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [],
+    "awaiting_reopen": []
+   },
+   {
+    "event_id": "BLS-20261002-US_NFP",
+    "row_id": "bbb390638745438b8a3fa96cb4978aa8c0dcf5babed08407fdb0f2a992e950df",
+    "name": "US employment situation (NFP, unemployment, AHE)",
+    "event_class": "US_NFP",
+    "category": "MACRO",
+    "kind": "RELEASE",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": null,
+    "status": "APPROACHING",
+    "phase": "APPROACHING",
+    "timing": "SCHEDULED",
+    "time_utc": "2026-10-02T12:30:00+00:00",
+    "time_bucharest": "15:30",
+    "date_bucharest": "2026-10-02",
+    "time_known": true,
+    "time_basis": "FRED release calendar date + BLS standard release time 08:30 ET (configured)",
+    "date_window": null,
+    "minutes_until_event": 295,
+    "first_seen_utc": null,
+    "importance_score": 100.0,
+    "expected_volatility_score": 95.0,
+    "relevance_score": 87.5,
+    "relevance_level": "VERY HIGH",
+    "relevance_components": {
+     "importance": 100.0,
+     "expected_volatility": 95.0,
+     "proximity": 80.4,
+     "regime_sensitivity": 76.6,
+     "exposure_breadth": 100.0,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 87.5,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "exposed drivers moving: Rates, USD",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 8.8,
+    "impact": 10.0,
+    "affected_assets": [
+     {
+      "symbol": "DXY",
+      "level": "very_high",
+      "weight": 1.0
+     },
+     {
+      "symbol": "US2Y",
+      "level": "very_high",
+      "weight": 1.0
+     },
+     {
+      "symbol": "BTC",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "SP500",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "NASDAQ",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "RUSSELL",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "US10Y",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "EURUSD",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "GBPUSD",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "USDJPY",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "GOLD",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "ETH",
+      "level": "medium",
+      "weight": 0.5
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics)",
+     "Time basis: FRED release calendar date + BLS standard release time 08:30 ET (configured)"
+    ],
+    "possible_surprises": [
+     "A",
+     "B"
+    ],
+    "scenarios": [
+     {
+      "id": "A",
+      "label": "Stronger than consensus",
+      "condition": "Stronger than consensus",
+      "trigger": "JOBS_STRONG",
+      "expected": {
+       "DXY": 1,
+       "US2Y": 1,
+       "BTC": -1,
+       "SP500": -1,
+       "NASDAQ": -1,
+       "RUSSELL": -1,
+       "EURUSD": -1,
+       "GBPUSD": -1,
+       "USDJPY": 1,
+       "ETH": -1
+      },
+      "basis": "causal graph: jobs-strong-rates, jobs-strong-growth",
+      "note": null,
+      "likelihood": "possible"
+     },
+     {
+      "id": "B",
+      "label": "Weaker than consensus",
+      "condition": "Weaker than consensus",
+      "trigger": "JOBS_WEAK",
+      "expected": {
+       "DXY": -1,
+       "US2Y": -1,
+       "BTC": -1,
+       "SP500": -1,
+       "NASDAQ": -1,
+       "RUSSELL": -1,
+       "EURUSD": 1,
+       "GBPUSD": 1,
+       "USDJPY": -1,
+       "ETH": -1
+      },
+      "basis": "causal graph: jobs-weak-rates, jobs-weak-growth",
+      "note": null,
+      "likelihood": "possible"
+     }
+    ],
+    "consequences": {},
+    "source_ids": [
+     "fred"
+    ],
+    "source_url": "https://fred.stlouisfed.org/releases/calendar?rid=50",
+    "attribution": "Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics)",
+    "fact_confidence": 95.0,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [
+     "NO CONSENSUS"
+    ],
+    "data_incomplete_flag": true,
+    "verification_status": null,
+    "surprise_basis": null,
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [],
+    "awaiting_reopen": []
+   },
+   {
+    "event_id": "EIA-20261007-EIA_WPSR",
+    "row_id": "0e960a067f6d36e578e667edffac47d96aa18e84812035055ce16ec36e168433",
+    "name": "EIA Weekly Petroleum Status Report",
+    "event_class": "EIA_WPSR",
+    "category": "MACRO",
+    "kind": "RELEASE",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": null,
+    "status": "SCHEDULED",
+    "phase": "SCHEDULED",
+    "timing": "SCHEDULED",
+    "time_utc": "2026-10-07T14:30:00+00:00",
+    "time_bucharest": "17:30",
+    "date_bucharest": "2026-10-07",
+    "time_known": true,
+    "time_basis": "standard Wednesday 10:30 ET",
+    "date_window": null,
+    "minutes_until_event": 7615,
+    "first_seen_utc": null,
+    "importance_score": 55.0,
+    "expected_volatility_score": 50.0,
+    "relevance_score": 40.2,
+    "relevance_level": "MODERATE",
+    "relevance_components": {
+     "importance": 55.0,
+     "expected_volatility": 50.0,
+     "proximity": 4.3,
+     "regime_sensitivity": 34.4,
+     "exposure_breadth": 29.2,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 37.5,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "exposed drivers moving: Oil",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 4.0,
+    "impact": 6.0,
+    "affected_assets": [
+     {
+      "symbol": "WTI",
+      "level": "very_high",
+      "weight": 1.0
+     },
+     {
+      "symbol": "BRENT",
+      "level": "high",
+      "weight": 0.75
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Source: U.S. Energy Information Administration (EIA)",
+     "Time basis: standard Wednesday 10:30 ET",
+     "Reference period: week ending 2026-10-02"
+    ],
+    "possible_surprises": [
+     "A",
+     "B"
+    ],
+    "scenarios": [
+     {
+      "id": "A",
+      "label": "Larger crude draw",
+      "condition": "Larger crude draw",
+      "trigger": null,
+      "expected": {
+       "WTI": 1,
+       "BRENT": 1
+      },
+      "basis": "configured template",
+      "note": null,
+      "likelihood": "possible"
+     },
+     {
+      "id": "B",
+      "label": "Larger crude build",
+      "condition": "Larger crude build",
+      "trigger": null,
+      "expected": {
+       "WTI": -1,
+       "BRENT": -1
+      },
+      "basis": "configured template",
+      "note": null,
+      "likelihood": "possible"
+     }
+    ],
+    "consequences": {},
+    "source_ids": [
+     "eia_wpsr_calendar"
+    ],
+    "source_url": "https://www.eia.gov/petroleum/supply/weekly/schedule.php",
+    "attribution": "Source: U.S. Energy Information Administration (EIA)",
+    "fact_confidence": 95.0,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [],
+    "data_incomplete_flag": false,
+    "verification_status": null,
+    "surprise_basis": null,
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [],
+    "awaiting_reopen": []
+   },
+   {
+    "event_id": "UST-20261007-UST_AUCTION_10Y",
+    "row_id": "89868bc7fc172639a2ee7ff7e8f5c0b942b3d0f041ceb4adb7e80ca29d35c47f",
+    "name": "9-Year 10-Month Note auction",
+    "event_class": "UST_AUCTION_10Y",
+    "category": "TREASURY",
+    "kind": "AUCTION",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": null,
+    "status": "SCHEDULED",
+    "phase": "SCHEDULED",
+    "timing": "SCHEDULED",
+    "time_utc": "2026-10-07T17:00:00+00:00",
+    "time_bucharest": "20:00",
+    "date_bucharest": "2026-10-07",
+    "time_known": true,
+    "time_basis": "competitive close (TreasuryDirect)",
+    "date_window": null,
+    "minutes_until_event": 7765,
+    "first_seen_utc": null,
+    "importance_score": 60.0,
+    "expected_volatility_score": 50.0,
+    "relevance_score": 41.3,
+    "relevance_level": "MODERATE",
+    "relevance_components": {
+     "importance": 60.0,
+     "expected_volatility": 50.0,
+     "proximity": 4.0,
+     "regime_sensitivity": 32.0,
+     "exposure_breadth": 29.2,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 40.5,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "exposed drivers moving: Rates",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 4.1,
+    "impact": 6.0,
+    "affected_assets": [
+     {
+      "symbol": "US10Y",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "US30Y",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "NASDAQ",
+      "level": "low",
+      "weight": 0.25
+     },
+     {
+      "symbol": "US5Y",
+      "level": "low",
+      "weight": 0.25
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Source: TreasuryDirect (U.S. Department of the Treasury)",
+     "Time basis: competitive close (TreasuryDirect)"
+    ],
+    "possible_surprises": [],
+    "scenarios": [],
+    "consequences": {},
+    "source_ids": [
+     "treasury_auctions"
+    ],
+    "source_url": "https://www.treasurydirect.gov/auctions/upcoming/",
+    "attribution": "Source: TreasuryDirect (U.S. Department of the Treasury)",
+    "fact_confidence": 99.0,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [],
+    "data_incomplete_flag": false,
+    "verification_status": null,
+    "surprise_basis": null,
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [],
+    "awaiting_reopen": []
+   },
+   {
+    "event_id": "FED-20261007-FOMC_MINUTES",
+    "row_id": "e6c2bdb6351cdaf59665064d8269f352346d839a32accfd9c1c45cc5d62edb09",
+    "name": "FOMC minutes",
+    "event_class": "FOMC_MINUTES",
+    "category": "CENTRAL_BANK",
+    "kind": "MINUTES",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": null,
+    "status": "SCHEDULED",
+    "phase": "SCHEDULED",
+    "timing": "SCHEDULED",
+    "time_utc": "2026-10-07T18:00:00+00:00",
+    "time_bucharest": "21:00",
+    "date_bucharest": "2026-10-07",
+    "time_known": true,
+    "time_basis": "Federal Reserve calendar (federalreserve.gov/json/calendar.json; times are ET)",
+    "date_window": null,
+    "minutes_until_event": 7825,
+    "first_seen_utc": null,
+    "importance_score": 65.0,
+    "expected_volatility_score": 55.0,
+    "relevance_score": 52.9,
+    "relevance_level": "MODERATE",
+    "relevance_components": {
+     "importance": 65.0,
+     "expected_volatility": 55.0,
+     "proximity": 3.9,
+     "regime_sensitivity": 59.4,
+     "exposure_breadth": 79.2,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 50.7,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "exposed drivers moving: Rates, USD",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 5.3,
+    "impact": 6.0,
+    "affected_assets": [
+     {
+      "symbol": "DXY",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "US2Y",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "SP500",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "NASDAQ",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "US10Y",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "EURUSD",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "USDJPY",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "GOLD",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "BTC",
+      "level": "low",
+      "weight": 0.25
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Source: Federal Reserve Board",
+     "Time basis: Federal Reserve calendar (federalreserve.gov/json/calendar.json; times are ET)"
+    ],
+    "possible_surprises": [
+     "A",
+     "B",
+     "C"
+    ],
+    "scenarios": [
+     {
+      "id": "A",
+      "label": "No new policy signal",
+      "condition": "No new policy signal",
+      "trigger": null,
+      "expected": {},
+      "basis": "no directional model",
+      "note": null,
+      "likelihood": "possible"
+     },
+     {
+      "id": "B",
+      "label": "Hawkish tone",
+      "condition": "Hawkish tone",
+      "trigger": "FED_HAWKISH",
+      "expected": {
+       "DXY": 1,
+       "US2Y": 1,
+       "SP500": -1,
+       "NASDAQ": -1,
+       "US10Y": 1,
+       "EURUSD": -1,
+       "USDJPY": 1,
+       "GOLD": -1,
+       "BTC": -1
+      },
+      "basis": "causal graph: fed-hawkish",
+      "note": null,
+      "likelihood": "possible"
+     },
+     {
+      "id": "C",
+      "label": "Dovish tone",
+      "condition": "Dovish tone",
+      "trigger": "FED_DOVISH",
+      "expected": {
+       "DXY": -1,
+       "US2Y": -1,
+       "SP500": 1,
+       "NASDAQ": 1,
+       "US10Y": -1,
+       "EURUSD": 1,
+       "USDJPY": -1,
+       "GOLD": 1,
+       "BTC": 1
+      },
+      "basis": "causal graph: fed-dovish",
+      "note": null,
+      "likelihood": "possible"
+     }
+    ],
+    "consequences": {},
+    "source_ids": [
+     "fed_events_calendar"
+    ],
+    "source_url": "https://www.federalreserve.gov/newsevents/calendar.htm",
+    "attribution": "Source: Federal Reserve Board",
+    "fact_confidence": 99.0,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [],
+    "data_incomplete_flag": false,
+    "verification_status": null,
+    "surprise_basis": {
+     "headline_priced": "UNKNOWN",
+     "guidance_pending": true,
+     "priced_threshold": 0.9,
+     "allowed_assessments": [
+      "UNDETERMINED",
+      "NOT_APPLICABLE"
+     ],
+     "official_document_ids": [],
+     "basis": [
+      "market pricing UNKNOWN",
+      "guidance pending until the minutes ends",
+      "no official document of this event received yet (a surprise call needs one)"
+     ]
+    },
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [],
+    "awaiting_reopen": []
+   },
+   {
+    "event_id": "DOL-20261008-US_CLAIMS",
+    "row_id": "27db5bc0cb075defbbbb8ccc699a39b4b13b06d258047ae9504efa7b56497ae9",
+    "name": "US initial jobless claims",
+    "event_class": "US_CLAIMS",
+    "category": "MACRO",
+    "kind": "RELEASE",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": null,
+    "status": "SCHEDULED",
+    "phase": "SCHEDULED",
+    "timing": "SCHEDULED",
+    "time_utc": "2026-10-08T12:30:00+00:00",
+    "time_bucharest": "15:30",
+    "date_bucharest": "2026-10-08",
+    "time_known": true,
+    "time_basis": "DOL weekly rule: Thursday 08:30 ET, Wednesday when Thursday is a US federal holiday (no official machine-readable schedule)",
+    "date_window": null,
+    "minutes_until_event": 8935,
+    "first_seen_utc": null,
+    "importance_score": 60.0,
+    "expected_volatility_score": 50.0,
+    "relevance_score": 46.6,
+    "relevance_level": "MODERATE",
+    "relevance_components": {
+     "importance": 60.0,
+     "expected_volatility": 50.0,
+     "proximity": 2.0,
+     "regime_sensitivity": 52.5,
+     "exposure_breadth": 54.2,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 45.1,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "exposed drivers moving: Rates, USD",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 4.7,
+    "impact": 6.0,
+    "affected_assets": [
+     {
+      "symbol": "US2Y",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "SP500",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "NASDAQ",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "DXY",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "US10Y",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "BTC",
+      "level": "low",
+      "weight": 0.25
+     },
+     {
+      "symbol": "GOLD",
+      "level": "low",
+      "weight": 0.25
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Source: U.S. Department of Labor (weekly release rule)",
+     "Time basis: DOL weekly rule: Thursday 08:30 ET, Wednesday when Thursday is a US federal holiday (no official machine-readable schedule)",
+     "Reference period: week ending 2026-10-03"
+    ],
+    "possible_surprises": [
+     "A",
+     "B"
+    ],
+    "scenarios": [
+     {
+      "id": "A",
+      "label": "Claims below consensus (labour strength)",
+      "condition": "Claims below consensus (labour strength)",
+      "trigger": "JOBS_STRONG",
+      "expected": {
+       "US2Y": 1,
+       "SP500": -1,
+       "NASDAQ": -1,
+       "DXY": 1,
+       "BTC": -1
+      },
+      "basis": "causal graph: jobs-strong-rates, jobs-strong-growth",
+      "note": null,
+      "likelihood": "possible"
+     },
+     {
+      "id": "B",
+      "label": "Claims above consensus (labour weakness)",
+      "condition": "Claims above consensus (labour weakness)",
+      "trigger": "JOBS_WEAK",
+      "expected": {
+       "US2Y": -1,
+       "SP500": -1,
+       "NASDAQ": -1,
+       "DXY": -1,
+       "BTC": -1
+      },
+      "basis": "causal graph: jobs-weak-rates, jobs-weak-growth",
+      "note": null,
+      "likelihood": "possible"
+     }
+    ],
+    "consequences": {},
+    "source_ids": [
+     "dol_claims_rule"
+    ],
+    "source_url": "https://www.dol.gov/ui/data.pdf",
+    "attribution": "Source: U.S. Department of Labor (weekly release rule)",
+    "fact_confidence": 85.0,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [
+     "NO CONSENSUS"
+    ],
+    "data_incomplete_flag": false,
+    "verification_status": null,
+    "surprise_basis": null,
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [],
+    "awaiting_reopen": []
+   }
+  ],
+  "active_events": [
+   {
+    "event_id": "REG-20261001-a39b6305",
+    "row_id": "a39b6305-4b90-49c2-8c0e-20aa290939f5",
+    "name": "SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws",
+    "event_class": "CRYPTO_REGULATION",
+    "category": "REGULATION",
+    "kind": "OTHER",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": null,
+    "status": "UNRESOLVED",
+    "phase": "ACTIVE",
+    "timing": "ANYTIME",
+    "time_utc": null,
+    "time_bucharest": null,
+    "date_bucharest": null,
+    "time_known": false,
+    "time_basis": "unscheduled (timing ANYTIME)",
+    "date_window": null,
+    "minutes_until_event": null,
+    "first_seen_utc": "2026-10-01T16:16:07+00:00",
+    "importance_score": 75.0,
+    "expected_volatility_score": 70.0,
+    "relevance_score": 59.2,
+    "relevance_level": "MODERATE",
+    "relevance_components": {
+     "importance": 75.0,
+     "expected_volatility": 70.0,
+     "proximity": 68.1,
+     "regime_sensitivity": 0.0,
+     "exposure_breadth": 75.0,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 59.9,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "no exposed driver moving (static exposure mean)",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 5.9,
+    "impact": null,
+    "affected_assets": [
+     {
+      "symbol": "BTC",
+      "level": "very_high",
+      "weight": 1.0
+     },
+     {
+      "symbol": "ETH",
+      "level": "very_high",
+      "weight": 1.0
+     },
+     {
+      "symbol": "COIN",
+      "level": "very_high",
+      "weight": 1.0
+     },
+     {
+      "symbol": "MSTR",
+      "level": "high",
+      "weight": 0.75
+     },
+     {
+      "symbol": "BMNR",
+      "level": "high",
+      "weight": 0.75
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Verification: CONFIRMED",
+     "Causal chain: Crypto regulatory pressure up"
+    ],
+    "possible_surprises": [
+     "A",
+     "B"
+    ],
+    "scenarios": [
+     {
+      "id": "A",
+      "label": "Tighter regulation",
+      "condition": "Tighter regulation",
+      "trigger": "CRYPTO_REGULATION",
+      "expected": {
+       "BTC": -1,
+       "ETH": -1,
+       "COIN": -1,
+       "MSTR": -1,
+       "BMNR": -1
+      },
+      "basis": "causal graph: crypto-regulation",
+      "note": null,
+      "likelihood": "possible"
+     },
+     {
+      "id": "B",
+      "label": "Regulatory relief",
+      "condition": "Regulatory relief",
+      "trigger": "CRYPTO_REGULATORY_RELIEF",
+      "expected": {
+       "BTC": 1,
+       "ETH": 1,
+       "COIN": 1,
+       "MSTR": 1,
+       "BMNR": 1
+      },
+      "basis": "causal graph: crypto-regulatory-relief",
+      "note": null,
+      "likelihood": "possible"
+     }
+    ],
+    "consequences": {
+     "BTC": -1,
+     "ETH": -1,
+     "COIN": -1,
+     "MSTR": -1,
+     "BMNR": -1
+    },
+    "source_ids": [
+     "SEC press releases"
+    ],
+    "source_url": null,
+    "attribution": null,
+    "fact_confidence": 94.95,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [],
+    "data_incomplete_flag": false,
+    "verification_status": "CONFIRMED",
+    "surprise_basis": null,
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [
+     "BTC",
+     "ETH"
+    ],
+    "awaiting_reopen": [
+     "COIN",
+     "MSTR",
+     "BMNR"
+    ]
+   },
+   {
+    "event_id": "SANC-20261001-f87011fd",
+    "row_id": "f87011fd-6f49-41bf-aaa0-fb0deba3bae7",
+    "name": "OFAC sanctions list update (publication 1041): 31 additions, 4 amendments [IRAN-EO13871, IRAN-EO13902, TCO]",
+    "event_class": "SANCTIONS",
+    "category": "GEOPOLITICAL",
+    "kind": "OTHER",
+    "is_decision": false,
+    "speaker_role": null,
+    "symbol": null,
+    "status": "UNRESOLVED",
+    "phase": "ACTIVE",
+    "timing": "ANYTIME",
+    "time_utc": null,
+    "time_bucharest": null,
+    "date_bucharest": null,
+    "time_known": false,
+    "time_basis": "unscheduled (timing ANYTIME)",
+    "date_window": null,
+    "minutes_until_event": null,
+    "first_seen_utc": "2026-10-01T16:36:06.277880+00:00",
+    "importance_score": 70.0,
+    "expected_volatility_score": 60.0,
+    "relevance_score": 55.6,
+    "relevance_level": "MODERATE",
+    "relevance_components": {
+     "importance": 70.0,
+     "expected_volatility": 60.0,
+     "proximity": 68.8,
+     "regime_sensitivity": 26.4,
+     "exposure_breadth": 33.3,
+     "pricing_uncertainty": 50.0
+    },
+    "relevance_missing": [],
+    "dominance_score": 58.9,
+    "dominance_basis": {
+     "historical_impact": "configured prior (stored history insufficient: n=0 < 8)",
+     "regime_sensitivity": "exposed drivers moving: USD, Oil",
+     "pricing_uncertainty": "configured default (market pricing UNKNOWN)"
+    },
+    "impact_10": 5.6,
+    "impact": null,
+    "affected_assets": [
+     {
+      "symbol": "GOLD",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "WTI",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "BRENT",
+      "level": "medium",
+      "weight": 0.5
+     },
+     {
+      "symbol": "BTC",
+      "level": "low",
+      "weight": 0.25
+     },
+     {
+      "symbol": "DXY",
+      "level": "low",
+      "weight": 0.25
+     }
+    ],
+    "consensus": "NO CONSENSUS",
+    "market_pricing": "UNKNOWN",
+    "actual": null,
+    "known_information": [
+     "Verification: CONFIRMED"
+    ],
+    "possible_surprises": [],
+    "scenarios": [],
+    "consequences": {},
+    "source_ids": [
+     "OFAC Sanctions List Service"
+    ],
+    "source_url": null,
+    "attribution": null,
+    "fact_confidence": 95.02,
+    "sub_events": [],
+    "parent_event_id": null,
+    "status_note": null,
+    "data_incomplete": [],
+    "data_incomplete_flag": false,
+    "verification_status": "CONFIRMED",
+    "surprise_basis": null,
+    "surprise": {
+     "assessment": "UNDETERMINED",
+     "source": "none",
+     "evidence_ids": [],
+     "validated": false
+    },
+    "official_documents": [],
+    "live_assets": [
+     "GOLD",
+     "WTI",
+     "BRENT",
+     "BTC",
+     "DXY"
+    ],
+    "awaiting_reopen": []
+   }
+  ],
+  "potential_events": [],
+  "asset_event_risk": {
+   "BTC": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 13.8,
+    "base_confidence": 16.02,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "ETH": {
+    "score": 59.2,
+    "level": "MODERATE",
+    "event_id": "REG-20261001-a39b6305",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 6.0,
+    "base_confidence": 6.47,
+    "penalty": 0.08,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "SP500": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "NASDAQ": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "RUSSELL": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "DXY": {
+    "score": 87.5,
+    "level": "VERY HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1979,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "US2Y": {
+    "score": 87.5,
+    "level": "VERY HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1979,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "US5Y": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "US10Y": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "US30Y": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "EURUSD": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "GBPUSD": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "USDJPY": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "AUDUSD": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "USDCAD": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "USDCHF": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "NZDUSD": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "GOLD": {
+    "score": 73.3,
+    "level": "HIGH",
+    "event_id": "BLS-20261002-US_NFP",
+    "minutes_until": 295,
+    "phase": "APPROACHING",
+    "event_name": "US employment situation (NFP, unemployment, AHE)",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.1387,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "WTI": {
+    "score": 37.5,
+    "level": "LOW",
+    "event_id": "SANC-20261001-f87011fd",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "OFAC sanctions list update (publication 1041): 31 additions, 4 amendments [IRAN-EO13871, IRAN-EO13902, TCO]",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "BRENT": {
+    "score": 37.5,
+    "level": "LOW",
+    "event_id": "SANC-20261001-f87011fd",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "OFAC sanctions list update (publication 1041): 31 additions, 4 amendments [IRAN-EO13871, IRAN-EO13902, TCO]",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": false,
+    "status_reason": null
+   },
+   "VIX": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "COIN": {
+    "score": 59.2,
+    "level": "MODERATE",
+    "event_id": "REG-20261001-a39b6305",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 14.3,
+    "base_confidence": 15.53,
+    "penalty": 0.08,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "MSTR": {
+    "score": 49.6,
+    "level": "MODERATE",
+    "event_id": "REG-20261001-a39b6305",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 14.9,
+    "base_confidence": 15.53,
+    "penalty": 0.04,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "BMNR": {
+    "score": 49.6,
+    "level": "MODERATE",
+    "event_id": "REG-20261001-a39b6305",
+    "minutes_until": null,
+    "phase": "ACTIVE",
+    "event_name": "SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws",
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.5,
+    "base_confidence": 0.53,
+    "penalty": 0.04,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "NVDA": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "MSFT": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 15.0,
+    "base_confidence": 15.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "AAPL": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 15.0,
+    "base_confidence": 15.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "AMZN": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 15.0,
+    "base_confidence": 15.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "META": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 0.0,
+    "base_confidence": 0.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "GOOGL": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 15.0,
+    "base_confidence": 15.0,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   },
+   "TSLA": {
+    "score": 0.0,
+    "level": "LOW",
+    "event_id": null,
+    "minutes_until": null,
+    "phase": null,
+    "event_name": null,
+    "trade_status": "WAIT",
+    "adjusted_confidence": 11.2,
+    "base_confidence": 11.2,
+    "penalty": 0.0,
+    "confidence_basis": "|decision score| (conviction, not a probability) x (1 - pre-event penalty)",
+    "awaiting_reopen": true,
+    "status_reason": null
+   }
+  },
+  "favored": [],
+  "pressured": [],
+  "non_confirming": [
+   {
+    "symbol": "DXY",
+    "stance": "NOT CONFIRMING",
+    "implied": "FAVORED",
+    "expected_direction": 1,
+    "display": "DXY ↑",
+    "regime_cause": "USD_STRENGTH",
+    "event_risk": {
+     "score": 87.5,
+     "level": "VERY HIGH",
+     "minutes_until": 295
+    },
+    "event_id": "BLS-20261002-US_NFP",
+    "awaiting_reopen": false,
+    "reason_facts": [
+     "USD strength: DXY ↑",
+     "DXY +0.49% (last close Thu 1 Oct)",
+     "Historical context only; current-session confirmation is unavailable",
+     "own evidence does not confirm (no aligned decision side or move)"
+    ]
+   },
+   {
+    "symbol": "USDJPY",
+    "stance": "NOT CONFIRMING",
+    "implied": "FAVORED",
+    "expected_direction": 1,
+    "display": "USDJPY ↑",
+    "regime_cause": "USD_STRENGTH",
+    "event_risk": {
+     "score": 73.3,
+     "level": "HIGH",
+     "minutes_until": 295
+    },
+    "event_id": "BLS-20261002-US_NFP",
+    "awaiting_reopen": false,
+    "reason_facts": [
+     "USD strength: USDJPY ↑",
+     "USDJPY +0.63% (last close Thu 1 Oct)",
+     "Historical context only; current-session confirmation is unavailable",
+     "own evidence does not confirm (no aligned decision side or move)"
+    ]
+   },
+   {
+    "symbol": "EURUSD",
+    "stance": "NOT CONFIRMING",
+    "implied": "PRESSURED",
+    "expected_direction": -1,
+    "display": "EURUSD ↓",
+    "regime_cause": "USD_STRENGTH",
+    "event_risk": {
+     "score": 73.3,
+     "level": "HIGH",
+     "minutes_until": 295
+    },
+    "event_id": "BLS-20261002-US_NFP",
+    "awaiting_reopen": false,
+    "reason_facts": [
+     "USD strength: EURUSD ↓",
+     "EURUSD -0.50% (last close Thu 1 Oct)",
+     "Historical context only; current-session confirmation is unavailable",
+     "own evidence does not confirm (no aligned decision side or move)"
+    ]
+   },
+   {
+    "symbol": "GBPUSD",
+    "stance": "NOT CONFIRMING",
+    "implied": "PRESSURED",
+    "expected_direction": -1,
+    "display": "GBPUSD ↓",
+    "regime_cause": "USD_STRENGTH",
+    "event_risk": {
+     "score": 73.3,
+     "level": "HIGH",
+     "minutes_until": 295
+    },
+    "event_id": "BLS-20261002-US_NFP",
+    "awaiting_reopen": false,
+    "reason_facts": [
+     "USD strength: GBPUSD ↓",
+     "GBPUSD -0.40% (last close Thu 1 Oct)",
+     "Historical context only; current-session confirmation is unavailable",
+     "own evidence does not confirm (no aligned decision side or move)"
+    ]
+   },
+   {
+    "symbol": "GOLD",
+    "stance": "NOT CONFIRMING",
+    "implied": "PRESSURED",
+    "expected_direction": -1,
+    "display": "GOLD ↓",
+    "regime_cause": "USD_STRENGTH",
+    "event_risk": {
+     "score": 73.3,
+     "level": "HIGH",
+     "minutes_until": 295
+    },
+    "event_id": "BLS-20261002-US_NFP",
+    "awaiting_reopen": false,
+    "reason_facts": [
+     "USD strength: GOLD ↓",
+     "GOLD +0.42% (24h via PAXG)",
+     "own evidence does not confirm (no aligned decision side or move)"
+    ]
+   }
+  ],
+  "what_can_break": [
+   {
+    "text": "DXY reversal lower",
+    "kind": "driver",
+    "source": "USD"
+   }
+  ],
+  "trade_watch": [],
+  "post_event": [],
+  "data_incomplete": [
+   {
+    "event_id": "BLS-20261002-US_NFP",
+    "name": "US employment situation (NFP, unemployment, AHE)",
+    "level": "VERY HIGH",
+    "flag": "EVENT DATA INCOMPLETE",
+    "reasons": [
+     "NO CONSENSUS"
+    ]
+   }
+  ],
+  "regime": {
+   "posture": "MIXED",
+   "regimes": [
+    "USD_STRENGTH"
+   ],
+   "confidence": 100.0,
+   "coverage_pct": 86.7,
+   "basis": "last_close",
+   "basis_label": "last close 29 Sep–Thu 1 Oct + proxies (IWM, PAXG)",
+   "missing_required": [],
+   "method": "Rule coverage across observed features; not a calibrated probability",
+   "as_of": "2026-10-02T07:34:45.395077+00:00",
+   "current_drivers": [
+    {
+     "driver": "Rates",
+     "direction": "unavailable",
+     "arrow": null,
+     "inputs": [],
+     "missing": [
+      "US2Y",
+      "US10Y"
+     ],
+     "input": null,
+     "basis": null
+    },
+    {
+     "driver": "USD",
+     "direction": "unavailable",
+     "arrow": null,
+     "inputs": [],
+     "missing": [
+      "DXY"
+     ],
+     "input": null,
+     "basis": null
+    },
+    {
+     "driver": "Oil",
+     "direction": "unavailable",
+     "arrow": null,
+     "inputs": [],
+     "missing": [
+      "BRENT",
+      "WTI"
+     ],
+     "input": null,
+     "basis": null
+    },
+    {
+     "driver": "Risk appetite",
+     "direction": "unavailable",
+     "arrow": null,
+     "inputs": [],
+     "missing": [
+      "SP500",
+      "NASDAQ",
+      "VIX"
+     ],
+     "input": null,
+     "basis": null
+    }
+   ],
+   "divergences": [],
+   "drivers": [
+    {
+     "driver": "Rates",
+     "direction": "down",
+     "arrow": "↓",
+     "input": "US2Y −10 bp, US10Y −5 bp",
+     "missing": [],
+     "inputs": [
+      {
+       "feature": "US2Y",
+       "close_status": "CURRENT",
+       "close_date": "2026-10-01"
+      },
+      {
+       "feature": "US10Y",
+       "close_status": "CURRENT",
+       "close_date": "2026-10-01"
+      }
+     ]
+    },
+    {
+     "driver": "USD",
+     "direction": "up",
+     "arrow": "↑",
+     "input": "DXY +0.49%",
+     "missing": [],
+     "inputs": [
+      {
+       "feature": "DXY",
+       "close_status": "CURRENT",
+       "close_date": "2026-10-01"
+      }
+     ]
+    },
+    {
+     "driver": "Oil",
+     "direction": "down",
+     "arrow": "↓",
+     "input": "BRENT −5.01%, WTI −3.23%",
+     "missing": [],
+     "inputs": [
+      {
+       "feature": "BRENT",
+       "close_status": "CURRENT",
+       "close_date": "2026-09-29"
+      },
+      {
+       "feature": "WTI",
+       "close_status": "CURRENT",
+       "close_date": "2026-09-29"
+      }
+     ]
+    },
+    {
+     "driver": "Risk appetite",
+     "direction": "flat",
+     "arrow": "→",
+     "input": "SP500 +0.19%, NASDAQ +0.04%, VIX +1.87%",
+     "missing": [],
+     "inputs": [
+      {
+       "feature": "SP500",
+       "close_status": "CURRENT",
+       "close_date": "2026-10-01"
+      },
+      {
+       "feature": "NASDAQ",
+       "close_status": "CURRENT",
+       "close_date": "2026-10-01"
+      },
+      {
+       "feature": "VIX",
+       "close_status": "CURRENT",
+       "close_date": "2026-09-30"
+      }
+     ]
+    }
+   ],
+   "evaluated": [
+    {
+     "regime": "RISK_ON",
+     "state": "INACTIVE",
+     "confidence": 0.0
+    },
+    {
+     "regime": "RISK_OFF",
+     "state": "INACTIVE",
+     "confidence": 33.3
+    },
+    {
+     "regime": "INFLATION_SHOCK",
+     "state": "INACTIVE",
+     "confidence": 28.6
+    },
+    {
+     "regime": "GROWTH_SCARE",
+     "state": "INACTIVE",
+     "confidence": 50.0
+    },
+    {
+     "regime": "LIQUIDITY_STRESS",
+     "state": "INACTIVE",
+     "confidence": 0.0
+    },
+    {
+     "regime": "GEOPOLITICAL_SHOCK",
+     "state": "INACTIVE",
+     "confidence": 0.0
+    },
+    {
+     "regime": "USD_STRENGTH",
+     "state": "ACTIVE",
+     "confidence": 100.0
+    },
+    {
+     "regime": "USD_WEAKNESS",
+     "state": "INACTIVE",
+     "confidence": 0.0
+    },
+    {
+     "regime": "VOLATILITY_EXPANSION",
+     "state": "INACTIVE",
+     "confidence": 0.0
+    },
+    {
+     "regime": "LOW_VOLATILITY",
+     "state": "INACTIVE",
+     "confidence": 50.0
+    }
+   ],
+   "cause": {
+    "id": "USD_STRENGTH",
+    "label": "USD strength"
+   }
+  },
+  "versions": {
+   "event_risk": "1.1.1",
+   "event_exposure": "1.1.0"
+  }
+ },
+ "interpretation": {
+  "source": "deterministic",
+  "model": null,
+  "generated_at": "2026-10-02T07:34:45.068974+00:00",
+  "stale": false,
+  "age_seconds": 0.0,
+  "stale_after_seconds": 3600,
+  "basis_hash": "6c247147e11daa968f614bc2512b01cb1a00a1fdfdb234436d1807bc73e901f6",
+  "output": {
+   "ai_view": "Mixed conditions driven by USD strength (mixed posture) describe historical context; DXY, USDJPY, EURUSD, GBPUSD and GOLD not confirming that view now. US employment situation (NFP, unemployment, AHE) at 15:30 Bucharest is the dominant event and can change this view. US equities closed: event implications there cannot be confirmed until that market reopens; US rates, FX, commodities and crypto markets are open.",
+   "market_summary": "Mixed conditions driven by USD strength (mixed posture) on a last close 29 Sep–Thu 1 Oct + proxies (IWM, PAXG) basis. Drivers: Rates ↓ (US2Y −10 bp, US10Y −5 bp); USD ↑ (DXY +0.49%); Oil ↓ (BRENT −5.01%, WTI −3.23%); Risk appetite → (SP500 +0.19%, NASDAQ +0.04%, VIX +1.87%). Not confirming: DXY ↑, USDJPY ↑, EURUSD ↓, GBPUSD ↓, GOLD ↓. US employment situation (NFP, unemployment, AHE) at 15:30 Bucharest is the dominant event and can change this view; most exposed: DXY, US2Y, BTC, SP500, NASDAQ. Market expectation for US employment situation (NFP, unemployment, AHE) — consensus: NO CONSENSUS; market pricing: UNKNOWN; EVENT DATA INCOMPLETE (NO CONSENSUS). US equities closed: event implications there cannot be confirmed until that market reopens; US rates, FX, commodities and crypto markets are open. ACTIVE EVENT RISK: SEC Proposal Would Address How Investment Advisers and Funds Can Custody Crypto Assets Under the Federal Securities Laws (timing ANYTIME, UNRESOLVED).",
+   "dominant_event": {
+    "event_id": "BLS-20261002-US_NFP",
+    "reason": "Dominance score 88/100 with VERY HIGH relevance; it can matter more than the current regime for the next directional move.",
+    "risk_comment": "Setups exposed to it (DXY, US2Y, BTC, SP500, NASDAQ) are provisional until it resolves."
+   },
+   "favored_assets": [],
+   "pressured_assets": [],
+   "non_confirming_assets": [
+    {
+     "symbol": "DXY",
+     "comment": "not confirming; USD strength: DXY ↑; DXY +0.49% (last close Thu 1 Oct); Historical context only; current-session confirmation is unavailable; event risk VERY HIGH from US employment situation (NFP, unemployment, AHE) at 15:30 Bucharest"
+    },
+    {
+     "symbol": "USDJPY",
+     "comment": "not confirming; USD strength: USDJPY ↑; USDJPY +0.63% (last close Thu 1 Oct); Historical context only; current-session confirmation is unavailable; event risk HIGH from US employment situation (NFP, unemployment, AHE) at 15:30 Bucharest"
+    },
+    {
+     "symbol": "EURUSD",
+     "comment": "not confirming; USD strength: EURUSD ↓; EURUSD -0.50% (last close Thu 1 Oct); Historical context only; current-session confirmation is unavailable; event risk HIGH from US employment situation (NFP, unemployment, AHE) at 15:30 Bucharest"
+    },
+    {
+     "symbol": "GBPUSD",
+     "comment": "not confirming; USD strength: GBPUSD ↓; GBPUSD -0.40% (last close Thu 1 Oct); Historical context only; current-session confirmation is unavailable; event risk HIGH from US employment situation (NFP, unemployment, AHE) at 15:30 Bucharest"
+    },
+    {
+     "symbol": "GOLD",
+     "comment": "not confirming; USD strength: GOLD ↓; GOLD +0.42% (24h via PAXG); own evidence does not confirm (no aligned decision side or move); event risk HIGH from US employment situation (NFP, unemployment, AHE) at 15:30 Bucharest"
+    }
+   ],
+   "next_events": [
+    {
+     "event_id": "BLS-20261002-US_NFP",
+     "why_it_matters": "VERY HIGH relevance; most exposed: DXY, US2Y, BTC, SP500, NASDAQ. Known: Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics); Time basis: FRED release calendar date + BLS standard release time 08:30 ET (configured).",
+     "bull_case": "No listed scenario lifts risk assets.",
+     "bear_case": "Possible (Stronger than consensus): DXY ↑, US2Y ↑, BTC ↓, SP500 ↓, NASDAQ ↓, RUSSELL ↓, EURUSD ↓, GBPUSD ↓. Possible (Weaker than consensus): DXY ↓, US2Y ↓, BTC ↓, SP500 ↓, NASDAQ ↓, RUSSELL ↓, EURUSD ↑, GBPUSD ↑.",
+     "neutral_case": "No listed scenario is neutral for risk assets.",
+     "what_is_priced": "Consensus: NO CONSENSUS; market pricing: UNKNOWN.",
+     "what_is_not_priced": "Cannot be determined while market pricing is UNKNOWN.",
+     "confirmation_after_event": "Post-event reactions of DXY, US2Y, BTC measured against the resolved scenario.",
+     "surprise_assessment": "UNDETERMINED",
+     "evidence_ids": []
+    },
+    {
+     "event_id": "DERIBIT-20261002-BTC-CRYPTO_EXPIRY",
+     "why_it_matters": "MODERATE relevance; most exposed: BTC. Known: Source: Deribit; Time basis: instrument expiration timestamp (Deribit).",
+     "bull_case": "No scenario template for this event class.",
+     "bear_case": "No scenario template for this event class.",
+     "neutral_case": "No scenario template for this event class.",
+     "what_is_priced": "Consensus: NO CONSENSUS; market pricing: UNKNOWN.",
+     "what_is_not_priced": "Cannot be determined while market pricing is UNKNOWN.",
+     "confirmation_after_event": "Post-event reactions of BTC measured against the resolved scenario.",
+     "surprise_assessment": "UNDETERMINED",
+     "evidence_ids": []
+    },
+    {
+     "event_id": "DERIBIT-20261002-ETH-CRYPTO_EXPIRY",
+     "why_it_matters": "MODERATE relevance; most exposed: ETH. Known: Source: Deribit; Time basis: instrument expiration timestamp (Deribit).",
+     "bull_case": "No scenario template for this event class.",
+     "bear_case": "No scenario template for this event class.",
+     "neutral_case": "No scenario template for this event class.",
+     "what_is_priced": "Consensus: NO CONSENSUS; market pricing: UNKNOWN.",
+     "what_is_not_priced": "Cannot be determined while market pricing is UNKNOWN.",
+     "confirmation_after_event": "Post-event reactions of ETH measured against the resolved scenario.",
+     "surprise_assessment": "UNDETERMINED",
+     "evidence_ids": []
+    },
+    {
+     "event_id": "REG-20261001-a39b6305",
+     "why_it_matters": "MODERATE relevance; most exposed: BTC, ETH, COIN, MSTR, BMNR. Known: Verification: CONFIRMED; Causal chain: Crypto regulatory pressure up.",
+     "bull_case": "Possible (Regulatory relief): BTC ↑, ETH ↑, COIN ↑, MSTR ↑, BMNR ↑",
+     "bear_case": "Possible (Tighter regulation): BTC ↓, ETH ↓, COIN ↓, MSTR ↓, BMNR ↓",
+     "neutral_case": "No listed scenario is neutral for risk assets.",
+     "what_is_priced": "Consensus: NO CONSENSUS; market pricing: UNKNOWN.",
+     "what_is_not_priced": "Cannot be determined while market pricing is UNKNOWN.",
+     "confirmation_after_event": "Post-event reactions of BTC, ETH, COIN measured against the resolved scenario.",
+     "surprise_assessment": "NOT_APPLICABLE",
+     "evidence_ids": []
+    },
+    {
+     "event_id": "SANC-20261001-f87011fd",
+     "why_it_matters": "MODERATE relevance; most exposed: GOLD, WTI, BRENT, BTC, DXY. Known: Verification: CONFIRMED.",
+     "bull_case": "No scenario template for this event class.",
+     "bear_case": "No scenario template for this event class.",
+     "neutral_case": "No scenario template for this event class.",
+     "what_is_priced": "Consensus: NO CONSENSUS; market pricing: UNKNOWN.",
+     "what_is_not_priced": "Cannot be determined while market pricing is UNKNOWN.",
+     "confirmation_after_event": "Post-event reactions of GOLD, WTI, BRENT measured against the resolved scenario.",
+     "surprise_assessment": "NOT_APPLICABLE",
+     "evidence_ids": []
+    }
+   ],
+   "key_risks": [
+    "EVENT DATA INCOMPLETE: US employment situation (NFP, unemployment, AHE) (NO CONSENSUS)"
+   ],
+   "trade_watch": []
+  },
+  "assessments": {
+   "BLS-20261002-US_NFP": {
+    "assessment": "UNDETERMINED",
+    "source": "none",
+    "evidence_ids": [],
+    "validated": false,
+    "guidance_pending": false,
+    "phase": "APPROACHING",
+    "generated_at": "2026-10-02T07:27:46.810057+00:00"
+   },
+   "DERIBIT-20261002-BTC-CRYPTO_EXPIRY": {
+    "assessment": "UNDETERMINED",
+    "source": "none",
+    "evidence_ids": [],
+    "validated": false,
+    "guidance_pending": false,
+    "phase": "APPROACHING",
+    "generated_at": "2026-10-02T07:27:46.810057+00:00"
+   },
+   "DERIBIT-20261002-ETH-CRYPTO_EXPIRY": {
+    "assessment": "UNDETERMINED",
+    "source": "none",
+    "evidence_ids": [],
+    "validated": false,
+    "guidance_pending": false,
+    "phase": "APPROACHING",
+    "generated_at": "2026-10-02T07:27:46.810057+00:00"
+   },
+   "UST-20261007-UST_AUCTION_10Y": {
+    "assessment": "UNDETERMINED",
+    "source": "none",
+    "evidence_ids": [],
+    "validated": false,
+    "guidance_pending": false,
+    "phase": "SCHEDULED",
+    "generated_at": "2026-10-02T07:27:46.810057+00:00"
+   },
+   "EIA-20261007-EIA_WPSR": {
+    "assessment": "UNDETERMINED",
+    "source": "none",
+    "evidence_ids": [],
+    "validated": false,
+    "guidance_pending": false,
+    "phase": "SCHEDULED",
+    "generated_at": "2026-10-02T07:27:46.810057+00:00"
+   }
+  },
+  "label": "Deterministic summary — current snapshot",
+  "run_id": null,
+  "previous_generated_at": "2026-10-02T07:27:46.810057+00:00"
+ }
+}

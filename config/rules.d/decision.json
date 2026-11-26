@@ -1,0 +1,19 @@
+{
+  "decision_version": "1.1.0",
+  "decision": {
+    "fx_banks": {"USD": "fed", "EUR": "ecb", "GBP": "boe", "JPY": "boj", "AUD": "rba", "CAD": "boc", "CHF": "snb", "NZD": "rbnz"},
+    "reference_assets": ["US2Y", "US10Y", "DXY", "BRENT", "GOLD", "NASDAQ", "VIX"],
+    "reaction_event_age_hours": 48,
+    "ai_for_categories": ["STRONG LONG SETUP", "LONG SETUP", "SHORT SETUP", "STRONG SHORT SETUP"],
+    "ai_reuse_seconds": 1800,
+    "ai_reuse_seconds_note": "The chief analyst's explanation and the auditor's PASS of a setup are reused (no AI request) for this long while the symbol, category, direction and evidence set are the same and every number the explanation cites is still in the current inputs (the deterministic audit then passes as well). The analysis runs every few minutes, and a setup that stayed actionable asked both reserve roles again on every cycle. 0 switches the reuse off.",
+    "report_horizon_fallback": "4h",
+    "specialists": {
+      "geopolitical_energy": {"triggers": ["GEOPOLITICAL_ENERGY", "ENERGY_DEESCALATION", "OIL_PRICE_SPIKE"], "event_types": ["GEOPOLITICAL_ENERGY"]},
+      "fx": {"asset_classes": ["fx"], "event_types": ["CENTRAL_BANK"]},
+      "crypto": {"asset_classes": ["crypto"], "event_types": ["CRYPTO_REGULATION"]},
+      "equity_credit": {"asset_classes": ["equity"], "event_types": ["EARNINGS", "REGULATORY_FILING"]},
+      "macro": {"default": true}
+    }
+  }
+}

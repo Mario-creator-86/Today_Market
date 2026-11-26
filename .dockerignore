@@ -1,0 +1,9 @@
+.venv
+.git
+.env
+.env.provider-settings.tmp
+frontend/node_modules
+frontend/.next
+*.db
+*.log
+artifacts

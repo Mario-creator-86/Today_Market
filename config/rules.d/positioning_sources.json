@@ -1,0 +1,132 @@
+{
+  "positioning_sources_version": "1.0.0",
+  "positioning_sources": {
+    "cftc_cot": {
+      "base_url": "https://publicreporting.cftc.gov",
+      "attribution": "Source: CFTC Commitments of Traders (public domain; acknowledgement requested by the CFTC)",
+      "terms_url": "https://www.cftc.gov/WebPolicy/index.htm",
+      "positions_timezone": "America/New_York",
+      "positions_time": "16:00",
+      "release_weekday": 4,
+      "release_time": "15:30",
+      "min_interval_seconds": 3600,
+      "max_cache_seconds": 86400,
+      "max_requests_per_hour": 30,
+      "rate_limit_note": "Socrata: no documented numeric limit without an app token; unauthenticated IPs that make too many requests may be throttled. The cache is kept until the next scheduled Friday release (daily safety refresh), then at most one refresh (3 calls) per hour; hard local cap 30 requests/hour.",
+      "history_weeks": 156,
+      "percentile_min_weeks": 52,
+      "page_limit": 5000,
+      "max_pages": 10,
+      "stale_after_days": 11,
+      "reports": {
+        "legacy": {
+          "dataset": "6dca-aqww",
+          "title": "Legacy futures-only",
+          "groups": {
+            "noncommercial": {"long": "noncomm_positions_long_all", "short": "noncomm_positions_short_all", "spread": "noncomm_postions_spread_all",
+                              "change_long": "change_in_noncomm_long_all", "change_short": "change_in_noncomm_short_all"},
+            "commercial": {"long": "comm_positions_long_all", "short": "comm_positions_short_all",
+                           "change_long": "change_in_comm_long_all", "change_short": "change_in_comm_short_all"},
+            "nonreportable": {"long": "nonrept_positions_long_all", "short": "nonrept_positions_short_all",
+                              "change_long": "change_in_nonrept_long_all", "change_short": "change_in_nonrept_short_all"}
+          }
+        },
+        "disaggregated": {
+          "dataset": "72hh-3qpy",
+          "title": "Disaggregated futures-only",
+          "groups": {
+            "producer_merchant": {"long": "prod_merc_positions_long", "short": "prod_merc_positions_short",
+                                  "change_long": "change_in_prod_merc_long", "change_short": "change_in_prod_merc_short"},
+            "swap_dealer": {"long": "swap_positions_long_all", "short": "swap__positions_short_all", "spread": "swap__positions_spread_all",
+                            "change_long": "change_in_swap_long_all", "change_short": "change_in_swap_short_all"},
+            "managed_money": {"long": "m_money_positions_long_all", "short": "m_money_positions_short_all", "spread": "m_money_positions_spread",
+                              "change_long": "change_in_m_money_long_all", "change_short": "change_in_m_money_short_all"},
+            "other_reportable": {"long": "other_rept_positions_long", "short": "other_rept_positions_short", "spread": "other_rept_positions_spread",
+                                 "change_long": "change_in_other_rept_long", "change_short": "change_in_other_rept_short"},
+            "nonreportable": {"long": "nonrept_positions_long_all", "short": "nonrept_positions_short_all",
+                              "change_long": "change_in_nonrept_long_all", "change_short": "change_in_nonrept_short_all"}
+          }
+        },
+        "tff": {
+          "dataset": "gpe5-46if",
+          "title": "Traders in Financial Futures, futures-only",
+          "groups": {
+            "dealer": {"long": "dealer_positions_long_all", "short": "dealer_positions_short_all", "spread": "dealer_positions_spread_all",
+                       "change_long": "change_in_dealer_long_all", "change_short": "change_in_dealer_short_all"},
+            "asset_manager": {"long": "asset_mgr_positions_long", "short": "asset_mgr_positions_short", "spread": "asset_mgr_positions_spread",
+                              "change_long": "change_in_asset_mgr_long", "change_short": "change_in_asset_mgr_short"},
+            "leveraged_money": {"long": "lev_money_positions_long", "short": "lev_money_positions_short", "spread": "lev_money_positions_spread",
+                                "change_long": "change_in_lev_money_long", "change_short": "change_in_lev_money_short"},
+            "other_reportable": {"long": "other_rept_positions_long", "short": "other_rept_positions_short", "spread": "other_rept_positions_spread",
+                                 "change_long": "change_in_other_rept_long", "change_short": "change_in_other_rept_short"},
+            "nonreportable": {"long": "nonrept_positions_long_all", "short": "nonrept_positions_short_all",
+                              "change_long": "change_in_nonrept_long_all", "change_short": "change_in_nonrept_short_all"}
+          }
+        }
+      },
+      "contracts": {
+        "088691": {"symbol": "GOLD", "name": "Gold (COMEX)", "primary": "disaggregated", "reports": ["disaggregated", "legacy"], "relation": "same"},
+        "067651": {"symbol": "WTI", "name": "WTI crude (NYMEX physical)", "primary": "disaggregated", "reports": ["disaggregated", "legacy"], "relation": "same"},
+        "13874A": {"symbol": "SP500", "name": "E-mini S&P 500 (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "209742": {"symbol": "NASDAQ", "name": "Nasdaq-100 mini (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "239742": {"symbol": "RUSSELL", "name": "Russell 2000 E-mini (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "042601": {"symbol": "US2Y", "name": "UST 2Y note (CBOT)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "inverse"},
+        "044601": {"symbol": "US5Y", "name": "UST 5Y note (CBOT)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "inverse"},
+        "043602": {"symbol": "US10Y", "name": "UST 10Y note (CBOT)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "inverse"},
+        "020601": {"symbol": "US30Y", "name": "UST bond (CBOT)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "inverse"},
+        "099741": {"symbol": "EURUSD", "name": "Euro FX (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "096742": {"symbol": "GBPUSD", "name": "British pound (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "097741": {"symbol": "USDJPY", "name": "Japanese yen (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "inverse"},
+        "232741": {"symbol": "AUDUSD", "name": "Australian dollar (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "090741": {"symbol": "USDCAD", "name": "Canadian dollar (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "inverse"},
+        "092741": {"symbol": "USDCHF", "name": "Swiss franc (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "inverse"},
+        "112741": {"symbol": "NZDUSD", "name": "New Zealand dollar (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "098662": {"symbol": "DXY", "name": "US dollar index (ICE US)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "1170E1": {"symbol": "VIX", "name": "VIX futures (CFE)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "133741": {"symbol": "BTC", "name": "Bitcoin (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"},
+        "146021": {"symbol": "ETH", "name": "Ether cash settled (CME)", "primary": "tff", "reports": ["tff", "legacy"], "relation": "same"}
+      },
+      "relation_notes": {
+        "same": "A net long futures position is long the tracked symbol.",
+        "inverse": "A net long futures position is short the tracked symbol (long UST futures = long price = short yield; long JPY/CAD/CHF futures = short USDJPY/USDCAD/USDCHF)."
+      },
+      "gaps": ["BRENT: ICE Brent is not in CFTC data (ICE Futures Europe publishes its own COT; not integrated)."]
+    },
+    "binance_futures": {
+      "attribution": "Source: Binance Futures public market data (venue perpetual prices, not spot; personal use, not redistributed)",
+      "usdm_base_url": "https://fapi.binance.com",
+      "coinm_base_url": "https://dapi.binance.com",
+      "instruments": [
+        {"symbol": "BTC", "market": "usdm", "instrument": "BTCUSDT", "oi_units": "BTC"},
+        {"symbol": "ETH", "market": "usdm", "instrument": "ETHUSDT", "oi_units": "ETH"},
+        {"symbol": "BTC", "market": "coinm", "instrument": "BTCUSD_PERP", "pair": "BTCUSD", "oi_units": "contracts of 100 USD"},
+        {"symbol": "ETH", "market": "coinm", "instrument": "ETHUSD_PERP", "pair": "ETHUSD", "oi_units": "contracts of 10 USD"}
+      ],
+      "stats_period": "1h",
+      "stats_limit": 3,
+      "stats_markets": ["usdm"],
+      "stats_disabled_note": "COIN-M hourly statistics not used: on 2026-09-26 the /futures/data COIN-M series (open interest and long/short) repeated identical values for 6+ hourly buckets and did not match live open interest.",
+      "request_weight_limit_per_minute": 2400,
+      "request_weight_budget_fraction": 0.25,
+      "endpoint_weights": {"premiumIndex": 10, "openInterest": 1},
+      "stats_limit_per_5min": 1000,
+      "stats_budget_fraction": 0.25,
+      "restricted_backoff_seconds": 3600,
+      "banned_backoff_seconds": 600,
+      "min_interval_seconds": 30,
+      "rate_limit_note": "REQUEST_WEIGHT 2400/min per IP (exchangeInfo); /futures/data statistics 1000 requests per 5 min per IP. Header x-mbx-used-weight-1m is honoured."
+    },
+    "coinbase_intx": {
+      "attribution": "Source: Coinbase International Exchange public market data",
+      "base_url": "https://api.international.coinbase.com",
+      "instruments": [
+        {"symbol": "BTC", "instrument": "BTC-PERP"},
+        {"symbol": "ETH", "instrument": "ETH-PERP"}
+      ],
+      "min_interval_seconds": 60,
+      "max_requests_per_minute": 20,
+      "rate_limit_note": "INTX rate-limit page could not be read; the documented CDP terms forbid circumventing limits, so this adapter polls at most once a minute (4 calls) and caps itself at 20 requests/min."
+    },
+    "descriptive_note": "Positioning describes who holds what; it is not a direction or a price target."
+  }
+}

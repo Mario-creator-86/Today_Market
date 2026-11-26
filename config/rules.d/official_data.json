@@ -1,0 +1,256 @@
+{
+  "official_data_version": "1.4.0",
+  "official_data": {
+    "note": "Official macro, rates and reference data (backend/providers/official_data.py). None of it is live: every record carries as_of (UTC), a delay label and the attribution the source's terms require.",
+    "ecb": {
+      "base_url": "https://data-api.ecb.europa.eu",
+      "attribution": "Source: ECB",
+      "terms_url": "https://www.ecb.europa.eu/services/using-our-site/disclaimer/html/index.en.html",
+      "rate_limits": [{"max_calls": 60, "per_seconds": 60}],
+      "rate_limit_basis": "No documented limit; self-imposed guard. The ECB asks for updatedAfter/If-Modified-Since on frequent syncs, so poll no more than every 15 minutes.",
+      "policy_rates": {
+        "flow": "FM",
+        "key": "B.U2.EUR.4F.KR.DFR+MRR_FR.LEV",
+        "series": {"DFR": "ECB deposit facility rate", "MRR_FR": "ECB main refinancing operations rate"},
+        "headline": "DFR",
+        "effective_timezone": "Europe/Berlin",
+        "delay": "official policy rate, as of effective date"
+      },
+      "yields": {
+        "flow": "YC",
+        "key": "B.U2.EUR.4F.G_N_A.SV_C_YM.SR_2Y+SR_10Y",
+        "series": {"SR_2Y": "EU2Y", "SR_10Y": "EU10Y"},
+        "title": "Euro area AAA government yield curve spot rate (Svensson)",
+        "record_time": "17:30",
+        "record_timezone": "Europe/Berlin",
+        "delay": "T+1"
+      },
+      "hicp": {
+        "flow": "HICP",
+        "key": "M.U2.N.000000.4D0.ANR",
+        "series": "EA_HICP_YOY",
+        "title": "Euro area HICP, annual rate of change",
+        "last_n": 6,
+        "delay": "monthly release",
+        "note": "The old ICP dataflow is frozen at 2025-12; VALID_FROM (includeHistory) is the first-known release time."
+      },
+      "fx": {
+        "flow": "EXR",
+        "currencies": ["USD", "GBP", "JPY", "AUD", "CAD", "CHF", "NZD", "SEK"],
+        "key_suffix": "EUR.SP00.A",
+        "pairs": ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "USDCAD", "USDCHF", "NZDUSD"],
+        "decimals": {"USDJPY": 3, "default": 5},
+        "fixing_time": "14:15",
+        "fixing_timezone": "Europe/Berlin",
+        "last_n": 3,
+        "delay": "daily fix",
+        "description": "ECB reference rate (14:15 CET fixing, published ~16:00 CET); crosses derived via EUR. Information only, not a tradable quote.",
+        "labels": {"direct": "ECB reference rate", "cross": "ECB reference rate (cross via EUR)"},
+        "as_of_label": "ECB 14:15 CET fix, {date} (daily, not a tradable quote)",
+        "note_last_n": "3 observations per currency so the previous complete fixing date is still there when the newest date is incomplete. SEK is fetched only for the USD index replica.",
+        "usd_index_replica": {
+          "symbol": "DXY",
+          "provider": "ecb-derived",
+          "series": "DXY_ECB_REPLICA",
+          "constant": 50.14348112,
+          "weights": {"EURUSD": -0.576, "USDJPY": 0.136, "GBPUSD": -0.119, "USDCAD": 0.091, "USDSEK": 0.042, "USDCHF": 0.036},
+          "decimals": 3,
+          "label": "USD index replica (ICE DXY formula) — ECB fix, derived by this app",
+          "as_of_label": "ECB 14:15 CET fix, {date} (daily replica, not live; not ICE's index)",
+          "attribution": "Computed from ECB reference rates",
+          "methodology_url": "https://www.ice.com/publicdocs/futures_us/ICE_Dollar_Index_FAQ.pdf",
+          "note": "ICE publishes the formula (FX Indexes Methodology v3.0 s.5.1; weights constant since 1973). The value is a replica computed by this app from the ECB 14:15 CET fix (about 08:15 ET, before US data), never called 'U.S. Dollar Index', 'Dollar Index' or 'USDX' (ICE trademarks; ICE claims rights over the formulation). Mean absolute gap vs a NY-noon replica: about 0.13%."
+        }
+      }
+    },
+    "eurostat": {
+      "base_url": "https://ec.europa.eu/eurostat/api/dissemination",
+      "attribution": "Source: Eurostat",
+      "terms_url": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "rate_limits": [{"max_calls": 30, "per_seconds": 60}],
+      "rate_limit_basis": "No documented limit; self-imposed guard.",
+      "hicp_flash": {
+        "dataset": "prc_hicp_fpd",
+        "params": {"geo": "EA", "coicop18": "TOTAL", "unit": "RCH_A"},
+        "last_periods": 3,
+        "series": "EA_HICP_YOY",
+        "title": "Euro area HICP, annual rate of change (first released data)",
+        "releases": {"FLS": "FLASH", "FIN": "FINAL"},
+        "note": "prc_hicp_fpd (ECOICOP ver.2) verified 2026-09-26; prc_hicp_manr/midx/mmor are frozen at 2025-12."
+      }
+    },
+    "bls": {
+      "base_url": "https://api.bls.gov",
+      "path": "/publicAPI/v2/timeseries/data/",
+      "key_env": "BLS_API_KEY",
+      "attribution": "Source: U.S. Bureau of Labor Statistics",
+      "terms_url": "https://www.bls.gov/developers/termsOfService.htm",
+      "rate_limits": [{"max_calls": 20, "per_seconds": 86400}, {"max_calls": 50, "per_seconds": 10}],
+      "registered_rate_limits": [{"max_calls": 450, "per_seconds": 86400}, {"max_calls": 50, "per_seconds": 10}],
+      "rate_limit_basis": "Unregistered: 25 queries/day, 25 series and 10 years per query, 50 requests per 10 s (bls.gov/developers/api_faqs.htm). The guard keeps 5 queries/day of headroom; all series go into one query.",
+      "max_series_per_query": 25,
+      "series": {
+        "CUSR0000SA0": {"name": "US CPI (SA index)", "unit": "index"},
+        "CUUR0000SA0": {"name": "US CPI (NSA index)", "unit": "index"},
+        "CUSR0000SA0L1E": {"name": "US core CPI (SA index)", "unit": "index"},
+        "CES0000000001": {"name": "US nonfarm payrolls", "unit": "thousands"},
+        "LNS14000000": {"name": "US unemployment rate", "unit": "pct"},
+        "WPSFD4": {"name": "US PPI final demand (SA index)", "unit": "index"}
+      },
+      "delay": "monthly release (08:30 ET)"
+    },
+    "treasury_fiscal": {
+      "base_url": "https://api.fiscaldata.treasury.gov",
+      "path": "/services/api/fiscal_service/v1/accounting/dts/operating_cash_balance",
+      "attribution": "Source: U.S. Treasury, Daily Treasury Statement (Fiscal Data)",
+      "terms_url": "https://fiscaldata.treasury.gov/about-us/",
+      "rate_limits": [{"max_calls": 60, "per_seconds": 60}],
+      "rate_limit_basis": "No documented limit; self-imposed guard.",
+      "lookback_days": 14,
+      "accounts": {
+        "Treasury General Account (TGA) Closing Balance": "TGA_CLOSE",
+        "Treasury General Account (TGA) Opening Balance": "TGA_OPEN",
+        "Total TGA Deposits (Table II)": "TGA_DEPOSITS",
+        "Total TGA Withdrawals (Table II) (-)": "TGA_WITHDRAWALS"
+      },
+      "unit": "USD mn",
+      "record_time": "16:00",
+      "record_timezone": "America/New_York",
+      "delay": "T+1",
+      "note": "DTS for day D is published about 16:00 ET on D+1. Since the DTS format change the closing-balance line carries its figure in open_today_bal while close_today_bal is 'null'."
+    },
+    "release_poll": {
+      "note": "EVR-4: right after a mapped scheduled release (event_risk.release_documents.classes[...].series) the release watch loop polls the providers that serve those series, at most max_polls times per calendar row and poll_seconds apart, so the outcome is attached within minutes instead of at the next official_data cadence (the keyless BLS API is otherwise polled at most every two hours). 'providers' maps a series id prefix ('bls:CES0000000001' -> 'bls') to the provider name and the method that fetches its series. A targeted BLS poll counts against the same daily budget as the regular one.",
+      "poll_seconds": 150,
+      "max_polls": 4,
+      "providers": {"bls": ["bls_data", "series"], "fred": ["fred", "latest"], "eia": ["eia_wpsr", "inventories"],
+                    "eurostat": ["eurostat", "hicp_flash"], "ecb": ["ecb_data", "hicp"]}
+    },
+    "eia_wpsr": {
+      "tables_base_url": "https://ir.eia.gov",
+      "table1_path": "/wpsr/table1.csv",
+      "allowed_redirect_host": "ir.eia.gov",
+      "schedule_base_url": "https://www.eia.gov",
+      "schedule_path": "/petroleum/supply/weekly/schedule.php",
+      "attribution": "Source: U.S. Energy Information Administration (EIA)",
+      "terms_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "rate_limits": [{"max_calls": 12, "per_seconds": 3600}],
+      "rate_limit_basis": "No documented limit for the release files; self-imposed guard (one weekly release).",
+      "rows": {
+        "Commercial (Excluding SPR)": "WPSR_CRUDE_COMMERCIAL",
+        "Strategic Petroleum Reserve (SPR)": "WPSR_CRUDE_SPR",
+        "Total Motor Gasoline": "WPSR_GASOLINE",
+        "Distillate Fuel Oil": "WPSR_DISTILLATE"
+      },
+      "unit": "million barrels",
+      "standard_release": {"weekday": 2, "time": "10:30", "timezone": "America/New_York", "days_after_week_end": 5},
+      "calendar_name": "EIA Weekly Petroleum Status Report",
+      "calendar_category": "MACRO",
+      "impact": 6
+    },
+    "eia_spot": {
+      "base_url": "https://www.eia.gov",
+      "path": "/dnav/pet/pet_pri_spt_s1_d.htm",
+      "attribution": "Source: U.S. Energy Information Administration",
+      "price_source": "Refinitiv, an LSEG business (per the EIA table definitions)",
+      "terms_url": "https://www.eia.gov/about/copyrights_reuse.php",
+      "rate_limits": [{"max_calls": 4, "per_seconds": 3600}],
+      "rate_limit_basis": "No documented limit; the page changes once a week (Wednesday). Conditional GET (If-Modified-Since, EIA answers 304); the runtime polls hourly at most.",
+      "series": {
+        "RWTC": {"symbol": "WTI", "label": "WTI spot (Cushing, OK)"},
+        "RBRTE": {"symbol": "BRENT", "label": "Brent spot (Europe)"}
+      },
+      "record_time": "16:00",
+      "record_timezone": "America/New_York",
+      "as_of_label": "EIA spot, as of {date}",
+      "note": "Daily closing spot prices, published weekly (Wednesday, through Tuesday), so the latest value is 1 to 8 days old. The date is authoritative; the time is the nominal US close. Rows are located by the series code in the history link, never by the row text."
+    },
+    "fred": {
+      "base_url": "https://api.stlouisfed.org",
+      "key_env": "FRED_API_KEY",
+      "attribution": "Source: FRED, Federal Reserve Bank of St. Louis",
+      "terms_url": "https://fred.stlouisfed.org/docs/api/terms_of_use.html",
+      "rate_limits": [{"max_calls": 100, "per_seconds": 60}],
+      "rate_limit_basis": "Documented: up to 120 requests per minute before HTTP 429 (fred.stlouisfed.org/docs/api/fred/errors.html).",
+      "series": {
+        "DGS2": {"title": "US Treasury 2Y constant maturity", "unit": "pct", "delay": "EOD", "frequency": "daily"},
+        "DGS10": {"title": "US Treasury 10Y constant maturity", "unit": "pct", "delay": "EOD", "frequency": "daily"},
+        "T10Y2Y": {"title": "US 10Y minus 2Y spread", "unit": "pct", "delay": "EOD", "frequency": "daily"},
+        "BAA10Y": {"title": "Moody's Baa corporate yield minus 10Y Treasury", "unit": "pct", "delay": "EOD", "frequency": "daily",
+                   "attribution_extra": "Moody's via FRED"},
+        "VIXCLS": {"title": "CBOE VIX close", "unit": "index", "delay": "EOD", "frequency": "daily",
+                   "attribution_extra": "Chicago Board Options Exchange via FRED; copyrighted series, cite the source",
+                   "quote_label": "VIX close (FRED, lags Cboe by days)",
+                   "quote_attribution": "Source: Cboe via FRED (copyright Chicago Board Options Exchange, Inc.)"},
+        "SP500": {"title": "S&P 500 index close", "unit": "index", "delay": "EOD", "frequency": "daily",
+                  "attribution_extra": "S&P Dow Jones Indices LLC via FRED; Copyright S&P Dow Jones Indices LLC, reproduction requires the prior written permission of S&P DJI",
+                  "quote_label": "S&P 500 close (FRED)",
+                  "quote_attribution": "Source: S&P Dow Jones Indices LLC via FRED. Copyright S&P Dow Jones Indices LLC; reproduction requires S&P DJI's prior written permission"},
+        "NASDAQCOM": {"title": "Nasdaq Composite index close", "unit": "index", "delay": "EOD", "frequency": "daily",
+                      "attribution_extra": "Nasdaq, Inc. via FRED; Copyright NASDAQ OMX Group, Inc. (FRED: copyrighted, pre-approval required)",
+                      "quote_label": "Nasdaq Composite close (FRED)",
+                      "quote_attribution": "Source: Nasdaq, Inc. via FRED. Copyright NASDAQ OMX Group, Inc. (FRED: copyrighted, pre-approval required)"},
+        "DTWEXBGS": {"title": "Nominal broad US dollar index", "unit": "index", "delay": "weekly (H.10)", "frequency": "daily"},
+        "DCOILWTICO": {"title": "WTI crude spot (Cushing, OK)", "unit": "USD/bbl", "delay": "EOD, refreshed weekly", "frequency": "daily",
+                       "attribution_extra": "U.S. Energy Information Administration via FRED; public domain, citation requested",
+                       "quote_label": "WTI spot (Cushing, OK) close (FRED)",
+                       "quote_attribution": "Source: U.S. Energy Information Administration via FRED"},
+        "DCOILBRENTEU": {"title": "Brent crude spot (Europe)", "unit": "USD/bbl", "delay": "EOD, refreshed weekly", "frequency": "daily",
+                         "attribution_extra": "U.S. Energy Information Administration via FRED; public domain, citation requested",
+                         "quote_label": "Brent spot (Europe) close (FRED)",
+                         "quote_attribution": "Source: U.S. Energy Information Administration via FRED"},
+        "CPIAUCSL": {"title": "US CPI all items (SA)", "unit": "index", "delay": "monthly release", "frequency": "monthly"},
+        "PAYEMS": {"title": "US nonfarm payrolls", "unit": "thousands", "delay": "monthly release", "frequency": "monthly"},
+        "UNRATE": {"title": "US unemployment rate", "unit": "pct", "delay": "monthly release", "frequency": "monthly"},
+        "WALCL": {"title": "Fed total assets", "unit": "USD mn", "delay": "weekly, as of Wed", "frequency": "weekly"},
+        "RRPONTSYD": {"title": "Fed overnight reverse repo", "unit": "USD bn", "delay": "EOD", "frequency": "daily"},
+        "DFEDTARU": {"title": "Fed funds target range upper bound", "unit": "pct", "delay": "official policy rate", "frequency": "daily"},
+        "DFEDTARL": {"title": "Fed funds target range lower bound", "unit": "pct", "delay": "official policy rate", "frequency": "daily"}
+      },
+      "latest_lookback": 10,
+      "release_calendar": {
+        "note": "Fallback schedule for the BLS releases when the BLS ICS cannot be read (no contact User-Agent, or BLS refuses): FRED release/dates give dates only, the clock time is the agency standard release time configured here.",
+        "note_release_ids": "Release ids verified live on 2026-09-27 with GET /fred/releases: 10 Consumer Price Index, 50 Employment Situation, 46 Producer Price Index, 192 Job Openings and Labor Turnover Survey, 11 Employment Cost Index.",
+        "path": "/fred/release/dates",
+        "limit": 60,
+        "timezone": "America/New_York",
+        "time_basis": "FRED release calendar date + {agency} standard release time {time} ET (configured)",
+        "source_url": "https://fred.stlouisfed.org/releases/calendar?rid={release_id}",
+        "attribution": "Source: FRED release calendar, Federal Reserve Bank of St. Louis (schedule of the U.S. Bureau of Labor Statistics)",
+        "releases": [
+          {"release_id": 10, "name": "US CPI", "event_class": "US_CPI", "agency": "BLS", "time": "08:30", "impact": 10},
+          {"release_id": 50, "name": "US employment situation (NFP, unemployment, AHE)", "event_class": "US_NFP", "agency": "BLS", "time": "08:30", "impact": 10},
+          {"release_id": 46, "name": "US PPI", "event_class": "US_PPI", "agency": "BLS", "time": "08:30", "impact": 7},
+          {"release_id": 192, "name": "US JOLTS", "event_class": "US_JOLTS", "agency": "BLS", "time": "10:00", "impact": 6},
+          {"release_id": 11, "name": "US employment cost index", "event_class": "US_ECI", "agency": "BLS", "time": "08:30", "impact": 6}
+        ]
+      },
+      "quote_symbols": {"SP500": "SP500", "NASDAQCOM": "NASDAQ", "VIXCLS": "VIX", "DCOILWTICO": "WTI", "DCOILBRENTEU": "BRENT"},
+      "quote_record_time": "16:00",
+      "quote_record_timezone": "America/New_York",
+      "quote_as_of_label": "FRED daily close {date} (FRED lags its source)",
+      "api_notice": "This product uses the FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis.",
+      "quote_note": "FRED observations of these series become daily-close quotes (docs/MARKET_COVERAGE.md). The date is authoritative; the time is the nominal US close. DTWEXBGS (Fed broad dollar index) is never mapped onto DXY. FRED API terms: the app must show api_notice wherever FRED values appear. Every quote attribution names the owner and ends in 'via FRED'; SP500 and NASDAQCOM carry the owner's copyright notice (FRED tags them 'copyrighted: pre-approval required'), no licence is implied.",
+      "restricted_series_note": "ICE BofA OAS series (BAMLH0A0HYM2, BAMLC0A0CM) are internal-use only under ICE terms; not configured here. BAA10Y is the displayed credit-spread input."
+    },
+    "central_bank_state": {
+      "fed": {"bank": "Fed", "currency": "USD", "upper": "DFEDTARU", "lower": "DFEDTARL", "yield_2y": "DGS2",
+              "basis": "FOMC target range midpoint (FRED DFEDTARL/DFEDTARU)"},
+      "ecb": {"bank": "ECB", "currency": "EUR", "rate_series": "DFR", "yield_2y": "EU2Y",
+              "basis": "ECB deposit facility rate; 2Y from the euro area AAA curve (not the Schatz)"}
+    },
+    "central_bank_meetings": {
+      "note": "GET /api/fx next meetings: each bank's next RATE DECISION from the stored calendar (rows with is_decision true of the bank, or of its event_class). Speeches, testimony, minutes and statements never count. A bank with a null event_class has no rate-decision calendar source in this app, which the API says instead of guessing. id = the decision.fx_banks bank id.",
+      "banks": {
+        "fed": {"name": "Federal Reserve", "short": "Fed", "event_class": "FOMC"},
+        "ecb": {"name": "European Central Bank", "short": "ECB", "event_class": "ECB"},
+        "boe": {"name": "Bank of England", "short": "BoE", "event_class": "BOE"},
+        "boj": {"name": "Bank of Japan", "short": "BoJ", "event_class": "BOJ"},
+        "rba": {"name": "Reserve Bank of Australia", "short": "RBA", "event_class": null},
+        "boc": {"name": "Bank of Canada", "short": "BoC", "event_class": null},
+        "snb": {"name": "Swiss National Bank", "short": "SNB", "event_class": null},
+        "rbnz": {"name": "Reserve Bank of New Zealand", "short": "RBNZ", "event_class": null}
+      }
+    }
+  }
+}

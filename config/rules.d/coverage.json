@@ -1,0 +1,73 @@
+{
+  "coverage_version": "1.1.0",
+  "coverage": {
+    "note": "Which sources can fill each asset (docs/MARKET_COVERAGE.md). 'level' sources give the asset's own value (in priority order); 'proxies' are other instruments shown under their own name for direction only. 'key' is the env setting that enables a source ('' = keyless); a source that needs several settings lists them all in 'keys' (Alpaca: key ID and secret), and coverage.missing_keys names every one that is unset. A source switched off in Settings is listed in coverage.disabled, and an asset whose level sources are all switched off and that has no data is DISABLED.",
+    "assets": {
+      "BTC": {"level": [{"provider": "binance", "data_class": "LIVE", "key": ""}, {"provider": "coinbase", "data_class": "LIVE", "key": ""}]},
+      "ETH": {"level": [{"provider": "binance", "data_class": "LIVE", "key": ""}, {"provider": "coinbase", "data_class": "LIVE", "key": ""}]},
+      "SP500": {"level": [{"provider": "fred", "data_class": "DAILY_CLOSE", "key": "FRED_API_KEY"}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "NASDAQ": {"level": [{"provider": "fred", "data_class": "DAILY_CLOSE", "key": "FRED_API_KEY"}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "RUSSELL": {"level": [{"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "DXY": {"level": [{"provider": "ecb-derived", "data_class": "DERIVED_DAILY", "key": ""}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "US2Y": {"level": [{"provider": "treasury", "data_class": "DAILY_CLOSE", "key": ""}]},
+      "US5Y": {"level": [{"provider": "treasury", "data_class": "DAILY_CLOSE", "key": ""}]},
+      "US10Y": {"level": [{"provider": "treasury", "data_class": "DAILY_CLOSE", "key": ""}]},
+      "US30Y": {"level": [{"provider": "treasury", "data_class": "DAILY_CLOSE", "key": ""}]},
+      "EURUSD": {"level": [{"provider": "ecb", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "GBPUSD": {"level": [{"provider": "ecb", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "USDJPY": {"level": [{"provider": "ecb", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "AUDUSD": {"level": [{"provider": "ecb", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "USDCAD": {"level": [{"provider": "ecb", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "USDCHF": {"level": [{"provider": "ecb", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "NZDUSD": {"level": [{"provider": "ecb", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "GOLD": {"level": [{"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "WTI": {"level": [{"provider": "eia", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "fred", "data_class": "DAILY_CLOSE", "key": "FRED_API_KEY"}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "BRENT": {"level": [{"provider": "eia", "data_class": "DAILY_CLOSE", "key": ""}, {"provider": "fred", "data_class": "DAILY_CLOSE", "key": "FRED_API_KEY"}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "VIX": {"level": [{"provider": "fred", "data_class": "DAILY_CLOSE", "key": "FRED_API_KEY"}, {"provider": "massive", "data_class": "LIVE", "key": "MASSIVE_API_KEY"}]},
+      "COIN": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "MSTR": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "BMNR": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "NVDA": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "MSFT": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "AAPL": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "AMZN": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "META": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "GOOGL": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]},
+      "TSLA": {"level": [{"provider": "finnhub", "data_class": "LIVE", "key": "FINNHUB_API_KEY"}, {"provider": "alpaca", "data_class": "LIVE", "keys": ["ALPACA_API_KEY_ID", "ALPACA_API_SECRET_KEY"]}]}
+    },
+    "proxies": {
+      "SP500": [
+        {"symbol": "SPY", "source": "finnhub", "label": "SPY ETF — proxy for S&P 500 direction", "caveat": "ETF price, not the index level (about 1/10 of the index); direction only", "max_age_seconds": 120},
+        {"symbol": "SPY", "source": "alpaca", "label": "SPY ETF (IEX) — proxy for S&P 500 direction", "caveat": "IEX single-exchange price, not the index level; direction only", "max_age_seconds": 300}
+      ],
+      "NASDAQ": [
+        {"symbol": "QQQ", "source": "finnhub", "label": "QQQ ETF — proxy (Nasdaq-100)", "caveat": "Tracks the Nasdaq-100, not the Composite; ETF price, direction only", "max_age_seconds": 120},
+        {"symbol": "QQQ", "source": "alpaca", "label": "QQQ ETF (IEX) — proxy (Nasdaq-100)", "caveat": "IEX single-exchange price; tracks the Nasdaq-100; direction only", "max_age_seconds": 300}
+      ],
+      "RUSSELL": [
+        {"symbol": "IWM", "source": "finnhub", "label": "IWM ETF — proxy for Russell 2000 direction", "caveat": "ETF price, not the index level; direction only", "max_age_seconds": 120},
+        {"symbol": "IWM", "source": "alpaca", "label": "IWM ETF (IEX) — proxy for Russell 2000 direction", "caveat": "IEX single-exchange price; direction only", "max_age_seconds": 300}
+      ],
+      "GOLD": [
+        {"symbol": "PAXG", "source": "binance", "label": "PAXG gold token — proxy for spot gold", "caveat": "Paxos token, 1 PAXG = 1 fine troy oz London Good Delivery gold; trades 24/7 and can deviate from spot by a few tenths of a percent", "max_age_seconds": 180},
+        {"symbol": "PAXG", "source": "coinbase", "label": "PAXG gold token (Coinbase) — proxy for spot gold", "caveat": "Paxos token, 1 PAXG = 1 fine troy oz; can deviate slightly from spot", "max_age_seconds": 600},
+        {"symbol": "GLD", "source": "alpaca", "label": "GLD ETF (IEX) — gold proxy, not spot", "caveat": "ETF share ≈ 1/10 oz; US hours only; direction only", "max_age_seconds": 300}
+      ],
+      "DXY": [
+        {"symbol": "UUP", "source": "alpaca", "label": "UUP ETF (IEX) — US dollar direction proxy", "caveat": "Futures-based dollar-bullish fund; direction only, not the index level", "max_age_seconds": 300}
+      ],
+      "WTI": [
+        {"symbol": "USO", "source": "alpaca", "label": "USO ETF (IEX) — WTI direction proxy", "caveat": "Front-month futures fund (roll costs); direction only, not the spot price", "max_age_seconds": 300}
+      ],
+      "BRENT": [
+        {"symbol": "BNO", "source": "alpaca", "label": "BNO ETF (IEX) — Brent direction proxy", "caveat": "Futures fund (roll costs); direction only, not the spot price", "max_age_seconds": 300}
+      ]
+    }
+  },
+  "source_notices": {
+    "note": "Notices a data owner's terms require wherever its data is displayed. The dashboard and the asset detail return notices: [{id, text, providers}] for every notice whose providers include the provider of a displayed quote, proxy or regime input.",
+    "notices": [
+      {"id": "fred_api", "providers": ["fred"], "text": "This product uses the FRED® API but is not endorsed or certified by the Federal Reserve Bank of St. Louis."}
+    ]
+  }
+}

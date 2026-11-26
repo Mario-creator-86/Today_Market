@@ -1,0 +1,26 @@
+{
+  "security": {
+    "security_version": "1.0.0",
+    "injection_patterns": [
+      "ignore (all |any |the )?(previous|prior|above|earlier) (instructions|prompts?|rules)",
+      "disregard (all |any |the )?(previous|prior|above) (instructions|prompts?|rules)",
+      "forget (all |your )?(previous |prior )?instructions",
+      "you are now (a|an|the) ",
+      "new (system )?instructions?:",
+      "system prompt",
+      "developer mode",
+      "act as (a|an|the) ",
+      "(return|output|respond with) (status )?\"?(pass|confirmed|strong (long|short))\"?",
+      "(mark|classify|label) (this|it) as (confirmed|verified|official)",
+      "<\\|im_(start|end)\\|>",
+      "^\\s*(system|assistant|user)\\s*:",
+      "###\\s*(instruction|system)",
+      "\\[/?(inst|sys)\\]"
+    ],
+    "invisible_characters": "\u200b\u200c\u200d\u200e\u200f\u202a\u202b\u202c\u202d\u202e\u2060\u2066\u2067\u2068\u2069\ufeff",
+    "max_string_chars": 4000,
+    "max_list_items": 40,
+    "max_query_chars": 256,
+    "max_queries": 3
+  }
+}

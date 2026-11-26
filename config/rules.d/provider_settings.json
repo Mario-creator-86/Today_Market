@@ -1,0 +1,273 @@
+{
+  "provider_settings": {
+    "provider_settings_version": "1.3.0",
+    "note": "Settings -> Data providers (docs/PROVIDER_SETTINGS.md). Field names are Settings (main) or NotificationSettings (notifications) attributes; values are written to the project .env, secrets are never returned.",
+    "destination_secrets": {
+      "ollama_base_url": "ollama_api_key",
+      "openai_base_url": "openai_api_key",
+      "reuters_base_url": "reuters_api_key",
+      "ap_base_url": "ap_api_key",
+      "smtp_host": "smtp_password",
+      "smtp_port": "smtp_password"
+    },
+    "destination_note": "Destination field -> the secret sent to it. A PUT that changes a destination while a secret is stored must carry that secret too (re-entered, or null to remove it): a stored key is never sent to a new address.",
+    "categories": [
+      {"id": "ai", "label": "AI"},
+      {"id": "market", "label": "Market data"},
+      {"id": "macro", "label": "Macro & official data"},
+      {"id": "calendars", "label": "Calendars"},
+      {"id": "filings", "label": "Filings"},
+      {"id": "news", "label": "News & social"},
+      {"id": "alerts", "label": "Alert channels"},
+      {"id": "general", "label": "General"}
+    ],
+    "groups": [
+      {
+        "id": "ollama", "label": "Ollama", "category": "ai",
+        "description": "AI analysis roles (when selected) and the web search used to corroborate unverified claims.",
+        "signup_url": "https://ollama.com/settings/keys",
+        "pricing": "Free tier with usage limits; paid plans raise them",
+        "providers": ["ollama"],
+        "fields": [
+          {"name": "ollama_api_key", "settings": "main", "label": "API key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Create a key on ollama.com (Settings -> Keys). Used for chat and web search.", "placeholder": null},
+          {"name": "ollama_base_url", "settings": "main", "label": "API base URL", "kind": "url", "required": false, "options": null, "min": null, "max": null,
+           "help": "Keep the default for Ollama Cloud; a local Ollama uses http://localhost:11434/api.", "placeholder": "https://ollama.com/api"}
+        ],
+        "test": {"target": "ollama", "label": "Test connection", "note": "Lists the model catalog and runs one web search (uses a little of your Ollama quota)."}
+      },
+      {
+        "id": "openai", "label": "OpenAI", "category": "ai",
+        "description": "Optional AI vendor for the analysis roles, used only when the AI provider is set to OpenAI.",
+        "signup_url": "https://platform.openai.com/api-keys",
+        "pricing": "Pay per token (prepaid credits)",
+        "providers": ["openai"],
+        "fields": [
+          {"name": "openai_api_key", "settings": "main", "label": "API key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Secret key from the OpenAI platform (API keys page).", "placeholder": null},
+          {"name": "openai_base_url", "settings": "main", "label": "API base URL", "kind": "url", "required": false, "options": null, "min": null, "max": null,
+           "help": "Change only for an OpenAI-compatible gateway.", "placeholder": "https://api.openai.com/v1"}
+        ],
+        "test": {"target": "openai", "label": "Test connection", "note": null}
+      },
+      {
+        "id": "llm", "label": "AI provider", "category": "ai",
+        "description": "Which vendor runs the AI analysis roles. Web search always uses Ollama.",
+        "signup_url": null,
+        "pricing": "Uses the selected vendor's pricing",
+        "providers": [],
+        "fields": [
+          {"name": "llm_provider", "settings": "main", "label": "AI provider", "kind": "select", "required": true, "options": ["ollama", "openai"], "min": null, "max": null,
+           "help": "After switching, run model discovery and assign the roles again in Settings -> AI models.", "placeholder": null}
+        ],
+        "test": {"target": null, "label": "Test connection", "note": null}
+      },
+      {
+        "id": "massive", "label": "Massive (formerly Polygon.io)", "category": "market",
+        "description": "US stock, index and FX snapshots.",
+        "signup_url": "https://massive.com/dashboard/keys",
+        "pricing": "Free plan (end-of-day data, few calls per minute); snapshots and real time need a paid plan",
+        "providers": ["massive", "massive-stub"],
+        "fields": [
+          {"name": "massive_api_key", "settings": "main", "label": "API key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Key from the Massive dashboard (Keys page).", "placeholder": null}
+        ],
+        "test": {"target": "massive", "label": "Test connection", "note": "One snapshot request (counts toward your plan's call limit)."}
+      },
+      {
+        "id": "finnhub", "label": "Finnhub", "category": "market",
+        "description": "Real-time quotes for the tracked US equities and ETF proxies.",
+        "signup_url": "https://finnhub.io/register",
+        "pricing": "Free plan: 60 calls per minute",
+        "providers": ["finnhub"],
+        "fields": [
+          {"name": "finnhub_api_key", "settings": "main", "label": "API key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Key from the Finnhub dashboard.", "placeholder": null}
+        ],
+        "test": {"target": "finnhub", "label": "Test connection", "note": "One quote request (counts toward the 60 calls per minute limit)."}
+      },
+      {
+        "id": "alpaca", "label": "Alpaca Market Data (IEX)", "category": "market",
+        "description": "US stock and ETF snapshots (real-time from the IEX exchange only, not the consolidated tape): ETF proxies (SPY, QQQ, IWM, GLD, UUP, USO, BNO), the equity fallback when Finnhub is unavailable, daily bars for technical levels and Benzinga news. Market data only: the app never calls Alpaca trading endpoints.",
+        "signup_url": "https://alpaca.markets",
+        "pricing": "Free (paper account, IEX real-time, personal use)",
+        "providers": ["alpaca"],
+        "fields": [
+          {"name": "alpaca_api_key_id", "settings": "main", "label": "API key ID", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Generate the key pair on a PAPER account (the ID usually starts with PK). Alpaca keys can also place orders; this app only reads data.alpaca.markets.", "placeholder": null},
+          {"name": "alpaca_api_secret_key", "settings": "main", "label": "API secret key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Shown once when the key pair is generated.", "placeholder": null}
+        ],
+        "test": {"target": "alpaca", "label": "Test connection", "note": "One IEX snapshot request for SPY (counts toward the 200 calls per minute of the free plan)."}
+      },
+      {
+        "id": "fred", "label": "FRED (St. Louis Fed)", "category": "macro",
+        "description": "Macro series and the BAA10Y credit-spread feature.",
+        "signup_url": "https://fredaccount.stlouisfed.org/apikeys",
+        "pricing": "Free key",
+        "providers": ["fred"],
+        "fields": [
+          {"name": "fred_api_key", "settings": "main", "label": "API key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Free key from your FRED account (API Keys page).", "placeholder": null}
+        ],
+        "test": {"target": "fred", "label": "Test connection", "note": null}
+      },
+      {
+        "id": "bls", "label": "BLS (US Bureau of Labor Statistics)", "category": "macro",
+        "description": "CPI, payrolls, unemployment and PPI series. Works without a key.",
+        "signup_url": "https://data.bls.gov/registrationEngine/",
+        "pricing": "Free; an optional key raises the daily query limit",
+        "providers": ["bls_data"],
+        "fields": [
+          {"name": "bls_api_key", "settings": "main", "label": "API key (optional)", "kind": "secret", "required": false, "options": null, "min": null, "max": null,
+           "help": "Without a key BLS allows about 25 queries per day.", "placeholder": null}
+        ],
+        "test": {"target": "bls_data", "label": "Test connection", "note": "Uses 1 of your daily BLS queries (about 25 per day without a key)."}
+      },
+      {
+        "id": "fmp", "label": "Financial Modeling Prep", "category": "calendars",
+        "description": "Economic and earnings calendar with consensus and actual values.",
+        "signup_url": "https://site.financialmodelingprep.com/pricing-plans",
+        "pricing": "Free plan: 250 calls per day; some calendars need a paid plan",
+        "providers": ["calendar", "calendar-stub"],
+        "fields": [
+          {"name": "fmp_api_key", "settings": "main", "label": "API key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Key from your FMP dashboard.", "placeholder": null}
+        ],
+        "test": {"target": "calendar", "label": "Test connection", "note": "One calendar request (counts toward your daily call limit)."}
+      },
+      {
+        "id": "congress", "label": "Congress.gov", "category": "calendars",
+        "description": "Bills and legislative activity from the Library of Congress API.",
+        "signup_url": "https://api.congress.gov/sign-up/",
+        "pricing": "Free key",
+        "providers": ["congress_api", "congress_api-stub"],
+        "fields": [
+          {"name": "congress_api_key", "settings": "main", "label": "API key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Free key (api.data.gov) sent by e-mail after sign-up.", "placeholder": null}
+        ],
+        "test": {"target": "congress_api", "label": "Test connection", "note": null}
+      },
+      {
+        "id": "sec", "label": "SEC EDGAR", "category": "filings",
+        "description": "Company filings and EDGAR full-text search. No key: SEC requires a contact e-mail in the User-Agent. The same contact identifies the BLS release-schedule calendar (BLS blocks anonymous robots).",
+        "signup_url": "https://www.sec.gov/os/accessing-edgar-data",
+        "pricing": "Free (fair-access limits apply)",
+        "providers": ["sec_edgar", "sec_fulltext", "bls_release_calendar"],
+        "fields": [
+          {"name": "sec_user_agent", "settings": "main", "label": "User-Agent (name and e-mail)", "kind": "text", "required": true, "options": null, "min": null, "max": null,
+           "help": "Your name or company and a real contact e-mail; example.com addresses are rejected.", "placeholder": "Jane Doe jane.doe@yourdomain.com"}
+        ],
+        "test": {"target": "sec_edgar", "label": "Test connection", "note": null}
+      },
+      {
+        "id": "x", "label": "X (Twitter) API", "category": "news",
+        "description": "Recent posts from monitored accounts and keywords (discovery only).",
+        "signup_url": "https://console.x.com/",
+        "pricing": "Pay per use (prepaid credits); there is no free tier",
+        "providers": ["x", "x-stub"],
+        "fields": [
+          {"name": "x_bearer_token", "settings": "main", "label": "Bearer token", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "App bearer token from the X developer console.", "placeholder": null}
+        ],
+        "test": {"target": "x", "label": "Test connection", "note": "One recent search (billed by X as pay-per-use)."}
+      },
+      {
+        "id": "reuters", "label": "Reuters (licensed gateway)", "category": "news",
+        "description": "Licensed Reuters news through your own gateway that returns the documents contract.",
+        "signup_url": "https://www.reutersagency.com/",
+        "pricing": "Commercial licence",
+        "providers": ["reuters", "reuters-stub"],
+        "fields": [
+          {"name": "reuters_base_url", "settings": "main", "label": "Gateway URL", "kind": "url", "required": true, "options": null, "min": null, "max": null,
+           "help": "Base URL of your licensed gateway (it serves GET /news).", "placeholder": "https://news-gateway.yourdomain.com"},
+          {"name": "reuters_api_key", "settings": "main", "label": "Gateway key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Bearer key for your gateway.", "placeholder": null}
+        ],
+        "test": {"target": "reuters", "label": "Test connection", "note": null}
+      },
+      {
+        "id": "ap", "label": "AP (licensed gateway)", "category": "news",
+        "description": "Licensed Associated Press news through your own gateway that returns the documents contract.",
+        "signup_url": "https://developer.ap.org/",
+        "pricing": "Commercial licence",
+        "providers": ["ap", "ap-stub"],
+        "fields": [
+          {"name": "ap_base_url", "settings": "main", "label": "Gateway URL", "kind": "url", "required": true, "options": null, "min": null, "max": null,
+           "help": "Base URL of your licensed gateway (it serves GET /news).", "placeholder": "https://news-gateway.yourdomain.com"},
+          {"name": "ap_api_key", "settings": "main", "label": "Gateway key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Bearer key for your gateway.", "placeholder": null}
+        ],
+        "test": {"target": "ap", "label": "Test connection", "note": null}
+      },
+      {
+        "id": "telegram", "label": "Telegram", "category": "alerts",
+        "description": "High-priority alerts sent to a Telegram chat by your own bot.",
+        "signup_url": "https://core.telegram.org/bots/features#botfather",
+        "pricing": "Free",
+        "channel": "telegram",
+        "fields": [
+          {"name": "telegram_bot_token", "settings": "notifications", "label": "Bot token", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Create a bot with @BotFather and paste the token it gives you.", "placeholder": null},
+          {"name": "telegram_chat_id", "settings": "notifications", "label": "Chat ID", "kind": "text", "required": true, "options": null, "min": null, "max": null,
+           "help": "The chat, group or channel that receives the alerts (for example 123456789 or -100...).", "placeholder": "123456789"}
+        ],
+        "test": {"target": "telegram", "label": "Send test message", "note": "Sends one real message to the configured chat."}
+      },
+      {
+        "id": "email", "label": "E-mail (SMTP)", "category": "alerts",
+        "description": "High-priority alerts by e-mail through your own SMTP server or mail provider.",
+        "signup_url": null,
+        "pricing": "Your own mail server or provider",
+        "channel": "email",
+        "fields": [
+          {"name": "smtp_host", "settings": "notifications", "label": "SMTP server", "kind": "text", "required": true, "options": null, "min": null, "max": null,
+           "help": "Host name of the SMTP server.", "placeholder": "smtp.yourprovider.com"},
+          {"name": "smtp_port", "settings": "notifications", "label": "Port", "kind": "int", "required": true, "options": null, "min": 1, "max": 65535,
+           "help": "587 with STARTTLS, 465 with SSL/TLS.", "placeholder": "587"},
+          {"name": "smtp_username", "settings": "notifications", "label": "Username", "kind": "text", "required": false, "options": null, "min": null, "max": null,
+           "help": "Leave empty if the server does not require a login.", "placeholder": null},
+          {"name": "smtp_password", "settings": "notifications", "label": "Password", "kind": "secret", "required": false, "options": null, "min": null, "max": null,
+           "help": "For Gmail and similar providers use an app password.", "placeholder": null},
+          {"name": "smtp_from", "settings": "notifications", "label": "From address", "kind": "email", "required": true, "options": null, "min": null, "max": null,
+           "help": "Sender address of the alert e-mails.", "placeholder": "alerts@yourdomain.com"},
+          {"name": "smtp_to", "settings": "notifications", "label": "Recipients", "kind": "email_list", "required": true, "options": null, "min": null, "max": null,
+           "help": "One or more addresses, separated by commas.", "placeholder": "you@yourdomain.com"},
+          {"name": "smtp_starttls", "settings": "notifications", "label": "Use STARTTLS", "kind": "bool", "required": false, "options": null, "min": null, "max": null,
+           "help": "Upgrade the connection with STARTTLS (usual on port 587). A login needs STARTTLS or SSL/TLS unless the server is this computer (localhost).", "placeholder": null},
+          {"name": "smtp_ssl", "settings": "notifications", "label": "Use SSL/TLS", "kind": "bool", "required": false, "options": null, "min": null, "max": null,
+           "help": "Connect with implicit TLS (usual on port 465).", "placeholder": null}
+        ],
+        "test": {"target": "email", "label": "Send test message", "note": "Sends one real e-mail to every recipient."}
+      },
+      {
+        "id": "webpush", "label": "Browser push (Web Push)", "category": "alerts",
+        "description": "Medium and high-priority alerts as browser notifications. Needs the optional pywebpush package.",
+        "signup_url": null,
+        "pricing": "Free",
+        "channel": "webpush",
+        "fields": [
+          {"name": "webpush_vapid_public_key", "settings": "notifications", "label": "VAPID public key", "kind": "text", "required": true, "options": null, "min": null, "max": null,
+           "help": "Public half of your VAPID key pair (base64url).", "placeholder": null},
+          {"name": "webpush_vapid_private_key", "settings": "notifications", "label": "VAPID private key", "kind": "secret", "required": true, "options": null, "min": null, "max": null,
+           "help": "Private half of your VAPID key pair.", "placeholder": null},
+          {"name": "webpush_subject", "settings": "notifications", "label": "Contact", "kind": "text", "required": true, "options": null, "min": null, "max": null,
+           "help": "A mailto: or https: contact that push services can reach.", "placeholder": "mailto:you@yourdomain.com"}
+        ],
+        "test": {"target": "webpush", "label": "Send test message", "note": "Sends one notification to every subscribed browser."}
+      },
+      {
+        "id": "mode", "label": "Provider mode", "category": "general",
+        "description": "live uses real providers only. stub replaces paid providers that have no key with labelled development data that never reaches decisions.",
+        "signup_url": null,
+        "pricing": "Free",
+        "providers": [],
+        "fields": [
+          {"name": "provider_mode", "settings": "main", "label": "Provider mode", "kind": "select", "required": true, "options": ["live", "stub"], "min": null, "max": null,
+           "help": "Use live for real use; stub only for development without keys.", "placeholder": null}
+        ],
+        "test": {"target": null, "label": "Test connection", "note": null}
+      }
+    ]
+  }
+}

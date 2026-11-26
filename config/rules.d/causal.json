@@ -1,0 +1,520 @@
+{
+  "causal_version": "2.3.0",
+  "causal_version_note": "2.3.0 (EVR-1, labour data): the rates channel decides the sign of risk assets after a jobs report. JOBS_STRONG: yields up, USD up, equities and crypto DOWN only through the rates path (jobs-strong-rates); JOBS_WEAK: yields down, USD down, equities and crypto UP (jobs-weak-rates). The growth paths (jobs-*-growth, strength 18) are secondary: they never cancel the rates path (|net| / gross stays above conflict_net_ratio, so no asset is left unresolved) and lead only while a GROWTH_SCARE regime is active (regime multiplier 1.5, and the rates path's risk-asset leg is scaled to 0.25 by its exception), where weak data is bad news for equities and strong data a relief. Before 2.3.0 both branches netted to 'equities down' (growth 40/45 against rates 29.6). The event-risk layer reads the branches through causal.paths(trigger) with the regime context; the labour scenario templates name the triggers (event_exposure.json labor_release / claims_release). 2.2.0: classification principle of causal_triggers (note there).",
+  "causal_graph": {
+    "max_depth": 7,
+    "max_regime_multiplier": 1.5,
+    "conflict_net_ratio": 0.35,
+    "min_active_strength": 1,
+    "drivers": ["Rates", "USD", "Geopolitics/Energy", "Technical", "Positioning"],
+    "other_driver": "Other",
+    "nodes": {
+      "inflation_expectations": {"label": "Inflation expectations", "driver": "Rates", "assets": {}},
+      "fed_pricing": {"label": "Fed policy pricing (hawkish +)", "driver": "Rates", "assets": {}},
+      "front_end_yields": {"label": "Front-end Treasury yields", "driver": "Rates", "assets": {"US2Y": 1, "US5Y": 1}},
+      "long_end_yields": {"label": "Long-end Treasury yields", "driver": "Rates", "assets": {"US10Y": 1, "US30Y": 1}},
+      "real_yields": {"label": "Real yields", "driver": "Rates", "assets": {"GOLD": -1}},
+      "usd": {"label": "US dollar", "driver": "USD",
+              "assets": {"DXY": 1, "EURUSD": -1, "GBPUSD": -1, "AUDUSD": -1, "NZDUSD": -1, "USDJPY": 1, "USDCAD": 1, "USDCHF": 1}},
+      "duration_assets": {"label": "High-duration risk assets", "driver": null,
+                          "assets": {"NASDAQ": 1, "SP500": 1, "RUSSELL": 1, "BTC": 1, "ETH": 1, "NVDA": 1, "MSFT": 1, "AAPL": 1,
+                                     "AMZN": 1, "META": 1, "GOOGL": 1, "TSLA": 1, "COIN": 1, "MSTR": 1, "BMNR": 1}},
+      "oil_supply_risk": {"label": "Oil supply risk", "driver": "Geopolitics/Energy", "assets": {}},
+      "oil": {"label": "Crude oil", "driver": "Geopolitics/Energy", "assets": {"BRENT": 1, "WTI": 1}},
+      "safe_haven_demand": {"label": "Safe-haven demand", "driver": "Geopolitics/Energy",
+                            "assets": {"GOLD": 1, "US10Y": -1, "US30Y": -1, "USDJPY": -1, "USDCHF": -1, "VIX": 1}},
+      "risk_appetite": {"label": "Risk appetite", "driver": null,
+                        "assets": {"SP500": 1, "NASDAQ": 1, "RUSSELL": 1, "BTC": 1, "ETH": 1, "VIX": -1, "AUDUSD": 1, "NZDUSD": 1,
+                                   "COIN": 1, "MSTR": 1, "BMNR": 1, "NVDA": 1, "TSLA": 1}},
+      "growth_expectations": {"label": "Growth expectations", "driver": null, "assets": {}},
+      "labor_market": {"label": "Labor market strength", "driver": null, "assets": {}},
+      "crypto_regulatory_pressure": {"label": "Crypto regulatory pressure", "driver": null,
+                                     "assets": {"BTC": -1, "ETH": -1, "COIN": -1, "MSTR": -1, "BMNR": -1}}
+    }
+  },
+  "causal_rules": [
+    {
+      "id": "inflation-hot",
+      "label": "Hot inflation lifts rates and the dollar, weighs on risk assets",
+      "trigger": "INFLATION_HOT",
+      "variable": "inflation_expectations",
+      "direction": 1,
+      "strength": 80,
+      "half_life_hours": 24,
+      "persistence": 0.7,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "inflation_expectations", "direction": 1, "transmission": 1.0},
+        {"variable": "fed_pricing", "direction": 1, "transmission": 0.9},
+        {"variable": "front_end_yields", "direction": 1, "transmission": 0.95},
+        {"variable": "long_end_yields", "from": "front_end_yields", "direction": 1, "transmission": 0.7},
+        {"variable": "real_yields", "from": "front_end_yields", "direction": 1, "transmission": 0.8},
+        {"variable": "usd", "from": "front_end_yields", "direction": 1, "transmission": 0.85},
+        {"variable": "duration_assets", "from": "usd", "direction": -1, "transmission": 0.9}
+      ],
+      "regime_dependencies": {"INFLATION_SHOCK": 1.2, "GROWTH_SCARE": 0.6},
+      "exceptions": [
+        {"id": "growth-scare-dominates", "when": {"regime_active": "GROWTH_SCARE"}, "action": "scale", "factor": 0.5,
+         "variables": ["long_end_yields"]}
+      ],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "DXY": 1, "US2Y": 1, "US5Y": 1, "US10Y": 1, "US30Y": 1, "EURUSD": -1, "GBPUSD": -1, "USDJPY": 1, "AUDUSD": -1, "USDCAD": 1, "USDCHF": 1, "NZDUSD": -1, "GOLD": -1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "MSFT": -1, "AAPL": -1, "AMZN": -1, "META": -1, "GOOGL": -1, "TSLA": -1}
+    },
+    {
+      "id": "inflation-cool",
+      "label": "Cool inflation lowers rates and the dollar, supports risk assets",
+      "trigger": "INFLATION_COOL",
+      "variable": "inflation_expectations",
+      "direction": -1,
+      "strength": 70,
+      "half_life_hours": 24,
+      "persistence": 0.7,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "inflation_expectations", "direction": -1, "transmission": 1.0},
+        {"variable": "fed_pricing", "direction": -1, "transmission": 0.9},
+        {"variable": "front_end_yields", "direction": -1, "transmission": 0.95},
+        {"variable": "long_end_yields", "from": "front_end_yields", "direction": -1, "transmission": 0.7},
+        {"variable": "real_yields", "from": "front_end_yields", "direction": -1, "transmission": 0.8},
+        {"variable": "usd", "from": "front_end_yields", "direction": -1, "transmission": 0.85},
+        {"variable": "duration_assets", "from": "usd", "direction": 1, "transmission": 0.9}
+      ],
+      "regime_dependencies": {"GROWTH_SCARE": 0.7},
+      "exceptions": [],
+      "effects": {"BTC": 1, "ETH": 1, "SP500": 1, "NASDAQ": 1, "RUSSELL": 1, "DXY": -1, "US2Y": -1, "US5Y": -1, "US10Y": -1, "US30Y": -1, "EURUSD": 1, "GBPUSD": 1, "USDJPY": -1, "AUDUSD": 1, "USDCAD": -1, "USDCHF": -1, "NZDUSD": 1, "GOLD": 1, "COIN": 1, "MSTR": 1, "BMNR": 1, "NVDA": 1, "MSFT": 1, "AAPL": 1, "AMZN": 1, "META": 1, "GOOGL": 1, "TSLA": 1}
+    },
+    {
+      "id": "hormuz-oil-inflation",
+      "label": "Energy supply shock lifts oil, inflation and yields",
+      "trigger": "GEOPOLITICAL_ENERGY",
+      "variable": "oil_supply_risk",
+      "direction": 1,
+      "strength": 70,
+      "half_life_hours": 12,
+      "persistence": 0.5,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "oil_supply_risk", "direction": 1, "transmission": 1.0},
+        {"variable": "oil", "direction": 1, "transmission": 0.95},
+        {"variable": "inflation_expectations", "direction": 1, "transmission": 0.6},
+        {"variable": "front_end_yields", "direction": 1, "transmission": 0.8},
+        {"variable": "long_end_yields", "from": "inflation_expectations", "direction": 1, "transmission": 0.7},
+        {"variable": "usd", "from": "front_end_yields", "direction": 1, "transmission": 0.6},
+        {"variable": "duration_assets", "from": "front_end_yields", "direction": -1, "transmission": 0.8}
+      ],
+      "regime_dependencies": {"INFLATION_SHOCK": 1.2, "GROWTH_SCARE": 0.6},
+      "exceptions": [
+        {"id": "official-deescalation", "when": {"event_confirmed": "ENERGY_DEESCALATION"}, "action": "scale", "factor": 0.3,
+         "variables": []}
+      ],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "DXY": 1, "US2Y": 1, "US5Y": 1, "US10Y": 1, "US30Y": 1, "EURUSD": -1, "GBPUSD": -1, "USDJPY": 1, "AUDUSD": -1, "USDCAD": 1, "USDCHF": 1, "NZDUSD": -1, "WTI": 1, "BRENT": 1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "MSFT": -1, "AAPL": -1, "AMZN": -1, "META": -1, "GOOGL": -1, "TSLA": -1}
+    },
+    {
+      "id": "hormuz-safe-haven",
+      "label": "Energy supply shock drives safe-haven demand",
+      "trigger": "GEOPOLITICAL_ENERGY",
+      "variable": "safe_haven_demand",
+      "direction": 1,
+      "strength": 50,
+      "half_life_hours": 12,
+      "persistence": 0.4,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "safe_haven_demand", "direction": 1, "transmission": 1.0},
+        {"variable": "risk_appetite", "direction": -1, "transmission": 0.7}
+      ],
+      "regime_dependencies": {"RISK_OFF": 1.3, "GEOPOLITICAL_SHOCK": 1.3, "RISK_ON": 0.6},
+      "exceptions": [
+        {"id": "official-deescalation", "when": {"event_confirmed": "ENERGY_DEESCALATION"}, "action": "suppress", "factor": 0,
+         "variables": []}
+      ],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "US10Y": -1, "US30Y": -1, "USDJPY": -1, "AUDUSD": -1, "USDCHF": -1, "NZDUSD": -1, "GOLD": 1, "VIX": 1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "TSLA": -1}
+    },
+    {
+      "id": "oil-spike-inflation",
+      "label": "Oil price spike lifts inflation expectations and yields",
+      "trigger": "OIL_PRICE_SPIKE",
+      "variable": "oil",
+      "direction": 1,
+      "strength": 55,
+      "half_life_hours": 8,
+      "persistence": 0.4,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "oil", "direction": 1, "transmission": 1.0},
+        {"variable": "inflation_expectations", "direction": 1, "transmission": 0.6},
+        {"variable": "front_end_yields", "direction": 1, "transmission": 0.8},
+        {"variable": "usd", "direction": 1, "transmission": 0.6},
+        {"variable": "duration_assets", "from": "front_end_yields", "direction": -1, "transmission": 0.8}
+      ],
+      "regime_dependencies": {"GROWTH_SCARE": 0.5},
+      "exceptions": [],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "DXY": 1, "US2Y": 1, "US5Y": 1, "EURUSD": -1, "GBPUSD": -1, "USDJPY": 1, "AUDUSD": -1, "USDCAD": 1, "USDCHF": 1, "NZDUSD": -1, "WTI": 1, "BRENT": 1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "MSFT": -1, "AAPL": -1, "AMZN": -1, "META": -1, "GOOGL": -1, "TSLA": -1}
+    },
+    {
+      "id": "fed-hawkish",
+      "label": "Hawkish Fed lifts yields and the dollar, weighs on risk assets",
+      "trigger": "FED_HAWKISH",
+      "variable": "fed_pricing",
+      "direction": 1,
+      "strength": 75,
+      "half_life_hours": 48,
+      "persistence": 0.8,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "fed_pricing", "direction": 1, "transmission": 1.0},
+        {"variable": "front_end_yields", "direction": 1, "transmission": 0.95},
+        {"variable": "long_end_yields", "from": "front_end_yields", "direction": 1, "transmission": 0.6},
+        {"variable": "real_yields", "from": "front_end_yields", "direction": 1, "transmission": 0.8},
+        {"variable": "usd", "from": "front_end_yields", "direction": 1, "transmission": 0.85},
+        {"variable": "duration_assets", "from": "front_end_yields", "direction": -1, "transmission": 0.8}
+      ],
+      "regime_dependencies": {"GROWTH_SCARE": 0.8},
+      "exceptions": [
+        {"id": "curve-inversion-in-growth-scare", "when": {"regime_active": "GROWTH_SCARE"}, "action": "invert", "factor": -1,
+         "variables": ["long_end_yields"]}
+      ],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "DXY": 1, "US2Y": 1, "US5Y": 1, "US10Y": 1, "US30Y": 1, "EURUSD": -1, "GBPUSD": -1, "USDJPY": 1, "AUDUSD": -1, "USDCAD": 1, "USDCHF": 1, "NZDUSD": -1, "GOLD": -1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "MSFT": -1, "AAPL": -1, "AMZN": -1, "META": -1, "GOOGL": -1, "TSLA": -1}
+    },
+    {
+      "id": "fed-dovish",
+      "label": "Dovish Fed lowers yields and the dollar, supports risk assets",
+      "trigger": "FED_DOVISH",
+      "variable": "fed_pricing",
+      "direction": -1,
+      "strength": 75,
+      "half_life_hours": 48,
+      "persistence": 0.8,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "fed_pricing", "direction": -1, "transmission": 1.0},
+        {"variable": "front_end_yields", "direction": -1, "transmission": 0.95},
+        {"variable": "long_end_yields", "from": "front_end_yields", "direction": -1, "transmission": 0.6},
+        {"variable": "real_yields", "from": "front_end_yields", "direction": -1, "transmission": 0.8},
+        {"variable": "usd", "from": "front_end_yields", "direction": -1, "transmission": 0.85},
+        {"variable": "duration_assets", "from": "front_end_yields", "direction": 1, "transmission": 0.8}
+      ],
+      "regime_dependencies": {},
+      "exceptions": [
+        {"id": "dovish-pivot-read-as-growth-fear", "when": {"regime_active": "GROWTH_SCARE"}, "action": "invert", "factor": -1,
+         "variables": ["duration_assets"]}
+      ],
+      "effects": {"BTC": 1, "ETH": 1, "SP500": 1, "NASDAQ": 1, "RUSSELL": 1, "DXY": -1, "US2Y": -1, "US5Y": -1, "US10Y": -1, "US30Y": -1, "EURUSD": 1, "GBPUSD": 1, "USDJPY": -1, "AUDUSD": 1, "USDCAD": -1, "USDCHF": -1, "NZDUSD": 1, "GOLD": 1, "COIN": 1, "MSTR": 1, "BMNR": 1, "NVDA": 1, "MSFT": 1, "AAPL": 1, "AMZN": 1, "META": 1, "GOOGL": 1, "TSLA": 1}
+    },
+    {
+      "id": "growth-scare-risk",
+      "label": "Growth scare cuts risk appetite and oil",
+      "trigger": "GROWTH_SCARE",
+      "variable": "growth_expectations",
+      "direction": -1,
+      "strength": 65,
+      "half_life_hours": 36,
+      "persistence": 0.6,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "growth_expectations", "direction": -1, "transmission": 1.0},
+        {"variable": "risk_appetite", "direction": -1, "transmission": 0.85},
+        {"variable": "oil", "from": "growth_expectations", "direction": -1, "transmission": 0.6}
+      ],
+      "regime_dependencies": {"RISK_OFF": 1.2},
+      "exceptions": [],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "AUDUSD": -1, "NZDUSD": -1, "WTI": -1, "BRENT": -1, "VIX": 1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "TSLA": -1}
+    },
+    {
+      "id": "growth-scare-rates",
+      "label": "Growth scare lowers rate expectations and yields",
+      "trigger": "GROWTH_SCARE",
+      "variable": "fed_pricing",
+      "direction": -1,
+      "strength": 55,
+      "half_life_hours": 36,
+      "persistence": 0.6,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "fed_pricing", "direction": -1, "transmission": 1.0},
+        {"variable": "front_end_yields", "direction": -1, "transmission": 0.9},
+        {"variable": "long_end_yields", "from": "front_end_yields", "direction": -1, "transmission": 0.8},
+        {"variable": "safe_haven_demand", "from": "fed_pricing", "direction": 1, "transmission": 0.5}
+      ],
+      "regime_dependencies": {"INFLATION_SHOCK": 0.6},
+      "exceptions": [],
+      "effects": {"US2Y": -1, "US5Y": -1, "US10Y": -1, "US30Y": -1, "USDJPY": -1, "USDCHF": -1, "GOLD": 1, "VIX": 1}
+    },
+    {
+      "id": "risk-off-shock",
+      "label": "Risk-off shock drives safe-haven demand",
+      "trigger": "RISK_OFF_SHOCK",
+      "variable": "risk_appetite",
+      "direction": -1,
+      "strength": 70,
+      "half_life_hours": 12,
+      "persistence": 0.4,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "risk_appetite", "direction": -1, "transmission": 1.0},
+        {"variable": "safe_haven_demand", "direction": 1, "transmission": 0.8}
+      ],
+      "regime_dependencies": {"RISK_ON": 0.6, "LIQUIDITY_STRESS": 1.3},
+      "exceptions": [],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "US10Y": -1, "US30Y": -1, "USDJPY": -1, "AUDUSD": -1, "USDCHF": -1, "NZDUSD": -1, "GOLD": 1, "VIX": 1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "TSLA": -1}
+    },
+    {
+      "id": "energy-deescalation",
+      "label": "Energy de-escalation lowers oil and safe-haven demand",
+      "trigger": "ENERGY_DEESCALATION",
+      "variable": "oil_supply_risk",
+      "direction": -1,
+      "strength": 60,
+      "half_life_hours": 12,
+      "persistence": 0.5,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "oil_supply_risk", "direction": -1, "transmission": 1.0},
+        {"variable": "oil", "direction": -1, "transmission": 0.95},
+        {"variable": "inflation_expectations", "direction": -1, "transmission": 0.5},
+        {"variable": "safe_haven_demand", "from": "oil_supply_risk", "direction": -1, "transmission": 0.7},
+        {"variable": "risk_appetite", "from": "safe_haven_demand", "direction": 1, "transmission": 0.7}
+      ],
+      "regime_dependencies": {},
+      "exceptions": [],
+      "effects": {"BTC": 1, "ETH": 1, "SP500": 1, "NASDAQ": 1, "RUSSELL": 1, "US10Y": 1, "US30Y": 1, "USDJPY": 1, "AUDUSD": 1, "USDCHF": 1, "NZDUSD": 1, "GOLD": -1, "WTI": -1, "BRENT": -1, "VIX": -1, "COIN": 1, "MSTR": 1, "BMNR": 1, "NVDA": 1, "TSLA": 1}
+    },
+    {
+      "id": "jobs-strong-rates",
+      "label": "Strong jobs data lifts rate expectations and the dollar, weighs on risk assets",
+      "trigger": "JOBS_STRONG",
+      "variable": "labor_market",
+      "direction": 1,
+      "strength": 65,
+      "half_life_hours": 24,
+      "persistence": 0.6,
+      "version": "2.3.0",
+      "steps": [
+        {"variable": "labor_market", "direction": 1, "transmission": 1.0},
+        {"variable": "fed_pricing", "direction": 1, "transmission": 0.8},
+        {"variable": "front_end_yields", "direction": 1, "transmission": 0.95},
+        {"variable": "usd", "direction": 1, "transmission": 0.8},
+        {"variable": "duration_assets", "from": "front_end_yields", "direction": -1, "transmission": 0.6}
+      ],
+      "regime_dependencies": {"INFLATION_SHOCK": 1.2},
+      "exceptions": [
+        {"id": "growth-scare-good-news-is-good-news", "when": {"regime_active": "GROWTH_SCARE"}, "action": "scale", "factor": 0.25,
+         "variables": ["duration_assets"]}
+      ],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "DXY": 1, "US2Y": 1, "US5Y": 1, "EURUSD": -1, "GBPUSD": -1, "USDJPY": 1, "AUDUSD": -1, "USDCAD": 1, "USDCHF": 1, "NZDUSD": -1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "MSFT": -1, "AAPL": -1, "AMZN": -1, "META": -1, "GOOGL": -1, "TSLA": -1}
+    },
+    {
+      "id": "jobs-strong-growth",
+      "label": "Strong jobs data lifts growth expectations (secondary path; leads only in a growth scare)",
+      "trigger": "JOBS_STRONG",
+      "variable": "growth_expectations",
+      "direction": 1,
+      "strength": 18,
+      "half_life_hours": 24,
+      "persistence": 0.5,
+      "version": "2.3.0",
+      "steps": [
+        {"variable": "growth_expectations", "direction": 1, "transmission": 1.0},
+        {"variable": "risk_appetite", "direction": 1, "transmission": 0.7}
+      ],
+      "regime_dependencies": {"GROWTH_SCARE": 1.5, "INFLATION_SHOCK": 0.5},
+      "exceptions": [],
+      "effects": {"BTC": 1, "ETH": 1, "SP500": 1, "NASDAQ": 1, "RUSSELL": 1, "AUDUSD": 1, "NZDUSD": 1, "VIX": -1, "COIN": 1, "MSTR": 1, "BMNR": 1, "NVDA": 1, "TSLA": 1}
+    },
+    {
+      "id": "jobs-weak-rates",
+      "label": "Weak jobs data lowers rate expectations and the dollar, supports risk assets",
+      "trigger": "JOBS_WEAK",
+      "variable": "labor_market",
+      "direction": -1,
+      "strength": 65,
+      "half_life_hours": 24,
+      "persistence": 0.6,
+      "version": "2.3.0",
+      "steps": [
+        {"variable": "labor_market", "direction": -1, "transmission": 1.0},
+        {"variable": "fed_pricing", "direction": -1, "transmission": 0.8},
+        {"variable": "front_end_yields", "direction": -1, "transmission": 0.95},
+        {"variable": "usd", "direction": -1, "transmission": 0.8},
+        {"variable": "duration_assets", "from": "front_end_yields", "direction": 1, "transmission": 0.6}
+      ],
+      "regime_dependencies": {"GROWTH_SCARE": 0.7},
+      "exceptions": [
+        {"id": "growth-scare-bad-news-is-bad-news", "when": {"regime_active": "GROWTH_SCARE"}, "action": "scale", "factor": 0.25,
+         "variables": ["duration_assets"]}
+      ],
+      "effects": {"BTC": 1, "ETH": 1, "SP500": 1, "NASDAQ": 1, "RUSSELL": 1, "DXY": -1, "US2Y": -1, "US5Y": -1, "EURUSD": 1, "GBPUSD": 1, "USDJPY": -1, "AUDUSD": 1, "USDCAD": -1, "USDCHF": -1, "NZDUSD": 1, "COIN": 1, "MSTR": 1, "BMNR": 1, "NVDA": 1, "MSFT": 1, "AAPL": 1, "AMZN": 1, "META": 1, "GOOGL": 1, "TSLA": 1}
+    },
+    {
+      "id": "jobs-weak-growth",
+      "label": "Weak jobs data lowers growth expectations (secondary path; leads only in a growth scare)",
+      "trigger": "JOBS_WEAK",
+      "variable": "growth_expectations",
+      "direction": -1,
+      "strength": 18,
+      "half_life_hours": 24,
+      "persistence": 0.5,
+      "version": "2.3.0",
+      "steps": [
+        {"variable": "growth_expectations", "direction": -1, "transmission": 1.0},
+        {"variable": "risk_appetite", "direction": -1, "transmission": 0.7}
+      ],
+      "regime_dependencies": {"GROWTH_SCARE": 1.5},
+      "exceptions": [],
+      "effects": {"BTC": -1, "ETH": -1, "SP500": -1, "NASDAQ": -1, "RUSSELL": -1, "AUDUSD": -1, "NZDUSD": -1, "VIX": 1, "COIN": -1, "MSTR": -1, "BMNR": -1, "NVDA": -1, "TSLA": -1}
+    },
+    {
+      "id": "crypto-regulation",
+      "label": "Tighter crypto regulation",
+      "trigger": "CRYPTO_REGULATION",
+      "variable": "crypto_regulatory_pressure",
+      "direction": 1,
+      "strength": 60,
+      "half_life_hours": 24,
+      "persistence": 0.6,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "crypto_regulatory_pressure", "direction": 1, "transmission": 1.0}
+      ],
+      "regime_dependencies": {},
+      "exceptions": [
+        {"id": "regulatory-relief-confirmed", "when": {"event_confirmed": "CRYPTO_REGULATORY_RELIEF"}, "action": "scale", "factor": 0.4,
+         "variables": []}
+      ],
+      "effects": {"BTC": -1, "ETH": -1, "COIN": -1, "MSTR": -1, "BMNR": -1}
+    },
+    {
+      "id": "crypto-regulatory-relief",
+      "label": "Crypto regulatory relief",
+      "trigger": "CRYPTO_REGULATORY_RELIEF",
+      "variable": "crypto_regulatory_pressure",
+      "direction": -1,
+      "strength": 50,
+      "half_life_hours": 24,
+      "persistence": 0.6,
+      "version": "2.0.0",
+      "steps": [
+        {"variable": "crypto_regulatory_pressure", "direction": -1, "transmission": 1.0}
+      ],
+      "regime_dependencies": {"RISK_OFF": 0.7},
+      "exceptions": [],
+      "effects": {"BTC": 1, "ETH": 1, "COIN": 1, "MSTR": 1, "BMNR": 1}
+    }
+  ],
+  "causal_triggers": {
+    "max_text_chars": 6000,
+    "note": "A trigger gives an event causal reach over many assets and a direction, so the text has to state it; an incidental word is not enough (causal 2.2.0). Each keyword rule is tried in order and the first match wins. Per rule: 'all' = keyword groups that must each be hit; 'direction_words' = one more required group, the word that gives the trigger its direction; 'none' = phrases that veto the rule; 'sources' = only these source ids (empty: any); 'authorities' = the sources whose own publication the trigger describes (ids or independence groups; their social accounts count through the group): for them the whole text is read and the group at 'actor_group' (the one naming the authority) is satisfied by the source itself; 'max_tier' = any other source must have at most this tier (sources.json source_tiers), otherwise the rule never fires for it; 'headline_only' = for any other source every group must be hit in the HEADLINE, not in the body. A rule with trigger null classifies the event (event_type, topic, linked 'assets') and gives it no trigger: no direction, no causal reach, no expected effects.",
+    "unknown_source_tier": 5,
+    "unknown_source_tier_note": "Tier assumed for a document whose source is not in the registry (or not given): the lowest one, so no rule with a max_tier fires for it.",
+    "generic_event_types": ["NEWS", "OFFICIAL_RELEASE"],
+    "generic_event_types_note": "Event types that only say how the document arrived (a news item, an item of an official feed). An event of such a type takes the type of its classification (keyword rule, else source_event_types) when it is created and when it is read, so the verification windows documented per type (verification.json max_age_hours_by_event_type: CENTRAL_BANK 72 h, MACRO 48 h, REGULATION 72 h) apply. A type the provider set on purpose (SANCTIONS, EARNINGS, REGULATORY_FILING, SOCIAL_DISCOVERY) or one accepted from the extractor is never replaced.",
+    "publisher_names": {
+      "fed": ["fed", "federal reserve", "federal reserve board"],
+      "ecb": ["ecb", "european central bank"],
+      "boe": ["boe", "bank of england"],
+      "boj": ["boj", "bank of japan"],
+      "sec": ["sec", "securities and exchange commission"],
+      "sec-filings": ["sec", "securities and exchange commission"],
+      "cftc": ["cftc", "commodity futures trading commission"],
+      "treasury": ["treasury", "ofac"],
+      "congress": ["congress"],
+      "opec": ["opec"]
+    },
+    "publisher_names_note": "Per source id or independence group: the publisher's own name. It never counts as a keyword hit in that publisher's own items ('SEC' appears in every SEC press release and says nothing about its content).",
+    "keyword_rules": [
+      {"trigger": "ENERGY_DEESCALATION", "event_type": "ENERGY_DEESCALATION", "topic": "IRAN_HORMUZ",
+       "all": [["hormuz", "iran", "tanker", "strait", "oil supply", "opec"],
+               ["ceasefire", "de-escalation", "deescalation", "reopened", "reopens", "truce", "eases tensions", "safe passage resumed"]],
+       "none": [], "sources": [], "max_tier": 3, "headline_only": true},
+      {"trigger": "GEOPOLITICAL_ENERGY", "event_type": "GEOPOLITICAL_ENERGY", "topic": "IRAN_HORMUZ",
+       "all": [["hormuz", "strait of hormuz"],
+               ["attack", "attacked", "explosion", "seized", "seizure", "blockade", "closure", "closed", "drone", "missile", "escalation", "disruption", "mined"]],
+       "none": [], "sources": [], "max_tier": 3, "headline_only": true},
+      {"trigger": "GEOPOLITICAL_ENERGY", "event_type": "GEOPOLITICAL_ENERGY", "topic": "ENERGY_SUPPLY",
+       "all": [["oil supply", "tanker", "pipeline", "refinery", "oil field", "oil terminal", "crude exports"],
+               ["attack", "attacked", "explosion", "seized", "blockade", "outage", "sabotage", "drone", "missile", "disruption"]],
+       "none": [], "sources": [], "max_tier": 3, "headline_only": true},
+      {"trigger": "FED_HAWKISH", "event_type": "CENTRAL_BANK", "topic": "FED_POLICY",
+       "all": [["federal reserve", "fomc", "federal open market committee", "powell", "fed"],
+               ["raise the target range", "raised the target range", "rate hike", "hikes rates", "raises rates", "hawkish", "further tightening", "higher for longer"]],
+       "none": ["lower the target range", "lowered the target range", "rate cut", "cuts rates"], "sources": [],
+       "authorities": ["fed"], "actor_group": 0, "max_tier": 2, "headline_only": true},
+      {"trigger": "FED_DOVISH", "event_type": "CENTRAL_BANK", "topic": "FED_POLICY",
+       "all": [["federal reserve", "fomc", "federal open market committee", "powell", "fed"],
+               ["lower the target range", "lowered the target range", "rate cut", "cuts rates", "dovish", "policy easing"]],
+       "none": ["raise the target range", "raised the target range", "rate hike"], "sources": [],
+       "authorities": ["fed"], "actor_group": 0, "max_tier": 2, "headline_only": true},
+      {"trigger": "INFLATION_HOT", "event_type": "MACRO", "topic": "US_INFLATION",
+       "all": [["cpi", "consumer price index", "consumer prices", "pce price", "inflation"],
+               ["hotter than expected", "higher than expected", "above expectations", "above forecasts", "accelerated", "rose more than expected"]],
+       "none": ["cooler than expected", "below expectations"], "sources": [],
+       "authorities": ["bls", "bea"], "max_tier": 2, "headline_only": true},
+      {"trigger": "INFLATION_COOL", "event_type": "MACRO", "topic": "US_INFLATION",
+       "all": [["cpi", "consumer price index", "consumer prices", "pce price", "inflation"],
+               ["cooler than expected", "lower than expected", "below expectations", "below forecasts", "slowed more than expected"]],
+       "none": ["hotter than expected", "above expectations"], "sources": [],
+       "authorities": ["bls", "bea"], "max_tier": 2, "headline_only": true},
+      {"trigger": "JOBS_STRONG", "event_type": "MACRO", "topic": "US_LABOR",
+       "all": [["nonfarm payrolls", "payrolls", "jobs report", "employment situation"],
+               ["stronger than expected", "above expectations", "beat expectations", "surged", "blowout"]],
+       "none": ["weaker than expected", "below expectations"], "sources": [],
+       "authorities": ["bls"], "max_tier": 2, "headline_only": true},
+      {"trigger": "JOBS_WEAK", "event_type": "MACRO", "topic": "US_LABOR",
+       "all": [["nonfarm payrolls", "payrolls", "jobs report", "employment situation", "jobless claims", "unemployment rate"],
+               ["weaker than expected", "below expectations", "missed expectations", "unexpectedly rose", "job losses", "slumped"]],
+       "none": ["stronger than expected", "above expectations"], "sources": [],
+       "authorities": ["bls"], "max_tier": 2, "headline_only": true},
+      {"trigger": "GROWTH_SCARE", "event_type": "MACRO", "topic": "US_GROWTH",
+       "all": [["recession", "gdp", "economic growth", "ism manufacturing", "pmi"],
+               ["contracted", "contraction", "shrank", "recession fears", "unexpectedly fell", "sharp slowdown"]],
+       "none": [], "sources": [], "authorities": ["bea"], "max_tier": 2, "headline_only": true},
+      {"trigger": "RISK_OFF_SHOCK", "event_type": "RISK_EVENT", "topic": "MARKET_STRESS",
+       "all": [["bank failure", "bank run", "sovereign default", "credit event", "flash crash", "contagion", "circuit breaker", "margin calls"]],
+       "none": [], "sources": [], "max_tier": 3, "headline_only": true},
+      {"trigger": "CRYPTO_REGULATORY_RELIEF", "event_type": "REGULATION", "topic": "CRYPTO_REGULATION",
+       "all": [["sec", "cftc", "congress", "senate", "regulator", "regulators"],
+               ["crypto", "bitcoin", "ethereum", "ether", "stablecoin", "digital asset", "digital assets"]],
+       "direction_words": ["approved", "approves", "approval", "dismissed", "dismisses", "drops case", "dropped", "clarity", "framework passed",
+                           "relief", "safe harbor"],
+       "none": ["rejected", "rejects", "denied"], "sources": [],
+       "authorities": ["sec", "cftc", "congress"], "actor_group": 0, "max_tier": 4, "headline_only": true},
+      {"trigger": "CRYPTO_REGULATION", "event_type": "REGULATION", "topic": "CRYPTO_REGULATION",
+       "all": [["sec", "cftc", "doj", "regulator", "regulators"],
+               ["crypto", "bitcoin", "ethereum", "ether", "stablecoin", "digital asset", "digital assets", "coinbase", "binance"]],
+       "direction_words": ["enforcement action", "charges", "charged", "sues", "sued", "lawsuit", "ban", "bans", "banned", "crackdown",
+                           "cease and desist", "wells notice", "fraud", "penalty", "fined", "prohibits", "restricts"],
+       "none": ["approved", "approves", "approval"], "sources": [],
+       "authorities": ["sec", "cftc"], "actor_group": 0, "max_tier": 4, "headline_only": true},
+      {"trigger": null, "event_type": "REGULATION", "topic": "CRYPTO_REGULATION",
+       "all": [["sec", "cftc", "doj", "congress", "senate", "regulator", "regulators"],
+               ["crypto", "bitcoin", "ethereum", "ether", "stablecoin", "digital asset", "digital assets"]],
+       "none": [], "sources": [], "assets": ["BTC", "ETH", "COIN", "MSTR", "BMNR"],
+       "authorities": ["sec", "cftc", "congress"], "actor_group": 0, "max_tier": 4, "headline_only": true,
+       "note": "Neutral crypto regulation: a regulator and a crypto subject with no direction word (a proposal, a consultation, a hearing). The event is typed REGULATION and linked to the crypto assets, with no trigger: tighter rules and relief both stay possible."}
+    ],
+    "source_event_types": {
+      "fed": {"event_type": "CENTRAL_BANK", "topic": "FED_POLICY"},
+      "ecb": {"event_type": "CENTRAL_BANK", "topic": "ECB_POLICY"},
+      "boe": {"event_type": "CENTRAL_BANK", "topic": "BOE_POLICY"},
+      "boj": {"event_type": "CENTRAL_BANK", "topic": "BOJ_POLICY"},
+      "bls": {"event_type": "MACRO", "topic": "US_MACRO"},
+      "bea": {"event_type": "MACRO", "topic": "US_MACRO"},
+      "sec": {"event_type": "REGULATION", "topic": "SEC_FILINGS"}
+    },
+    "source_event_types_note": "Type and topic of an item no keyword rule classified, by source id or independence group (an official X account reads as its institution). Applied when the event is created and when a stored event is read (generic_event_types).",
+    "macro": [
+      {"id": "us-inflation", "countries": ["US", "USA", "United States"], "match": ["cpi", "consumer price", "pce", "ppi", "producer price"],
+       "exclude": [], "up": "INFLATION_HOT", "down": "INFLATION_COOL", "min_abs_z": 1.0},
+      {"id": "us-payrolls", "countries": ["US", "USA", "United States"], "match": ["nonfarm", "non farm", "payrolls"],
+       "exclude": [], "up": "JOBS_STRONG", "down": "JOBS_WEAK", "min_abs_z": 1.0},
+      {"id": "us-unemployment", "countries": ["US", "USA", "United States"], "match": ["unemployment rate", "jobless claims", "initial claims"],
+       "exclude": [], "up": "JOBS_WEAK", "down": "JOBS_STRONG", "min_abs_z": 1.0},
+      {"id": "us-activity", "countries": ["US", "USA", "United States"], "match": ["gdp", "ism", "pmi", "retail sales"],
+       "exclude": ["price", "prices"], "up": null, "down": "GROWTH_SCARE", "min_abs_z": 1.5}
+    ],
+    "market": [
+      {"id": "brent-spike", "symbol": "BRENT", "field": "change_pct", "op": ">=", "value": 2.5, "trigger": "OIL_PRICE_SPIKE"},
+      {"id": "wti-spike", "symbol": "WTI", "field": "change_pct", "op": ">=", "value": 2.5, "trigger": "OIL_PRICE_SPIKE"},
+      {"id": "equity-selloff", "symbol": "SP500", "field": "change_pct", "op": "<=", "value": -2.0, "trigger": "RISK_OFF_SHOCK"}
+    ]
+  }
+}

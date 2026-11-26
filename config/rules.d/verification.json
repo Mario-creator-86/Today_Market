@@ -1,0 +1,75 @@
+{
+  "verification_version": "1.0.1",
+  "verification": {
+    "second_hand_factor": 0.7,
+    "confirm_min_weight": 0.85,
+    "confirm_min_independent": 2,
+    "partial_min_weight": 0.75,
+    "contradiction_min_weight": 0.85,
+    "false_min_weight": 0.98,
+    "unknown_kind_weight": 0.1,
+    "default_half_life_hours": 24,
+    "half_life_hours_by_kind": {
+      "official": 720,
+      "official_statistics": 720,
+      "central_bank": 720,
+      "sec_filing": 720,
+      "exchange": 720,
+      "government": 336,
+      "wire": 72,
+      "company": 72,
+      "company_ir": 72,
+      "press": 48,
+      "specialist": 36,
+      "analyst": 24,
+      "social": 6,
+      "anonymous": 3
+    },
+    "max_age_hours_by_event_type": {
+      "CENTRAL_BANK": 72,
+      "FED_HAWKISH": 72,
+      "FED_DOVISH": 72,
+      "MACRO": 48,
+      "INFLATION_HOT": 48,
+      "INFLATION_COOL": 48,
+      "JOBS_STRONG": 48,
+      "JOBS_WEAK": 48,
+      "REGULATION": 72,
+      "SOCIAL_DISCOVERY": 6
+    },
+    "attribution": {
+      "max_chars": 1500,
+      "patterns": {
+        "reuters": [
+          "(reuters) -",
+          "(reuters) —",
+          "reuters reported",
+          "according to reuters",
+          "told reuters",
+          "via reuters"
+        ],
+        "ap": [
+          "(ap) -",
+          "(ap) —",
+          "associated press reported",
+          "according to the associated press",
+          "via ap"
+        ],
+        "fed": [
+          "federal reserve said in a statement",
+          "according to the federal reserve"
+        ],
+        "bls": [
+          "bureau of labor statistics said",
+          "according to the bureau of labor statistics"
+        ]
+      },
+      "handle_pattern": "(?:via|according to|posted by)\\s+@([a-z0-9_]{1,15})"
+    },
+    "syndication": {
+      "shingle_words": 5,
+      "min_similarity": 0.6,
+      "min_words": 20
+    }
+  }
+}

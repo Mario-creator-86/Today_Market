@@ -1,0 +1,13 @@
+{
+  "search_budget": {
+    "search_budget_version": "1.0.0",
+    "priorities": {
+      "0": {"label": "P0 critical breaking", "share": 1.0, "cooldown_seconds": 60},
+      "1": {"label": "P1 high impact", "share": 0.9, "cooldown_seconds": 60},
+      "2": {"label": "P2 scheduled event research", "share": 0.6, "cooldown_seconds": 300},
+      "3": {"label": "P3 broad sweep", "share": 0.4, "cooldown_seconds": 900}
+    },
+    "max_results": 5,
+    "max_llm_input_chars": 160000
+  }
+}

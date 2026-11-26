@@ -1,0 +1,196 @@
+{
+  "autolearn_version": "1.1.0",
+  "autolearn": {
+    "horizons": {
+      "5m": 300,
+      "15m": 900,
+      "1h": 3600,
+      "4h": 14400
+    },
+    "session_horizons": [
+      "close",
+      "next_session"
+    ],
+    "max_decisions_per_cycle": 2000,
+    "decision_settle_seconds": 0,
+    "min_comparable": 30,
+    "report_horizon": "4h",
+    "confidence_edges": [
+      25,
+      50,
+      75,
+      90
+    ],
+    "comparable_regime_fallback": "UNRECORDED",
+    "paper": {
+      "expiry_horizon": "4h",
+      "target_atr_multiple": 2.0,
+      "target_r_multiple": 2.0,
+      "fee_bps": {
+        "default": 0,
+        "crypto": 10,
+        "equity": 1,
+        "fx": 0,
+        "index": 1
+      },
+      "sizing": {
+        "mode": "equal_notional",
+        "initial_equity": 100000,
+        "notional": 10000,
+        "risk_pct": 0.5,
+        "max_notional_pct": 25
+      },
+      "max_ticks_per_cycle": 200000
+    },
+    "calibration": {
+      "train_fraction": 0.7,
+      "iterations": 400,
+      "learning_rate": 0.1,
+      "l2": 0.01,
+      "confidence_z": 1.96,
+      "max_calibration_error": 0.1,
+      "calibration_error_tolerance": 0.05,
+      "fpr_tolerance": 0.0,
+      "drawdown_tolerance": 0.0,
+      "call_up": 0.6,
+      "call_down": 0.4,
+      "cost_bps": 10,
+      "min_regime_observations": 30,
+      "min_regimes": 2,
+      "quality_good": 0.05,
+      "quality_fair": 0.1,
+      "calibration_bins": 10
+    },
+    "rollback": {
+      "min_observations": 100,
+      "brier_tolerance": 0.02,
+      "fpr_tolerance": 0.05,
+      "hit_rate_tolerance": 0.05
+    },
+    "challengers": [
+      {
+        "id": "reaction-weighted",
+        "version": "1.0.0",
+        "description": "Shadow candidate: more weight on measured market reaction and price confirmation",
+        "weights": {
+          "event": 0.25,
+          "macro": 0.15,
+          "reaction": 0.22,
+          "technical": 0.2,
+          "positioning": 0.07,
+          "cross_asset": 0.06,
+          "regime": 0.05
+        }
+      },
+      {
+        "id": "catalyst-weighted",
+        "version": "1.0.0",
+        "description": "Shadow candidate: more weight on verified catalysts and macro",
+        "weights": {
+          "event": 0.38,
+          "macro": 0.24,
+          "reaction": 0.12,
+          "technical": 0.1,
+          "positioning": 0.06,
+          "cross_asset": 0.05,
+          "regime": 0.05
+        }
+      }
+    ],
+    "backtest": {
+      "bar_lookback_hours": 48,
+      "max_bar_ticks": 10000,
+      "max_steps": 5000,
+      "max_events": 100,
+      "max_calendar_rows": 100000,
+      "max_sources": 10000,
+      "reaction_delay_seconds": 60,
+      "technical_magnitude": 100,
+      "reaction_magnitude": 100,
+      "reaction_tolerance_pct": 0.05
+    }
+  },
+  "market_sessions": {
+    "note": "Venue session calendars (backend.sessions). A venue key and its 'calendar' are machine ids; 'label' and 'basis' are the text the UI shows.",
+    "asset_classes": {
+      "crypto": "CRYPTO",
+      "fx": "FX",
+      "equity": "XNYS",
+      "index": "XNYS_INDEX",
+      "bond": "US_TREASURY",
+      "commodity": "CME"
+    },
+    "symbols": {
+      "DXY": "ICE_US",
+      "VIX": "CBOE_VIX",
+      "BRENT": "ICE_US"
+    },
+    "venues": {
+      "CRYPTO": {
+        "label": "Crypto (24/7)",
+        "kind": "continuous",
+        "close_utc": "00:00",
+        "basis": "24/7 venue; the daily close is the configured UTC cut-off"
+      },
+      "FX": {
+        "label": "Spot FX",
+        "kind": "fx",
+        "timezone": "America/New_York",
+        "close": "17:00",
+        "holidays": [
+          "12-25",
+          "01-01"
+        ],
+        "basis": "Spot FX: sessions roll at 17:00 New York; weekend and configured holiday closures"
+      },
+      "XNYS": {
+        "label": "NYSE",
+        "kind": "calendar",
+        "calendar": "XNYS",
+        "premarket_minutes": 330,
+        "after_hours_minutes": 240,
+        "basis": "NYSE official calendar; pre-market and after-hours from the extended-hours provider feed"
+      },
+      "XNYS_INDEX": {
+        "label": "NYSE (cash index hours)",
+        "kind": "calendar",
+        "calendar": "XNYS",
+        "basis": "Cash index computed during the NYSE regular session only"
+      },
+      "ICE_US": {
+        "label": "ICE US futures",
+        "kind": "calendar",
+        "calendar": "IEPA",
+        "basis": "ICE US futures session calendar"
+      },
+      "CME": {
+        "label": "CME Globex",
+        "kind": "calendar",
+        "calendar": "CMES",
+        "maintenance": {
+          "timezone": "America/Chicago",
+          "start": "16:00",
+          "end": "17:00"
+        },
+        "basis": "CME Globex session calendar with the daily maintenance break"
+      },
+      "US_TREASURY": {
+        "label": "US Treasury (CBOT futures hours)",
+        "kind": "calendar",
+        "calendar": "us_futures",
+        "maintenance": {
+          "timezone": "America/Chicago",
+          "start": "16:00",
+          "end": "17:00"
+        },
+        "basis": "CBOT Treasury futures session as the rates proxy; SIFMA cash-market holiday differences are not modelled"
+      },
+      "CBOE_VIX": {
+        "label": "Cboe (VIX)",
+        "kind": "calendar",
+        "calendar": "XCBF",
+        "basis": "Cboe regular session for the VIX index"
+      }
+    }
+  }
+}

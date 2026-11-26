@@ -1,0 +1,25 @@
+# Architecture decisions
+
+- Masterprompt's explicit Next.js stack takes precedence over the generic HTML stack in the initial instructions.
+- All timestamps are timezone-aware UTC. Presentation uses Europe/Bucharest via IANA rules.
+- Missing providers remain NOT CONFIGURED. No demo data is inserted into production tables.
+- SQLite development mode enables local execution without Docker; PostgreSQL migrations remain the production contract.
+- AI never writes scores, trust weights, prices or execution orders. A missing mandatory audit blocks actionable publication.
+- Market regime is a rule table, not a model: only FRESH quotes count, confirmed events only support (never activate) a regime, and the confidence shown is rule coverage, explicitly not a probability.
+- Briefs are deterministic templates; morning brief is keyed per local Bucharest date so restarts cannot duplicate it. The first cycle is a baseline and never produces an intraday update.
+- Runtime credentials remain server-side environment variables. Administrative token is never embedded in frontend build output.
+- Providers are built from a registry (`backend/providers/registry.py`) and selected by capability. Paid adapters without a key are `NOT CONFIGURED`, or labelled `<name>-stub` in `PROVIDER_MODE=stub`. Stubs can never pass the decision gates.
+- Sources are integrated only when automated access is permitted by their terms. Yahoo Finance, OKX, Kraken, Google News, Reddit, the Nasdaq website and Farside were rejected. ICE BofA OAS series (FRED) are internal-use only, so the credit feature uses Moody's BAA10Y.
+- Configuration is split into `config/rules.d/*.json` fragments that may not redefine each other's keys. Each merged configuration is stored immutably by content hash, and every decision references it.
+- Immediate recalculation needs news, not noise: STALE events never trigger, and level states share the alert break margin. Runs are debounced to `triggers.min_interval_seconds`.
+- Windows development servers run uvicorn on the selector event loop (the Proactor loop can drop its listening socket on WinError 64).
+- SQLite development databases use WAL so the dashboard can read while ingestion writes.
+- Administration is passwordless by default (`ADMIN_AUTH=local`): the app is single-user on the owner's PC and the owner asked for no passwords. Safety comes from loopback client + loopback Host (DNS rebinding) + allowed Origin + the custom `X-Local-Admin` header (CORS preflight, so no CSRF). `ADMIN_AUTH=token` (Docker Compose, any remote access) requires `ADMIN_TOKEN`.
+- Provider keys are edited from Settings → Data providers and written to `.env` (no second secret store). A stored secret never follows a new destination: changing a base URL or SMTP server requires re-entering its secret. Every `.env` edit must read back exactly before it replaces the file.
+- Tiles without a free live source are filled honestly, never with a relabelled instrument: official daily closes (Treasury, ECB fix, EIA spot, FRED), the USD index replica computed from the ECB fix (never named after ICE's index), and proxies (PAXG, ETFs) shown under their own name for direction only, stored apart in `proxy_quotes`. Closes and proxies never reach decisions or gates.
+- FRED closes carry the owner's attribution and copyright notice ("via FRED"; no licence implied), and the FRED API notice is shown wherever FRED values appear. Cboe's CSV (terms), VIXY (decay) and the Fed broad dollar index (a different index) are not used for VIX/DXY.
+- Alpaca is market data only: host pinned to `data.alpaca.markets`, GET allowlist, `feed=iex` (a Paper-only account is entitled to IEX only); a test fails if a trading host or path appears in the backend.
+- The regime shows a labelled last-close basis when markets are closed (display only); decision scoring stays on the live basis. No evaluable rule means `INSUFFICIENT_DATA`, never `MIXED`.
+- The opening dashboard follows the existing masterprompt/imbunatatire requirement to explain the market in 5–10 seconds: current view, reasons, uncertainty, favored/pressured assets and the next catalyst first. Detailed existing sections are collapsed; no new trading capability or prediction is added.
+- Every directional candidate, including a non-AI lean, receives final publication checks. AI prose and audit reuse remain tied to the inputs actually analyzed, not a later quote substituted after generation.
+- Cached asset details adopt published/read-time dashboard downgrades immediately and never restore the same blocked decision from an older snapshot. Interpretation stale deadlines are supplied by the backend configuration and checked locally when updates stop.

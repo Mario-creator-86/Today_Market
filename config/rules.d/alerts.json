@@ -1,0 +1,269 @@
+{
+  "alerts_version": "1.5.0",
+  "alerts": {
+    "note": "Driver thresholds use the driver's own unit (bp for yields, percent otherwise). pressure is the expected sign of the asset move when the driver rises.",
+    "priorities": [
+      "LOW",
+      "MEDIUM",
+      "HIGH"
+    ],
+    "cooldown_seconds": {
+      "SETUP": 3600,
+      "LEVEL_BREAK": 1800,
+      "DIVERGENCE": 3600,
+      "ANOMALY": 900,
+      "EVENT": 86400,
+      "MACRO_RELEASE": 86400,
+      "PROVIDER": 1800
+    },
+    "changes": {
+      "max_observation_age_seconds": 120,
+      "baseline_tolerance_seconds": 900,
+      "exclude_provider_suffix": "-stub"
+    },
+    "setup": {
+      "priority_by_direction": {
+        "STRONG LONG": "HIGH",
+        "STRONG SHORT": "HIGH",
+        "LONG": "MEDIUM",
+        "SHORT": "MEDIUM"
+      }
+    },
+    "level_break": {
+      "window_seconds": 3600,
+      "min_aligned_drivers": 2,
+      "aligned_priority": "HIGH",
+      "technical_only_priority": "MEDIUM",
+      "drivers": {
+        "BTC": [
+          {
+            "symbol": "US10Y",
+            "threshold": 5,
+            "pressure": -1
+          },
+          {
+            "symbol": "DXY",
+            "threshold": 0.3,
+            "pressure": -1
+          },
+          {
+            "symbol": "NASDAQ",
+            "threshold": 0.8,
+            "pressure": 1
+          }
+        ],
+        "ETH": [
+          {
+            "symbol": "US10Y",
+            "threshold": 5,
+            "pressure": -1
+          },
+          {
+            "symbol": "DXY",
+            "threshold": 0.3,
+            "pressure": -1
+          },
+          {
+            "symbol": "NASDAQ",
+            "threshold": 0.8,
+            "pressure": 1
+          }
+        ],
+        "NASDAQ": [
+          {
+            "symbol": "US10Y",
+            "threshold": 5,
+            "pressure": -1
+          },
+          {
+            "symbol": "VIX",
+            "threshold": 8,
+            "pressure": -1
+          }
+        ],
+        "SP500": [
+          {
+            "symbol": "US10Y",
+            "threshold": 5,
+            "pressure": -1
+          },
+          {
+            "symbol": "VIX",
+            "threshold": 8,
+            "pressure": -1
+          }
+        ],
+        "GOLD": [
+          {
+            "symbol": "US10Y",
+            "threshold": 5,
+            "pressure": -1
+          },
+          {
+            "symbol": "DXY",
+            "threshold": 0.3,
+            "pressure": -1
+          }
+        ],
+        "EURUSD": [
+          {
+            "symbol": "DXY",
+            "threshold": 0.3,
+            "pressure": -1
+          },
+          {
+            "symbol": "US2Y",
+            "threshold": 5,
+            "pressure": -1
+          }
+        ]
+      },
+      "min_break_pct": 0.1,
+      "min_break_atr": 0.25,
+      "level_kinds": {
+        "note": "1.5.0 (AFP-02): a LEVEL_BREAK alert is deduplicated per symbol, side (support / resistance) and level kind, never per level value: support and resistance are re-anchored to every completed minute close, so a key holding the value produced a new alert every cycle (124 of 280 stored alerts repeated a symbol and side inside the 1800 s cooldown). The kind comes from the level's basis (first matching prefix, else default): a break of a daily level (previous day or week, N-day range, daily SMA) is a different condition from a break of an intraday one (session, swing, VWAP, volume profile, option strike), so each may alert once per cooldown.",
+        "default": "intraday",
+        "prefixes": {"previous_day": "daily", "previous_week": "daily", "range_": "daily", "sma_": "daily"}
+      },
+      "max_reference_age_seconds": 900,
+      "note_max_reference_age_seconds": "1.5.0 (AFP-01): levels are tested for a break only while they describe the current market. Levels anchored to a minute close older than this many seconds (the first cycle after a restart or data gap anchors them to a bar 12-20 h old), levels flagged reference.stale, and levels of a decision past its expires_at are ignored: no alert and brief level state UNKNOWN. 900 s = the 300 s analysis cadence plus the last completed minute and a slow cycle."
+    },
+    "divergence": {
+      "rules": [
+        {
+          "id": "btc-relative-strength-vs-inflation-pressure",
+          "symbol": "BTC",
+          "window_seconds": 86400,
+          "min_aligned_drivers": 2,
+          "min_asset_move": 0.5,
+          "priority": "HIGH",
+          "drivers": [
+            {
+              "symbols": [
+                "BRENT",
+                "WTI"
+              ],
+              "threshold": 3,
+              "pressure": -1
+            },
+            {
+              "symbol": "US10Y",
+              "threshold": 5,
+              "pressure": -1
+            },
+            {
+              "symbol": "DXY",
+              "threshold": 0.3,
+              "pressure": -1
+            }
+          ]
+        },
+        {
+          "id": "nasdaq-relative-strength-vs-rates",
+          "symbol": "NASDAQ",
+          "window_seconds": 86400,
+          "min_aligned_drivers": 2,
+          "min_asset_move": 0.5,
+          "priority": "MEDIUM",
+          "drivers": [
+            {
+              "symbol": "US10Y",
+              "threshold": 6,
+              "pressure": -1
+            },
+            {
+              "symbol": "VIX",
+              "threshold": 8,
+              "pressure": -1
+            },
+            {
+              "symbol": "DXY",
+              "threshold": 0.4,
+              "pressure": -1
+            }
+          ]
+        }
+      ]
+    },
+    "anomaly": {
+      "high_threshold_multiple": 2.0,
+      "priority": "MEDIUM",
+      "high_priority": "HIGH"
+    },
+    "event": {
+      "note": "1.5.0 (AFP-04): EVENT alerts are sent for newly CONFIRMED events (notifications.event_alerts): status in statuses, ASSESSED importance >= min_importance (an importance that was never assessed gives no alert and no AI request), an identified asset impact when require_assets is true (the event's own affected assets, else the assets its causal trigger reaches), and first seen or last updated within max_age_hours, so a restart does not alert the whole backlog. Each event alerts once: the alert id is the event id (the former key was the shared status, which allowed one EVENT alert per day in total).",
+      "statuses": [
+        "CONFIRMED"
+      ],
+      "min_importance": 0.5,
+      "high_importance": 0.8,
+      "require_assets": true,
+      "max_age_hours": 24,
+      "priority": "MEDIUM",
+      "high_priority": "HIGH"
+    },
+    "macro_release": {
+      "min_impact": 5,
+      "high_impact": 10,
+      "high_abs_z_score": 1.5,
+      "priority": "MEDIUM",
+      "high_priority": "HIGH"
+    },
+    "provider": {
+      "priority_by_status": {
+        "OFFLINE": "HIGH",
+        "AUTH_ERROR": "HIGH",
+        "RATE_LIMITED": "MEDIUM",
+        "DEGRADED": "LOW",
+        "ONLINE": "LOW"
+      },
+      "ignored_statuses": [
+        "PENDING",
+        "NOT CONFIGURED",
+        "DISABLED"
+      ],
+      "status_text": {
+        "ONLINE": "online",
+        "OFFLINE": "offline",
+        "AUTH_ERROR": "access rejected",
+        "RATE_LIMITED": "rate limited",
+        "DEGRADED": "degraded",
+        "PENDING": "starting",
+        "NOT CONFIGURED": "not configured",
+        "DISABLED": "switched off"
+      }
+    },
+    "channels": {
+      "in_app": {
+        "min_priority": "LOW",
+        "max_per_hour": 1000,
+        "retries": 0,
+        "backoff_seconds": 0
+      },
+      "telegram": {
+        "min_priority": "HIGH",
+        "max_per_hour": 30,
+        "retries": 2,
+        "backoff_seconds": 2,
+        "max_chars": 4000
+      },
+      "email": {
+        "min_priority": "HIGH",
+        "max_per_hour": 12,
+        "retries": 2,
+        "backoff_seconds": 5
+      },
+      "webpush": {
+        "min_priority": "MEDIUM",
+        "max_per_hour": 60,
+        "retries": 1,
+        "backoff_seconds": 2,
+        "ttl_seconds": 3600,
+        "allowed_push_hosts": ["fcm.googleapis.com", "android.googleapis.com", "updates.push.services.mozilla.com",
+                               "push.apple.com", "notify.windows.com"],
+        "max_subscriptions": 50
+      }
+    },
+    "request_timeout_seconds": 10
+  }
+}
